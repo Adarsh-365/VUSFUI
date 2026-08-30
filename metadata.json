@@ -1,0 +1,6 @@
+{
+  "name": "Vishwa Udyam Sahayta Foundation",
+  "description": "Official portal of Vishwa Udyam Sahayta Foundation (Namaste Vishwa Udyam) - Empowering MSMEs, Startups, Infrastructure & Global Trade Networks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
