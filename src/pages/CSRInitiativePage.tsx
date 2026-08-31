@@ -253,7 +253,7 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
                       src={prog.image}
                       alt={prog.title}
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg';
+                        (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg';
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

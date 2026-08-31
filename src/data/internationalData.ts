@@ -67,13 +67,13 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Target Corridors', value: 'Domestic & Global' }
     ],
     images: [
-      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0039.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0041.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0096.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0099.jpg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0039.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0041.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0096.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0099.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0104.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0109.jpg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0109.jpeg',
     ],
   },
   {
@@ -114,7 +114,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Initiative', value: 'Azadi Ka Amrit Mahotsav' }
     ],
     images: [
-      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpg',
+      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpeg',
     ],
   },
   {
@@ -154,10 +154,10 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Focus', value: 'Women Startups & Subsidies' }
     ],
     images: [
-      '/timeline_photos/malkapur event/IMG-20260206-WA0036.jpg',
-      '/timeline_photos/malkapur event/IMG-20260206-WA0108.jpg',
-      '/timeline_photos/malkapur event/IMG-20260206-WA0113.jpg',
-      '/timeline_photos/malkapur event/IMG_20220809_143443_109.webp',
+      '/timeline_photos/malkapur event/IMG-20260206-WA0036.jpeg',
+      '/timeline_photos/malkapur event/IMG-20260206-WA0108.jpeg',
+      '/timeline_photos/malkapur event/IMG-20260206-WA0113.jpeg',
+      '/timeline_photos/malkapur event/IMG_20220809_143443_109.jpeg',
       '/timeline_photos/malkapur event/WhatsApp Image 2026-08-28 at 8.57.30 PM.jpeg',
     ],
   },
@@ -197,11 +197,11 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Trade Corridor', value: 'Namaste Nepal Desk' }
     ],
     images: [
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpg',
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0117.jpg',
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0118.jpg',
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0119.jpg',
-      '/timeline_photos/nepal exibition/IMG_20220809_144011_810.webp',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpeg',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0117.jpeg',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0118.jpeg',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0119.jpeg',
+      '/timeline_photos/nepal exibition/IMG_20220809_144011_810.jpeg',
       '/timeline_photos/nepal exibition/IMG_20220809_144131_176.webp',
       '/timeline_photos/nepal exibition/IMG_20220809_144243_473.webp',
     ],
@@ -241,7 +241,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Scope', value: 'Pan-India MSME Clusters' }
     ],
     images: [
-      '/timeline_photos/human right/IMG_20220809_143639_466.webp',
+      '/timeline_photos/human right/IMG_20220809_143639_466.jpeg',
     ],
   },
   {
@@ -280,7 +280,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Theme', value: 'State Export Acceleration' }
     ],
     images: [
-      '/timeline_photos/mumbai export summit/IMG-20260206-WA0037.jpg',
+      '/timeline_photos/mumbai export summit/IMG-20260206-WA0037.jpeg',
     ],
   },
   {
@@ -319,7 +319,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Gateway Region', value: 'Central & Eastern Europe' }
     ],
     images: [
-      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpg',
+      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpeg',
     ],
   },
   {
@@ -480,17 +480,17 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Key Sectors', value: 'Agro, Chemicals, Pharma & Metals' }
     ],
     images: [
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0095.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0097.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0100.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0101.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0104.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0105.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0106.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0107.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0112.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0131.jpg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0095.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0097.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0100.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0101.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0104.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0105.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0106.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0107.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0112.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0131.jpeg',
     ],
   },
   {
@@ -529,12 +529,12 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Location', value: 'Pune, Maharashtra' }
     ],
     images: [
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0066.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0066.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
     ],
   },
   {
@@ -651,11 +651,11 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Crops Targeted', value: 'Chana, Maize & Fresh Vegetables' }
     ],
     images: [
-      '/timeline_photos/woter foundation/IMG-20250614-WA0082.jpg',
-      '/timeline_photos/woter foundation/IMG-20250614-WA0083.jpg',
-      '/timeline_photos/woter foundation/IMG-20250614-WA0094.jpg',
-      '/timeline_photos/woter foundation/IMG-20250614-WA0101.jpg',
-      '/timeline_photos/woter foundation/IMG-20250614-WA0102.jpg',
+      '/timeline_photos/woter foundation/IMG-20250614-WA0082.jpeg',
+      '/timeline_photos/woter foundation/IMG-20250614-WA0083.jpeg',
+      '/timeline_photos/woter foundation/IMG-20250614-WA0094.jpeg',
+      '/timeline_photos/woter foundation/IMG-20250614-WA0101.jpeg',
+      '/timeline_photos/woter foundation/IMG-20250614-WA0102.jpeg',
     ],
   },
   {
@@ -733,11 +733,11 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Target Market', value: 'ASEAN & Greater Mekong' }
     ],
     images: [
-      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0090.jpg',
-      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0103.jpg',
-      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0045.jpg',
-      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0050.jpg',
-      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0084.jpg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0090.jpeg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0103.jpeg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0045.jpeg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0050.jpeg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20260206-WA0084.jpeg',
     ],
   },
   {
@@ -776,8 +776,8 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Focus', value: 'FinTech, Trade Finance & MSME Credit' }
     ],
     images: [
-      '/timeline_photos/money expo/IMG-20260206-WA0093.jpg',
-      '/timeline_photos/money expo/IMG-20260206-WA0094.jpg',
+      '/timeline_photos/money expo/IMG-20260206-WA0093.jpeg',
+      '/timeline_photos/money expo/IMG-20260206-WA0094.jpeg',
     ],
   },
   {
@@ -816,9 +816,9 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Impact Area', value: 'Farmer Supply Chain & Nutrition' }
     ],
     images: [
-      '/timeline_photos/nepal meet/IMG-20260206-WA0074.jpg',
-      '/timeline_photos/nepal meet/IMG-20260206-WA0079.jpg',
-      '/timeline_photos/nepal meet/IMG-20260206-WA0082.jpg',
+      '/timeline_photos/nepal meet/IMG-20260206-WA0074.jpeg',
+      '/timeline_photos/nepal meet/IMG-20260206-WA0079.jpeg',
+      '/timeline_photos/nepal meet/IMG-20260206-WA0082.jpeg',
     ],
   },
   {
@@ -857,7 +857,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Scope', value: 'Bilateral Ventures & Technology' }
     ],
     images: [
-      '/timeline_photos/nepal cni/IMG-20260206-WA0089.jpg',
+      '/timeline_photos/nepal cni/IMG-20260206-WA0089.jpeg',
     ],
   },
   {
@@ -897,8 +897,8 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Trade Corridor', value: 'India-Türkiye Commercial Desk' }
     ],
     images: [
-      '/timeline_photos/turkey business deligation mumbaio/IMG-20260206-WA0090.jpg',
-      '/timeline_photos/turkey business deligation mumbaio/IMG-20260206-WA0091.jpg',
+      '/timeline_photos/turkey business deligation mumbaio/IMG-20260206-WA0090.jpeg',
+      '/timeline_photos/turkey business deligation mumbaio/IMG-20260206-WA0091.jpeg',
     ],
   },
   {
@@ -937,7 +937,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Region', value: 'Eurasia & Mediterranean' }
     ],
     images: [
-      '/timeline_photos/turkey counsulaet/IMG-20250614-WA0100.jpg',
+      '/timeline_photos/turkey counsulaet/IMG-20250614-WA0100.jpeg',
     ],
   },
   {
@@ -981,13 +981,13 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Government Alignment', value: 'Embassy of India & MSME Ministry' }
     ],
     images: [
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0048.jpg',
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0049.jpg',
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0051.jpg',
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0052.jpg',
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0053.jpg',
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0054.jpg',
-      '/timeline_photos/thailand thai chamber of commerce/IMG-20260206-WA0072.jpg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0048.jpeg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0049.jpeg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0051.jpeg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0052.jpeg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0053.jpeg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0054.jpeg',
+      '/timeline_photos/thailand thai chamber of commerce/IMG-20260206-WA0072.jpeg',
     ],
   },
   {
@@ -1025,7 +1025,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Strategic Outcome', value: 'Exchange Framework for Women Founders' }
     ],
     images: [
-      '/timeline_photos/thaialnd 2nd secretory/IMG-20260206-WA0085.jpg',
+      '/timeline_photos/thaialnd 2nd secretory/IMG-20260206-WA0085.jpeg',
     ],
   },
   {
@@ -1066,12 +1066,12 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Region', value: 'Mumbai Metropolitan Region (MMR)' }
     ],
     images: [
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0066.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0066.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpeg',
     ],
   },
   {
@@ -1110,8 +1110,8 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Industry', value: 'Global Food, Beverage & Agro' }
     ],
     images: [
-      '/timeline_photos/sial exibition/IMG-20260206-WA0027.jpg',
-      '/timeline_photos/sial exibition/IMG-20260206-WA0028.jpg',
+      '/timeline_photos/sial exibition/IMG-20260206-WA0027.jpeg',
+      '/timeline_photos/sial exibition/IMG-20260206-WA0028.jpeg',
     ],
   },
   {
@@ -1150,9 +1150,9 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Focus', value: 'Water, Waste & Green Industrial Tech' }
     ],
     images: [
-      '/timeline_photos/ifat exibition/IMG-20251212-WA0084.jpg',
-      '/timeline_photos/ifat exibition/IMG_20251016_232309_084.webp',
-      '/timeline_photos/ifat exibition/IMG_20251016_232436_797.webp',
+      '/timeline_photos/ifat exibition/IMG-20251212-WA0084.jpeg',
+      '/timeline_photos/ifat exibition/IMG_20251016_232309_084.jpeg',
+      '/timeline_photos/ifat exibition/IMG_20251016_232436_797.jpeg',
     ],
   },
   {
@@ -1193,21 +1193,21 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Scope', value: 'Direct OEM Sourcing & Factory Audits' }
     ],
     images: [
-      '/timeline_photos/china 2025/20251104_151304.jpg',
-      '/timeline_photos/china 2025/3_20251027_145145_0000.png',
-      '/timeline_photos/china 2025/4_20251027_145145_0001.png',
-      '/timeline_photos/china 2025/5_20251027_145145_0002.png',
-      '/timeline_photos/china 2025/IMG-20251109-WA0061.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0027.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0029.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0041.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0055.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0063.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0072.jpg',
-      '/timeline_photos/china 2025/IMG-20260206-WA0029.jpg',
-      '/timeline_photos/china 2025/IMG-20260206-WA0030.jpg',
+      '/timeline_photos/china 2025/20251104_151304.jpeg',
+      '/timeline_photos/china 2025/3_20251027_145145_0000.jpeg',
+      '/timeline_photos/china 2025/4_20251027_145145_0001.jpeg',
+      '/timeline_photos/china 2025/5_20251027_145145_0002.jpeg',
+      '/timeline_photos/china 2025/IMG-20251109-WA0061.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0027.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0029.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0041.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0055.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0063.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0072.jpeg',
+      '/timeline_photos/china 2025/IMG-20260206-WA0029.jpeg',
+      '/timeline_photos/china 2025/IMG-20260206-WA0030.jpeg',
     ],
   },
   {
@@ -1247,8 +1247,8 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Target Reach', value: 'Rural SHGs & Micro-Enterprises' }
     ],
     images: [
-      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpg',
-      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpg',
+      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpeg',
+      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpeg',
     ],
   },
   {
@@ -1290,15 +1290,15 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Location', value: 'Kannad, Chhatrapati Sambhajinagar' }
     ],
     images: [
-      '/timeline_photos/CSR project/IMG-20260206-WA0098.jpg',
-      '/timeline_photos/CSR project/IMG-20260310-WA0084.jpg',
-      '/timeline_photos/CSR project/IMG-20260310-WA0112(1).jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0082.jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0087.jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0088(1).jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0091.jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0095.jpg',
-      '/timeline_photos/CSR project/IMG-20260311-WA0099.jpg',
+      '/timeline_photos/CSR project/IMG-20260206-WA0098.jpeg',
+      '/timeline_photos/CSR project/IMG-20260310-WA0084.jpeg',
+      '/timeline_photos/CSR project/IMG-20260310-WA0112(1).jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0082.jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0087.jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0088(1).jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0091.jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0095.jpeg',
+      '/timeline_photos/CSR project/IMG-20260311-WA0099.jpeg',
     ],
   },
   {
@@ -1337,11 +1337,11 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Focus', value: 'Grassroots Enterprise to Market' }
     ],
     images: [
-      '/timeline_photos/mahalaksmi saras/B612_20260410_004509_538.jpg',
-      '/timeline_photos/mahalaksmi saras/B612_20260410_004526_686.jpg',
-      '/timeline_photos/mahalaksmi saras/B612_20260410_004541_103.jpg',
-      '/timeline_photos/mahalaksmi saras/B612_20260410_004557_298.jpg',
-      '/timeline_photos/mahalaksmi saras/B612_20260410_004610_477.jpg',
+      '/timeline_photos/mahalaksmi saras/B612_20260410_004509_538.jpeg',
+      '/timeline_photos/mahalaksmi saras/B612_20260410_004526_686.jpeg',
+      '/timeline_photos/mahalaksmi saras/B612_20260410_004541_103.jpeg',
+      '/timeline_photos/mahalaksmi saras/B612_20260410_004557_298.jpeg',
+      '/timeline_photos/mahalaksmi saras/B612_20260410_004610_477.jpeg',
       '/timeline_photos/mahalaksmi saras/B612_20260410_004629_163.jpg',
       '/timeline_photos/mahalaksmi saras/B612_20260410_004646_551.jpg',
       '/timeline_photos/mahalaksmi saras/B612_20260410_004702_042.jpg',
@@ -1389,15 +1389,15 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
     ],
     images: [
       '/temp/IMAGES.jpeg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260622-WA0102.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260623-WA0074.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260707-WA0026.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0006.jpg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260622-WA0102.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260623-WA0074.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260707-WA0026.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0006.jpeg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0007.jpg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0008.jpg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0009.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0010.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0011.jpg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0010.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0011.jpeg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0012.jpg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0013.jpg',
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0014.jpg',
@@ -1443,17 +1443,17 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'MoU Date', value: '21 August 2026' }
     ],
     images: [
-      '/timeline_photos/college/16_20250710_130302_0015.png',
-      '/timeline_photos/college/17_20250710_130302_0016.png',
-      '/timeline_photos/college/18_20250710_130302_0017.png',
-      '/timeline_photos/college/5_20250710_130301_0004.png',
-      '/timeline_photos/college/IMG-20250614-WA0075.jpg',
+      '/timeline_photos/college/16_20250710_130302_0015.jpeg',
+      '/timeline_photos/college/17_20250710_130302_0016.jpeg',
+      '/timeline_photos/college/18_20250710_130302_0017.jpeg',
+      '/timeline_photos/college/5_20250710_130301_0004.jpeg',
+      '/timeline_photos/college/IMG-20250614-WA0075.jpeg',
       '/timeline_photos/college/IMG-20250614-WA0076.jpg',
       '/timeline_photos/college/IMG-20250614-WA0077.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0078.jpg',
+      '/timeline_photos/college/IMG-20250614-WA0078.jpeg',
       '/timeline_photos/college/IMG-20250614-WA0085.jpg',
-      '/timeline_photos/channel partner/Blue White Modern Geometric Certificate of Completion_20260106_123118_0000.png',
-      '/timeline_photos/channel partner/Untitled-design-35-1.png',
+      '/timeline_photos/channel partner/Blue White Modern Geometric Certificate of Completion_20260106_123118_0000.jpeg',
+      '/timeline_photos/channel partner/Untitled-design-35-1.jpeg',
     ],
   },
 ];
@@ -1489,10 +1489,10 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Pushkar Malla', designation: 'Bilateral Liaison • Kathmandu', image: 'https://namastevishwaudyam.org/img/c111.png' },
     ],
     galleryImages: [
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpg',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpeg',
       '/timeline_photos/nepal fashion and jwellary exibition/WhatsApp Image 2026-08-28 at 10.00.18 PM.jpeg',
-      '/timeline_photos/nepal cni/IMG-20260206-WA0089.jpg',
-      '/timeline_photos/nepal meet/IMG-20260206-WA0074.jpg',
+      '/timeline_photos/nepal cni/IMG-20260206-WA0089.jpeg',
+      '/timeline_photos/nepal meet/IMG-20260206-WA0074.jpeg',
     ],
   },
   uae: {
@@ -1526,7 +1526,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
     ],
     galleryImages: [
       '/timeline_photos/asian banking club/WhatsApp Image 2026-08-28 at 10.18.58 PM.jpeg',
-      '/timeline_photos/money expo/IMG-20260206-WA0093.jpg',
+      '/timeline_photos/money expo/IMG-20260206-WA0093.jpeg',
     ],
   },
   thailand: {
@@ -1557,10 +1557,10 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Vardhaman', designation: 'Convenor • Namaste Thailand', image: 'https://namastevishwaudyam.org/img/c188.png' },
     ],
     galleryImages: [
-      '/timeline_photos/thailand exibition/IMG-20260206-WA0048.jpg',
-      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0090.jpg',
-      '/timeline_photos/thaialnd 2nd secretory/IMG-20260206-WA0085.jpg',
-      '/timeline_photos/thailand thai chamber of commerce/IMG-20260206-WA0072.jpg',
+      '/timeline_photos/thailand exibition/IMG-20260206-WA0048.jpeg',
+      '/timeline_photos/thailand buyer seller meet/IMG-20250614-WA0090.jpeg',
+      '/timeline_photos/thaialnd 2nd secretory/IMG-20260206-WA0085.jpeg',
+      '/timeline_photos/thailand thai chamber of commerce/IMG-20260206-WA0072.jpeg',
     ],
   },
   vietnam: {
@@ -1591,10 +1591,10 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Tran Thuy Duong (Naomi)', designation: 'Convenor • Namaste Vietnam', image: 'https://namastevishwaudyam.org/img/c177.png' },
     ],
     galleryImages: [
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0095.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0100.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0105.jpg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0095.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0100.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0105.jpeg',
     ],
   },
   singapore: {
@@ -1625,7 +1625,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Singapore Strategic Desk', designation: 'Bilateral Trade Directorate', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
     ],
     galleryImages: [
-      '/timeline_photos/money expo/IMG-20260206-WA0093.jpg',
+      '/timeline_photos/money expo/IMG-20260206-WA0093.jpeg',
       '/timeline_photos/asian banking club/WhatsApp Image 2026-08-28 at 10.18.58 PM.jpeg',
     ],
   },
@@ -1658,10 +1658,10 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Jevy Cai', designation: 'Convenor • Namaste China', image: 'https://namastevishwaudyam.org/img/ch11.png' },
     ],
     galleryImages: [
-      '/timeline_photos/china 2025/20251104_151304.jpg',
-      '/timeline_photos/china 2025/IMG-20251109-WA0061.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpg',
+      '/timeline_photos/china 2025/20251104_151304.jpeg',
+      '/timeline_photos/china 2025/IMG-20251109-WA0061.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpeg',
     ],
   },
   india: {
@@ -1694,9 +1694,9 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Nikhil Patil', designation: 'Director of Strategic Operations', image: '/members/nikhil.jpeg' },
     ],
     galleryImages: [
-      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg',
       '/timeline_photos/state export awrds/IMG_20220809_144342_117.webp',
-      '/timeline_photos/malkapur event/IMG-20260206-WA0036.jpg',
+      '/timeline_photos/malkapur event/IMG-20260206-WA0036.jpeg',
     ],
   },
   bangladesh: {
@@ -1727,7 +1727,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       { name: 'Dhaka Trade Directorate', designation: 'Bilateral Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
     ],
     galleryImages: [
-      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpg',
+      '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpeg',
     ],
   },
   'sri-lanka': {

@@ -29,7 +29,7 @@ export const BLOGS_DATA: BlogPost[] = [
     readTime: '4 min read',
     author: 'VUSF Directorate of Youth Incubation & Higher Education',
     authorRole: 'Strategic Academic Alliances',
-    image: '/timeline_photos/college/16_20250710_130302_0015.png',
+    image: '/timeline_photos/college/16_20250710_130302_0015.jpeg',
     summary:
       'Vishwa Udyam Sahayta Foundation officially executes a historic Memorandum of Understanding (MOU) with the prestigious Pillai Group of Institutions and Pillai University to establish student entrepreneurship incubators, MSME mentorship cells, and women startup bootcamps.',
     highlights: [
@@ -58,7 +58,7 @@ export const BLOGS_DATA: BlogPost[] = [
     readTime: '5 min read',
     author: 'Editorial Board • Namaste India Entrepreneur Magazine',
     authorRole: 'National Publications Division',
-    image: '/banner/MAGZINE.png',
+    image: '/banner/MAGZINE.jpeg',
     summary:
       'Inviting visionary entrepreneurs, startup founders, industry experts, and researchers across India to contribute articles, case studies, and enterprise journeys for the upcoming free national edition of Namaste India Entrepreneur Magazine.',
     highlights: [
@@ -87,7 +87,7 @@ export const BLOGS_DATA: BlogPost[] = [
     readTime: '4 min read',
     author: 'VUSF Regional Commerce Directorate',
     authorRole: 'Events & Trade Conclaves',
-    image: '/banner/Namast china.png',
+    image: '/banner/Namast china.jpeg',
     summary:
       'A landmark triumph for the MMR industrial ecosystem — Vishwa Udyam Sahayta Foundation successfully organized the Navi Mumbai Business Summit 2026, facilitating cross-border B2B dialogues, bank credit tie-ups, and export corridor agreements.',
     highlights: [
@@ -116,7 +116,7 @@ export const BLOGS_DATA: BlogPost[] = [
     readTime: '6 min read',
     author: 'Namaste China Bilateral Trade Directorate',
     authorRole: 'International Sourcing & OEM Relations',
-    image: '/banner/Namast china.png',
+    image: '/banner/Namast china.jpeg',
     externalUrl: 'https://namastechina.org',
     summary:
       'Introducing Namaste China (visit namastechina.org), an exclusive international sourcing desk and delegation platform connecting Indian manufacturers, importers, and MSMEs directly with verified Chinese factories, OEM suppliers, and the Canton Fair.',

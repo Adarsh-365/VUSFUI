@@ -778,7 +778,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                     src={imgUrl}
                     alt={`Event gallery ${i + 1}`}
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg';
+                      (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg';
                     }}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   />

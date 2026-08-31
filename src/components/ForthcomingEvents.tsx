@@ -17,7 +17,7 @@ export const ForthcomingEvents: React.FC<ForthcomingEventsProps> = ({
     location: 'Guangzhou, China',
     category: 'INTERNATIONAL TRADE DELEGATION',
     badge: 'FLAGSHIP GLOBAL DELEGATION',
-    image: '/banner/namaste-china.png',
+    image: '/banner/namaste-china.jpeg',
     desc: 'Join our official Indian business delegation to the Canton Fair in Guangzhou, China. Direct factory visits, verified OEM suppliers, machinery sourcing, and cross-border trade matchmaking.',
     highlight: 'Direct Factory Visits & Global OEM Sourcing',
   };

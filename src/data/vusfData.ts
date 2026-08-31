@@ -139,7 +139,7 @@ export const EVENT_HIGHLIGHTS_DATA: EventItem[] = [
     date: '16 April 2025',
     location: 'Mumbai Metropolitan Region (MMR), Mumbai, Maharashtra',
     featured: true,
-    image: '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
+    image: '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
     category: 'Government Recognition & State Honors',
     description:
       'Honoured by the Government of Maharashtra with the State Achievement Award for attracting industrial investment and driving district MSME empowerment, presented by Hon. Shri Uday Samant, Minister of Industries, Government of Maharashtra.',
@@ -161,7 +161,7 @@ export const EVENT_HIGHLIGHTS_DATA: EventItem[] = [
     date: 'February 2026',
     location: 'Ho Chi Minh City & Hanoi, Vietnam',
     featured: false,
-    image: '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
+    image: '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
     category: 'International Trade & B2B Matchmaking',
     description:
       'Proudly connecting Indian entrepreneurs and businesses with Vietnamese importers and distributors, exploring bilateral trade opportunities, cross-border manufacturing tie-ups, and expanding Asian market footprints.',
@@ -172,7 +172,7 @@ export const EVENT_HIGHLIGHTS_DATA: EventItem[] = [
     date: 'November 2025',
     location: 'Guangzhou, China',
     featured: false,
-    image: '/timeline_photos/china 2025/20251104_151304.jpg',
+    image: '/timeline_photos/china 2025/20251104_151304.jpeg',
     category: 'Global Sourcing & Factory Delegations',
     description:
       'Landmark participation of Namaste India Group at the Canton Fair in Guangzhou, China, interacting with OEM manufacturers, suppliers, buyers, and establishing the groundwork for the Namaste China bilateral sourcing desk.',

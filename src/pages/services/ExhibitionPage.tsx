@@ -34,7 +34,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'BITEC, Bangkok, Thailand',
       category: 'thailand',
       badge: 'ASEAN PAVILION',
-      image: '/timeline_photos/thailand exibition/IMG-20260206-WA0054.jpg',
+      image: '/timeline_photos/thailand exibition/IMG-20260206-WA0054.jpeg',
       description:
         'Led high-level Indian business delegation to Thailand Industrial Fair in Bangkok. Engaged with Thai Chamber of Commerce, Board of Trade of Thailand, and 2nd Secretary at the Embassy of India to foster bilateral trade in food processing machinery, auto components, and packaging automation.',
       highlights: [
@@ -50,7 +50,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'Kathmandu, Nepal',
       category: 'nepal',
       badge: 'SOUTH ASIA GATEWAY',
-      image: '/timeline_photos/nepal exibition/IMG-20260206-WA0118.jpg',
+      image: '/timeline_photos/nepal exibition/IMG-20260206-WA0118.jpeg',
       description:
         'Strategic cross-border industrial expo connecting Indian agro-processing units, spices, packaging materials, and FMCG manufacturers with leading Nepalese importers, retail chains, and trade distributors.',
       highlights: [
@@ -82,7 +82,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'Guangzhou, China',
       category: 'china',
       badge: 'GLOBAL FACTORY ACCESS',
-      image: '/timeline_photos/china 2025/20251104_151304.jpg',
+      image: '/timeline_photos/china 2025/20251104_151304.jpeg',
       description:
         'Landmark delegation to the 138th Canton Fair (China Import and Export Fair) in Guangzhou. Formally launched the Namaste China bilateral sourcing desk, assisting Indian MSMEs with direct OEM factory audits and heavy machinery procurement.',
       highlights: [
@@ -98,7 +98,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'Ho Chi Minh City & Hanoi, Vietnam',
       category: 'domestic',
       badge: 'SOUTHEAST ASIA BRIDGE',
-      image: '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
+      image: '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
       description:
         'High-impact B2B delegation bringing together 30+ Indian agro-exporters, specialty chemical producers, and engineering firms with Vietnamese corporate buyers, tapping into the $15B bilateral trade corridor.',
       highlights: [
@@ -114,7 +114,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'Yashobhoomi (IICC), New Delhi, India',
       category: 'domestic',
       badge: 'NATIONAL FOOD EXPO',
-      image: '/timeline_photos/sial exibition/IMG-20260206-WA0027.jpg',
+      image: '/timeline_photos/sial exibition/IMG-20260206-WA0027.jpeg',
       description:
         'Represented regional MSME food brands and processing units at SIAL India, connecting domestic agro-enterprises with international supermarket chains, HoReCa buyers, and institutional importers.',
       highlights: [
@@ -130,7 +130,7 @@ export const ExhibitionPage: React.FC<ExhibitionPageProps> = ({
       location: 'Bombay Exhibition Centre (BEC), Mumbai',
       category: 'domestic',
       badge: 'CLEANTECH & SUSTAINABILITY',
-      image: '/timeline_photos/ifat exibition/IMG_20251016_232309_084.webp',
+      image: '/timeline_photos/ifat exibition/IMG_20251016_232309_084.jpeg',
       description:
         'Participated in India’s leading environmental tech expo, exploring zero-liquid discharge effluent solutions, industrial recycling, and sustainable ESG frameworks for MSME manufacturing clusters.',
       highlights: [

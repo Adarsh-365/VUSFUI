@@ -40,7 +40,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Pan-India Distribution & National Press Conclave, New Delhi',
       category: 'NATIONAL PUBLICATION & BRAND AWARDS',
       filterCategory: 'awards',
-      image: '/banner/magazine.png',
+      image: '/banner/magazine.jpeg',
       desc: 'Feature your enterprise story, brand journey, and innovations in the premier national business publication distributed to industry leaders, trade chambers, and central ministries.',
       highlight: 'National Distribution • Publishing 02 October 2026',
       priceSnippet: 'Passes from ₹999 + 18% GST',
@@ -53,7 +53,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Grand Executive Hall, Vashi, Navi Mumbai, Maharashtra',
       category: 'STREE SHAKTI MISSION',
       filterCategory: 'women',
-      image: '/banner/women-enter-growth-prg1da.png',
+      image: '/banner/women-enter-growth-prg1da.jpeg',
       desc: 'Empowering women founders and MSME owners with dedicated leadership coaching, collateral-free Stand-Up India credit access, packaging solutions, and institutional buyer networks.',
       highlight: '1-Day Power Workshop • Stand-Up India Bank Linkages',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
@@ -66,7 +66,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Pazhou Exhibition Complex, Guangzhou, China',
       category: 'INTERNATIONAL TRADE DELEGATION',
       filterCategory: 'delegations',
-      image: '/banner/namaste-china.png',
+      image: '/banner/namaste-china.jpeg',
       desc: 'Join our official Indian business delegation to the Canton Fair in Guangzhou, China. Direct factory visits, verified OEM suppliers, machinery sourcing, and cross-border trade matchmaking.',
       highlight: 'Direct Factory Visits & Global OEM Sourcing',
       priceSnippet: 'Delegation Pass ₹1,45,000 + 18% GST',
@@ -79,7 +79,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Navi Mumbai Innovation Hub, CIDCO Technology Centre',
       category: 'STARTUP INCUBATION & SEED CAPITAL',
       filterCategory: 'entrepreneurship',
-      image: '/banner/sc-ststartup1day.png',
+      image: '/banner/sc-ststartup1day.jpeg',
       desc: 'Accelerating high-potential SC & ST innovators and early-stage founders with seed funding facilitation, angel investor pitch sessions, statutory DPIIT recognition, and incubation support.',
       highlight: 'Seed Capital Linkage & 5-Min Live Angel Pitching',
       priceSnippet: 'Passes from ₹1,499 + 18% GST',
@@ -92,7 +92,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'CIDCO Exhibition & Convention Centre, Vashi, Navi Mumbai',
       category: 'REGIONAL EXPORT CONCLAVE',
       filterCategory: 'summits',
-      image: '/banner/navi-mumbai-export-summit.png',
+      image: '/banner/navi-mumbai-export-summit.jpeg',
       desc: 'Connecting MMR and Konkan manufacturers, agro-producers, and industrial exporters with direct international buyers, shipping liners, customs clearance specialists, and trade facilitation councils.',
       highlight: 'JNPA Port Logistics & International Buyer-Seller Conclave',
       priceSnippet: 'Passes from ₹2,499 + 18% GST',
@@ -105,7 +105,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Grand Ballroom, The Orchid / CIDCO Convention Centre, Navi Mumbai',
       category: 'NATIONAL RECOGNITION & AWARDS GALA',
       filterCategory: 'awards',
-      image: '/banner/msme-award.png',
+      image: '/banner/msme-award.jpeg',
       desc: 'Celebrating and felicitating trailblazing MSMEs, visionary entrepreneurs, manufacturing leaders, and dynamic startup innovators who drive India’s industrial and economic growth.',
       highlight: '50+ Sector Awards & Dignitary Felicitations',
       priceSnippet: 'Passes from ₹2,999 + 18% GST',
@@ -118,7 +118,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Auto Cluster Exhibition Center, Chinchwad, Pune',
       category: 'WESTERN TRADE CORRIDOR',
       filterCategory: 'summits',
-      image: '/banner/pune.png',
+      image: '/banner/pune.jpeg',
       desc: 'Unlocking overseas trade corridors for Pune’s engineering, automotive ancillary, electronics, and agro-processing clusters with cross-border trade facilitation and buyer linkages.',
       highlight: 'Engineering & Auto-Ancillary B2B Meet',
       priceSnippet: 'Passes from ₹2,499 + 18% GST',
@@ -131,7 +131,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Nashik Industrial & Agro Hub, Ambad, Maharashtra',
       category: 'AGRO & INDUSTRIAL CORRIDOR',
       filterCategory: 'summits',
-      image: '/banner/nashik.png',
+      image: '/banner/nashik.jpeg',
       desc: 'Catalyzing export opportunities for Nashik’s grape, horticulture, agro-commodities, precision engineering, and defense manufacturing clusters with global buyers and cold-chain logistics.',
       highlight: 'Agro-Horticulture & Engineering Corridors',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
@@ -144,7 +144,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Dr. Ambedkar Business & Convention Centre, CBD Belapur, Maharashtra',
       category: 'INCLUSIVE EMPOWERMENT & SUBSIDIES',
       filterCategory: 'entrepreneurship',
-      image: '/banner/sc-ststartup1day.png',
+      image: '/banner/sc-ststartup1day.jpeg',
       desc: 'Specialized 3-day empowerment initiative offering comprehensive bank credit linkages, government subsidies (PMEGP / CMEGP), bank-ready DPR preparation, and expert business mentorship.',
       highlight: '3-Day Intensive Mentorship & Subsidy Linkage',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
@@ -157,7 +157,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Mumbai / Navi Mumbai Executive Learning Center',
       category: 'EXECUTIVE MASTERCLASS',
       filterCategory: 'women',
-      image: '/banner/women-enter-sucess-prog-3day.png',
+      image: '/banner/women-enter-sucess-prog-3day.jpeg',
       desc: 'An intensive 3-day executive coaching program focusing on international export readiness, supply chain mastery, financial sustainability, and institutional partnerships for women leaders.',
       highlight: '3-Day Global Export & Scaling Masterclass',
       priceSnippet: 'Passes from ₹4,999 + 18% GST',
@@ -170,7 +170,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       location: 'Marathwada Auto Cluster / Industrial Convention Hall, Waluj',
       category: 'MARATHWADA EXPORT HUB',
       filterCategory: 'summits',
-      image: '/banner/chhatrapati.png',
+      image: '/banner/chhatrapati.jpeg',
       desc: 'Accelerating export potential for Marathwada’s automotive, pharmaceutical, plastic, and heavy engineering MSMEs with international trade delegations and port logistics access.',
       highlight: 'Marathwada Industrial & Pharma Export Meet',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
@@ -503,7 +503,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
           {/* Past Events Grid (Showing all filtered past events from timeline) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPastEvents.map((item) => {
-              const primaryImg = item.images && item.images.length > 0 ? item.images[0] : '/banner/namaste-china.png';
+              const primaryImg = item.images && item.images.length > 0 ? item.images[0] : '/banner/namaste-china.jpeg';
 
               return (
                 <div
@@ -517,7 +517,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
                         src={primaryImg}
                         alt={item.title}
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg';
+                          (e.target as HTMLImageElement).src = '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg';
                         }}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />

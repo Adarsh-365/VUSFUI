@@ -108,7 +108,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'China',
     organizer: 'Vishwa Udyam Sahayta Foundation & Namaste China Desk',
     brand: 'Namaste China × VUSF',
-    image: '/banner/namaste-china.png',
+    image: '/banner/namaste-china.jpeg',
     filterCategory: 'delegations',
     description: 'Join our official Indian business delegation to the Canton Fair in Guangzhou, China. Direct factory visits, verified OEM suppliers, machinery sourcing, and cross-border trade matchmaking.',
     longDescription: [
@@ -129,12 +129,12 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Customs Clearance, Tariff Structuring & Logistics Counseling',
     ],
     galleryImages: [
-      '/timeline_photos/china 2025/20251104_151304.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0041.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0069.jpg',
-      '/timeline_photos/china 2025/IMG-20251115-WA0072.jpg',
+      '/timeline_photos/china 2025/20251104_151304.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0021.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0022.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0041.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0069.jpeg',
+      '/timeline_photos/china 2025/IMG-20251115-WA0072.jpeg',
     ],
     youtubeId: 'hSLZkM2AzJY',
     benefits: [
@@ -344,7 +344,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF Affirmative Action Cell',
-    image: '/banner/sc-ststartup1day.png',
+    image: '/banner/sc-ststartup1day.jpeg',
     filterCategory: 'entrepreneurship',
     description: 'Specialized 3-day empowerment initiative offering comprehensive bank credit linkages, government subsidies (PMEGP / CMEGP), bank-ready DPR preparation, and expert business mentorship.',
     longDescription: [
@@ -365,10 +365,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       '1-on-1 Business Mentoring with Veteran Entrepreneurs & Industrialists',
     ],
     galleryImages: [
-      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0096.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0086.jpg',
+      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0096.jpeg',
+      '/timeline_photos/college/IMG-20250614-WA0086.jpeg',
     ],
     benefits: [
       {
@@ -542,7 +542,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF Startup Accelerator',
-    image: '/banner/sc-ststartup1day.png',
+    image: '/banner/sc-ststartup1day.jpeg',
     filterCategory: 'entrepreneurship',
     description: 'Accelerating high-potential SC & ST innovators and early-stage founders with seed funding facilitation, investor pitch sessions, statutory registrations, and strategic market expansion support.',
     longDescription: [
@@ -562,9 +562,9 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'MOU Signing with Academic Incubation Centers & Co-Working Hubs',
     ],
     galleryImages: [
-      '/timeline_photos/college/IMG-20250614-WA0075.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0093.jpg',
-      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpg',
+      '/timeline_photos/college/IMG-20250614-WA0075.jpeg',
+      '/timeline_photos/college/IMG-20250614-WA0093.jpeg',
+      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpeg',
       '/timeline_photos/team/IMG-20260206-WA0089.jpg',
     ],
     benefits: [
@@ -753,7 +753,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'Namaste Stree Shakti Wing',
-    image: '/banner/women-enter-growth-prg1da.png',
+    image: '/banner/women-enter-growth-prg1da.jpeg',
     filterCategory: 'women',
     description: 'Empowering women founders and MSME owners with dedicated leadership coaching, collateral-free credit access, digital marketing, packaging solutions, and institutional buyer networks.',
     longDescription: [
@@ -773,9 +773,9 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Personalized Financial Planning, Risk Management & Wealth Creation Guidance',
     ],
     galleryImages: [
-      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpg',
-      '/timeline_photos/pragati/IMG-20250614-WA0081.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0039.jpg',
+      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpeg',
+      '/timeline_photos/pragati/IMG-20250614-WA0081.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0039.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0104.jpg',
     ],
     benefits: [
@@ -964,7 +964,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Namaste India Editorial Board & VUSF',
     brand: 'Namaste India Entrepreneur Magazine',
-    image: '/banner/magazine.png',
+    image: '/banner/magazine.jpeg',
     filterCategory: 'awards',
     description: 'Feature your enterprise story, brand journey, and innovations in the premier national business publication distributed to industry leaders, trade chambers, and policymakers.',
     longDescription: [
@@ -985,10 +985,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Exclusive National Press Kit, Framed Cover Plaque & Digital Rights Included',
     ],
     galleryImages: [
-      '/timeline_photos/pragati/IMG-20250614-WA0084.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0041.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0088.jpg',
+      '/timeline_photos/pragati/IMG-20250614-WA0084.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0041.jpeg',
+      '/timeline_photos/college/IMG-20250614-WA0088.jpeg',
     ],
     benefits: [
       {
@@ -1163,7 +1163,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'Namaste Stree Shakti Executive Wing',
-    image: '/banner/women-enter-sucess-prog-3day.png',
+    image: '/banner/women-enter-sucess-prog-3day.jpeg',
     filterCategory: 'women',
     description: 'An intensive 3-day executive coaching program focusing on international export readiness, supply chain mastery, financial sustainability, and institutional partnerships for women leaders.',
     longDescription: [
@@ -1183,10 +1183,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Global Sourcing, Freight Logistics & Foreign Buyer Risk Management',
     ],
     galleryImages: [
-      '/timeline_photos/pragati/IMG-20250614-WA0098.jpg',
-      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0109.jpg',
+      '/timeline_photos/pragati/IMG-20250614-WA0098.jpeg',
+      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0109.jpeg',
     ],
     benefits: [
       {
@@ -1355,7 +1355,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation & Namaste India Group',
     brand: 'MSME Excellence Awards 2026',
-    image: '/banner/msme-award.png',
+    image: '/banner/msme-award.jpeg',
     filterCategory: 'awards',
     description: 'Celebrating and felicitating trailblazing MSMEs, visionary entrepreneurs, manufacturing leaders, and dynamic startup innovators who drive India’s industrial and economic growth.',
     longDescription: [
@@ -1376,11 +1376,11 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       '5-Star Grand Banquet Networking Dinner with Industrialists & Bankers',
     ],
     galleryImages: [
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpg',
-      '/timeline_photos/pragati/IMG-20250614-WA0081.jpg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpeg',
+      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg',
+      '/timeline_photos/pragati/IMG-20250614-WA0081.jpeg',
     ],
     benefits: [
       {
@@ -1556,7 +1556,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF Regional Commerce Directorate',
-    image: '/banner/navi-mumbai-export-summit.png',
+    image: '/banner/navi-mumbai-export-summit.jpeg',
     filterCategory: 'summits',
     description: 'Connecting MMR and Konkan manufacturers, agro-producers, and industrial exporters with direct international buyers, shipping liners, customs clearance specialists, and trade facilitation councils.',
     longDescription: [
@@ -1577,11 +1577,11 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Export Credit Guarantee (ECGC) & Hedging Foreign Exchange Risk Masterclass',
     ],
     galleryImages: [
-      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0010.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0011.jpg',
-      '/timeline_photos/navi mumbai business summit/IMG_4368 (1).JPG',
-      '/timeline_photos/navi mumbai business summit/IMG_4569.JPG',
-      '/timeline_photos/mumbai export summit/IMG-20260206-WA0037.jpg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0010.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0011.jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG_4368 (1).jpeg',
+      '/timeline_photos/navi mumbai business summit/IMG_4569.jpeg',
+      '/timeline_photos/mumbai export summit/IMG-20260206-WA0037.jpeg',
     ],
     youtubeId: 'hSLZkM2AzJY',
     benefits: [
@@ -1770,7 +1770,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF Western Trade Bureau',
-    image: '/banner/pune.png',
+    image: '/banner/pune.jpeg',
     filterCategory: 'summits',
     description: 'Unlocking overseas trade corridors for Pune’s engineering, automotive ancillary, electronics, and agro-processing clusters with cross-border trade facilitation and buyer linkages.',
     longDescription: [
@@ -1790,10 +1790,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'State & Central Capital Subsidies for Machinery Modernization (CLCSS & PSI)',
     ],
     galleryImages: [
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0104.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
-      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0104.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
+      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpeg',
     ],
     benefits: [
       {
@@ -1980,7 +1980,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF North Maharashtra Wing',
-    image: '/banner/nashik.png',
+    image: '/banner/nashik.jpeg',
     filterCategory: 'summits',
     description: 'Catalyzing export opportunities for Nashik’s grape, horticulture, agro-commodities, precision engineering, and defense manufacturing clusters with global buyers and cold-chain logistics.',
     longDescription: [
@@ -2000,10 +2000,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'Packaging Innovations for Fresh Perishables & Food Processing MSME Subsidies',
     ],
     galleryImages: [
-      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpg',
-      '/timeline_photos/malkapur event/IMG-20260206-WA0108.jpg',
-      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
+      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpeg',
+      '/timeline_photos/malkapur event/IMG-20260206-WA0108.jpeg',
+      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
     ],
     benefits: [
       {
@@ -2190,7 +2190,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     country: 'India',
     organizer: 'Vishwa Udyam Sahayta Foundation',
     brand: 'VUSF Marathwada Trade Desk',
-    image: '/banner/chhatrapati.png',
+    image: '/banner/chhatrapati.jpeg',
     filterCategory: 'summits',
     description: 'Accelerating export potential for Marathwada’s automotive, pharmaceutical, plastic, and heavy engineering MSMEs with international trade delegations and port logistics access.',
     longDescription: [
@@ -2210,10 +2210,10 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       'AURIC / DMIC Industrial Investment & Incentive Structuring Workshop',
     ],
     galleryImages: [
-      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpg',
-      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpg',
-      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpg',
+      '/timeline_photos/1.buldhana export awarness program/IMG-20260206-WA0103.jpeg',
+      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
+      '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
+      '/timeline_photos/serbia buyer meet/IMG-20260206-WA0110.jpeg',
     ],
     benefits: [
       {
