@@ -27,10 +27,10 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     {
       id: 'canton-fair-delegation',
       badge: 'GLOBAL TRADE & SOURCING',
-      title: 'Canton Fair Business Delegation (Phase 1: 15–19 Oct 2026 | Phase 3: 31 Oct–4 Nov 2026)',
+      title: 'Canton Fair 2026 Delegation (Phase 2: Apr 23–29 | Phase 3: Apr 30–May 7, 2026)',
       subtitle:
-        'Join our official Indian business delegation to the Canton Fair in Guangzhou, China. Phase 1 (15–19 Oct 2026) & Phase 3 (31 Oct–4 Nov 2026). Direct factory visits, verified OEM suppliers, machinery sourcing, and cross-border trade matchmaking.',
-      stat: 'Phase 1: 15–19 Oct 2026 • Phase 3: 31 Oct–4 Nov 2026 • Guangzhou, China',
+        "Join India's leading trade delegation for the world's largest import-export exhibition in Guangzhou, China. Phase 2 & Phase 3 packages with return flights, 4-star hotel stay, and dedicated visa facilitation support.",
+      stat: 'Phase 2: Apr 23–29 • Phase 3: Apr 30–May 7 • Guangzhou, China',
       location: 'Guangzhou, China',
       image: '/banner/namaste-china.jpeg',
       category: 'International Delegation',
@@ -75,9 +75,9 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     {
       id: 'namaste-india-magazine',
       badge: 'NATIONAL MEDIA & PUBLICATION',
-      title: 'Namaste India Entrepreneur Magazine — Last Day: 20 Sep 2026 | Publish: 2 Oct 2026',
+      title: 'Namaste India Entrepreneur Magazine — Application Deadline: 20 Sep 2026 | Publication Date: 2 Oct 2026',
       subtitle:
-        'Last day to apply: 20 Sep 2026 • Publishing Date: 2 Oct 2026. Feature your enterprise story, brand journey, and innovations in the premier national business publication distributed to industry leaders, trade chambers, and policymakers.',
+        'Application deadline: 20 Sep 2026 • Publication date: 2 Oct 2026. Feature your enterprise story, brand journey, and innovations in the premier national business publication distributed to industry leaders, trade chambers, and policymakers.',
       stat: 'Apply by 20 Sep 2026 • Publishing 2 Oct 2026 • National Circulation',
       location: 'Pan-India Distribution',
       image: '/banner/magazine.jpeg',
@@ -256,10 +256,16 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                     </span>
                   </div>
 
-                  {/* Big Hero Title */}
-                  <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
-                    {slide.title}
-                  </h1>
+                  {/* Big Hero Title — only the first/active slide renders as H1; rest are H2 for accessibility */}
+                  {idx === 0 ? (
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                      {slide.title}
+                    </h1>
+                  ) : (
+                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                      {slide.title}
+                    </h2>
+                  )}
 
                   {/* Subtitle Description */}
                   <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed max-w-2xl font-normal drop-shadow-sm">

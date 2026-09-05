@@ -68,7 +68,9 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
     companyName: '',
     city: '',
     state: '',
-    turnover: '₹50 Lakhs – ₹2 Crores',
+    shippingAddress: '',
+    pincode: '',
+    turnover: '₹50 lakh – ₹2 crore',
     natureOfBusiness: 'Manufacturing & Industrial',
     productDetails: '',
     challengesFaced: 'Expanding into Overseas Export Corridors',
@@ -91,6 +93,10 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
   // Copy Link notification
   const [copiedLink, setCopiedLink] = useState(false);
+  const [selectedReservationPhase, setSelectedReservationPhase] = useState<string>('phase-2-package');
+  const [downloadedBrochure, setDownloadedBrochure] = useState(false);
+
+  const isMagazine = event.id === 'namaste-india-magazine' || event.passes.some((p) => p.price === 0);
 
   // Set default pass when event loads
   useEffect(() => {
@@ -124,10 +130,18 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
     if (!formData.mobileNumber.trim() || formData.mobileNumber.length < 10)
       errors.mobileNumber = 'Valid 10-digit mobile number is required';
     if (!formData.emailAddress.trim() || !formData.emailAddress.includes('@'))
-      errors.emailAddress = 'Valid corporate email address is required';
+      errors.emailAddress = 'Valid email address is required';
     if (!formData.companyName.trim()) errors.companyName = 'Company / Enterprise name is required';
     if (!formData.city.trim()) errors.city = 'City is required';
-    if (!formData.productDetails.trim()) errors.productDetails = 'Please provide brief product or service details';
+
+    if (selectedPass && selectedPass.id === 'physical-print-pass') {
+      if (!formData.shippingAddress.trim()) errors.shippingAddress = 'Delivery address is required for courier dispatch';
+      if (!formData.pincode.trim() || formData.pincode.length < 6) errors.pincode = 'Valid 6-digit Pincode is required';
+    }
+
+    if (!isMagazine && !formData.productDetails.trim()) {
+      errors.productDetails = 'Please provide brief product or service details';
+    }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -136,14 +150,26 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
   const handleProceedToPayment = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      setCheckoutStep('payment');
+      if (selectedPass && selectedPass.price === 0) {
+        // Free digital edition - instant confirmation
+        setIsProcessingPayment(true);
+        setTimeout(() => {
+          const randomId = 'VUSF-MAG-' + Math.floor(100000 + Math.random() * 900000);
+          setConfirmedOrderId(randomId);
+          setIsProcessingPayment(false);
+          setCheckoutStep('success');
+        }, 800);
+      } else {
+        setCheckoutStep('payment');
+      }
     }
   };
 
   const handleCompletePayment = () => {
     setIsProcessingPayment(true);
     setTimeout(() => {
-      const randomId = 'VUSF-DEL-' + Math.floor(100000 + Math.random() * 900000);
+      const prefix = isMagazine ? 'VUSF-PRNT-' : 'VUSF-DEL-';
+      const randomId = prefix + Math.floor(100000 + Math.random() * 900000);
       setConfirmedOrderId(randomId);
       setIsProcessingPayment(false);
       setCheckoutStep('success');
@@ -160,7 +186,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
   // Lightbox keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return;
+      if (lightboxIndex === null || !event.galleryImages || event.galleryImages.length === 0) return;
       if (e.key === 'Escape') setLightboxIndex(null);
       else if (e.key === 'ArrowRight') {
         setLightboxIndex((prev) => (prev !== null ? (prev + 1) % event.galleryImages.length : null));
@@ -172,12 +198,13 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxIndex, event.galleryImages.length]);
+  }, [lightboxIndex, event.galleryImages]);
 
   // Price calculations
   const basePrice = selectedPass ? selectedPass.price * formData.quantity : 0;
-  const gstAmount = Math.round((basePrice * 18) / 100);
-  const totalPayable = basePrice + gstAmount;
+  const gstAmount = selectedPass && selectedPass.price > 0 ? Math.round((basePrice * (selectedPass.gstPercentage || 18)) / 100) : 0;
+  const shippingFee = selectedPass && selectedPass.id === 'physical-print-pass' ? 60 * formData.quantity : 0;
+  const totalPayable = basePrice + gstAmount + shippingFee;
 
   // Other forthcoming events
   const otherEvents = useMemo(() => {
@@ -208,6 +235,20 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
           {/* Quick Action Buttons */}
           <div className="flex items-center gap-2.5 shrink-0">
+            {event.brochureUrl && (
+              <a
+                href={event.brochureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-900 transition-all cursor-pointer font-bold text-xs shadow-sm"
+                title="Download Brochure PDF"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Brochure PDF</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+
             <button
               onClick={handleShare}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 transition-all cursor-pointer"
@@ -227,6 +268,30 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
           </div>
         </div>
       </div>
+
+      {/* Seat Alert Notification Banner */}
+      {event.seatAlert && (
+        <div className="bg-gradient-to-r from-red-950 via-orange-950 to-amber-950 border-b border-orange-600/40 py-3 px-4 sm:px-6">
+          <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2.5 text-amber-200">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping shrink-0" />
+              <span className="font-extrabold uppercase text-amber-400 tracking-wider">
+                {event.seatAlert.title}:
+              </span>
+              <span className="text-slate-200 font-medium">{event.seatAlert.message}</span>
+            </div>
+            <button
+              onClick={() => {
+                const el = document.getElementById('reserve-seat-form') || document.getElementById('delegate-passes');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-orange-600 hover:bg-orange-500 text-white font-extrabold px-4 py-1.5 rounded-lg text-xs transition-all shadow-md shrink-0 cursor-pointer"
+            >
+              {event.seatAlert.actionText} →
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ========================================================================= */}
       {/* 2. HERO SECTION */}
@@ -269,33 +334,47 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Date &amp; Schedule</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    {isMagazine ? 'Release Schedule' : 'Date & Schedule'}
+                  </div>
                   <div className="text-sm font-extrabold text-white">{event.date}</div>
                   <div className="text-xs text-amber-400">{event.day}</div>
                 </div>
               </div>
 
-              {/* Time */}
+              {/* Time / Delivery Format */}
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Timing</div>
-                  <div className="text-sm font-extrabold text-white">{event.time}</div>
-                  <div className="text-xs text-slate-400">Full day interactive conclave</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    {isMagazine ? 'Format & Delivery' : 'Timing'}
+                  </div>
+                  <div className="text-sm font-extrabold text-white">
+                    {isMagazine ? 'Free Digital Access & Hardcopy' : event.time}
+                  </div>
+                  <div className="text-xs text-slate-400">
+                    {isMagazine ? 'Instant PDF via Email • Print Dispatched' : 'Full day interactive conclave'}
+                  </div>
                 </div>
               </div>
 
-              {/* Venue & Location */}
+              {/* Distribution / Venue */}
               <div className="sm:col-span-2 flex items-start gap-3 pt-3 border-t border-slate-800/80">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Venue &amp; Location</div>
-                  <div className="text-sm font-extrabold text-white">{event.venue}</div>
-                  <div className="text-xs text-slate-300">{event.location}</div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    {isMagazine ? 'Circulation & Reach' : 'Venue & Location'}
+                  </div>
+                  <div className="text-sm font-extrabold text-white">
+                    {isMagazine ? '10+ States Pan-India Distribution & Digital Broadcast' : event.venue}
+                  </div>
+                  <div className="text-xs text-slate-300">
+                    {isMagazine ? '5,000+ Glossy National Hard Copies + Nationwide Digital Access' : event.location}
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,9 +386,22 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                   onClick={scrollToPasses}
                   className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-base font-black px-8 py-4 rounded-xl shadow-xl shadow-orange-950/70 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer"
                 >
-                  <span>CHOOSE YOUR DELEGATE PASS</span>
+                  <span>{isMagazine ? 'GET YOUR FREE DIGITAL COPY / ORDER PRINT' : 'CHOOSE YOUR DELEGATE PASS'}</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
+
+                {event.brochureUrl && (
+                  <a
+                    href={event.brochureUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-cyan-950/90 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 px-5 py-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                  >
+                    <Download className="w-4 h-4 text-cyan-400" />
+                    <span>Brochure PDF</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
 
                 <a
                   href={`https://wa.me/${event.supportWhatsapp.replace(/[^0-9]/g, '')}?text=Hello%2C%20I%20would%20like%20information%20regarding%20${encodeURIComponent(event.title)}`}
@@ -318,7 +410,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                   className="bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600 px-5 py-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp Trade Desk</span>
+                  <span>{isMagazine ? 'Submit Story on WhatsApp' : 'WhatsApp Trade Desk'}</span>
                 </a>
               </div>
 
@@ -326,17 +418,17 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
               <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-slate-400">
                 <div className="flex items-center gap-1 text-slate-300">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Limited Capacity</span>
+                  <span>{isMagazine ? '5,000+ National Prints' : 'Limited Capacity'}</span>
                 </div>
                 <span>&bull;</span>
                 <div className="flex items-center gap-1 text-slate-300">
                   <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Secure Online Payment</span>
+                  <span>{isMagazine ? '100% Free Digital Edition' : 'Secure Online Payment'}</span>
                 </div>
                 <span>&bull;</span>
                 <div className="flex items-center gap-1 text-slate-300">
                   <FileText className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Instant GST Tax Invoice</span>
+                  <span>{isMagazine ? '50% MSME Leader Stories' : 'Instant GST Tax Invoice'}</span>
                 </div>
               </div>
             </div>
@@ -361,17 +453,28 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
             {/* Quick Pass Price Snippet below the banner so it never covers banner text */}
             <div className="bg-[#0b182c] p-4 sm:p-5 rounded-2xl border border-slate-800 shadow-xl flex items-center justify-between gap-4">
               <div>
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Passes Starting From</div>
+                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+                  {isMagazine ? 'Publication Editions' : 'Passes Starting From'}
+                </div>
                 <div className="text-xl sm:text-2xl font-black text-amber-400">
-                  ₹{event.passes[0]?.price.toLocaleString('en-IN')}{' '}
-                  <span className="text-xs text-slate-400 font-normal">+ 18% GST</span>
+                  {isMagazine ? (
+                    <>
+                      <span className="text-emerald-400">Digital FREE</span>{' '}
+                      <span className="text-xs text-slate-300 font-normal">• Hardcopy ₹500 + GST</span>
+                    </>
+                  ) : (
+                    <>
+                      ₹{event.passes[0]?.price.toLocaleString('en-IN')}{' '}
+                      <span className="text-xs text-slate-400 font-normal">+ 18% GST</span>
+                    </>
+                  )}
                 </div>
               </div>
               <button
                 onClick={scrollToPasses}
                 className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-black px-5 py-3 rounded-xl transition-all shadow-md shadow-orange-950/60 cursor-pointer shrink-0"
               >
-                View Passes &rarr;
+                {isMagazine ? 'Get Your Copy →' : 'View Passes →'}
               </button>
             </div>
 
@@ -379,7 +482,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
             <div className="p-4 bg-[#0b1626] rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed font-light">
               <div className="font-bold text-white mb-1 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>About this Conclave</span>
+                <span>{isMagazine ? 'About this National Publication' : 'About this Conclave'}</span>
               </div>
               <p>{event.description}</p>
             </div>
@@ -472,7 +575,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                 </div>
 
                 <div className="pt-2 flex items-center gap-1.5 text-[11px] font-bold text-amber-400 group-hover:translate-x-1 transition-transform">
-                  <span>Verified Conclave Outcome</span>
+                  <span>Expected Participant Benefit</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
@@ -486,17 +589,43 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
       {/* ========================================================================= */}
       <section className="py-16 px-4 sm:px-6 bg-[#091322] border-b border-slate-800">
         <div className="max-w-[1200px] mx-auto space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-              <Clock className="w-3.5 h-3.5" />
-              <span>TIMELINE &amp; SESSIONS</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <Clock className="w-3.5 h-3.5" />
+                <span>TOUR ITINERARY &amp; SESSIONS</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                {event.agendaTitle || `A DAY BUILT FOR ${event.title.toUpperCase()}`}
+              </h2>
+              <p className="text-sm text-slate-400 font-light">
+                {event.agendaSubtitle || 'Carefully structured itinerary combining keynotes, technical workshops, and structured B2B matchmaking.'}
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              {event.agendaTitle || `A DAY BUILT FOR ${event.title.toUpperCase()}`}
-            </h2>
-            <p className="text-sm text-slate-400 font-light">
-              {event.agendaSubtitle || 'Carefully structured itinerary combining keynotes, technical workshops, and structured B2B matchmaking.'}
-            </p>
+
+            {event.brochureUrl ? (
+              <a
+                href={event.brochureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-extrabold px-6 py-3.5 rounded-xl text-xs transition-all shadow-lg shadow-cyan-950/70 shrink-0 cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Complete Itinerary Brochure</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            ) : (
+              <button
+                onClick={() => {
+                  setDownloadedBrochure(true);
+                  setTimeout(() => setDownloadedBrochure(false), 3000);
+                }}
+                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-cyan-400 hover:text-cyan-300 border border-cyan-500/40 px-5 py-3 rounded-xl text-xs font-extrabold transition-all shadow-lg shrink-0 cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                <span>{downloadedBrochure ? 'Brochure Downloaded!' : 'Download Complete Itinerary Brochure'}</span>
+              </button>
+            )}
           </div>
 
           {/* Timeline List */}
@@ -526,7 +655,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                     onClick={() => handleBookPass(event.passes[0])}
                     className="text-xs font-bold text-slate-300 hover:text-white bg-slate-900 hover:bg-orange-600 px-3.5 py-2 rounded-xl border border-slate-700 transition-colors cursor-pointer"
                   >
-                    Reserve Seat
+                    Register for Event
                   </button>
                 </div>
               </div>
@@ -543,22 +672,38 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
               <CreditCard className="w-3.5 h-3.5" />
-              <span>OFFICIAL REGISTRATION TIERS</span>
+              <span>
+                {event.id === 'canton-fair-delegation'
+                  ? 'CHOOSE YOUR CANTON FAIR PHASE'
+                  : isMagazine
+                  ? 'AVAILABLE MAGAZINE EDITIONS'
+                  : 'OFFICIAL REGISTRATION TIERS'}
+              </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              CHOOSE YOUR DELEGATE PASS
+              {event.id === 'canton-fair-delegation'
+                ? 'Choose Your Canton Fair Phase'
+                : isMagazine
+                ? 'GET YOUR COPY OF NAMASTE ENTREPRENEUR 2026'
+                : 'CHOOSE YOUR DELEGATE PASS'}
             </h2>
             <p className="text-sm text-slate-400 font-light">
-              Select the right pass for your organization. All passes include GST tax invoicing, delegate kit, and official certification.
+              {event.id === 'canton-fair-delegation'
+                ? 'Click below to toggle dates, industries, and corporate packages.'
+                : isMagazine
+                ? 'Read the 100% Free Digital E-Magazine or order a collector’s hardbound glossy print copy delivered to your doorstep across 10+ states.'
+                : 'Select the right pass for your organization. All passes include GST tax invoicing, delegate kit, and official certification.'}
             </p>
           </div>
 
           {/* Pricing Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className={`grid grid-cols-1 ${event.passes.length === 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-3'} gap-8 items-stretch`}>
             {event.passes.map((pass) => {
               const isRec = pass.recommended;
               const passGst = Math.round((pass.price * (pass.gstPercentage || 18)) / 100);
-              const passTotal = pass.price + passGst;
+              const passShipping = isMagazine && pass.price > 0 ? 60 : 0;
+              const passTotal = pass.price + passGst + passShipping;
+              const isFree = pass.price === 0;
 
               return (
                 <div
@@ -571,7 +716,9 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                 >
                   {/* Badge */}
                   {pass.badge && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-600 to-amber-500 text-slate-950 font-black text-[11px] uppercase tracking-wider px-4 py-1 rounded-full shadow-lg">
+                    <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 font-black text-[11px] uppercase tracking-wider px-4 py-1 rounded-full shadow-lg ${
+                      isFree ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950' : 'bg-gradient-to-r from-orange-600 to-amber-500 text-slate-950'
+                    }`}>
                       {pass.badge}
                     </div>
                   )}
@@ -585,32 +732,75 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                       </p>
                     </div>
 
+                    {/* Early Bird Special Box */}
+                    {pass.earlyBirdDiscount && (
+                      <div className="p-3 bg-gradient-to-r from-orange-500/15 via-amber-500/10 to-orange-500/15 border border-orange-500/30 rounded-xl text-xs text-amber-300 font-bold flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-orange-400 shrink-0" />
+                        <span>🎉 Early Bird Special: {pass.earlyBirdDiscount}</span>
+                      </div>
+                    )}
+
+                    {/* Core Categories List if present */}
+                    {pass.categories && pass.categories.length > 0 && (
+                      <div className="space-y-2 bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800/80">
+                        <div className="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">
+                          Core Categories:
+                        </div>
+                        <ul className="space-y-1.5 text-xs text-slate-300">
+                          {pass.categories.map((cat, ci) => (
+                            <li key={ci} className="flex items-start gap-2">
+                              <span className="text-orange-400 font-black">•</span>
+                              <span className="leading-snug">{cat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
                     {/* Price Breakdown */}
                     <div className="p-4 bg-slate-950/80 rounded-2xl border border-slate-800 space-y-1">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-xs text-slate-400 font-bold">INR</span>
-                        <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                          ₹{pass.price.toLocaleString('en-IN')}
-                        </span>
-                        <span className="text-xs text-amber-400 font-bold">+ 18% GST</span>
-                      </div>
-                      <div className="text-[11px] text-slate-400">
-                        Total Payable: <strong className="text-slate-200">₹{passTotal.toLocaleString('en-IN')}</strong> (incl. ₹{passGst.toLocaleString('en-IN')} GST)
-                      </div>
+                      {isFree ? (
+                        <div>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl sm:text-4xl font-black text-emerald-400 tracking-tight">FREE</span>
+                            <span className="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2.5 py-0.5 rounded-full border border-emerald-500/40">
+                              Instant Email Access
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-400 mt-1">
+                            Total Payable: <strong className="text-emerald-400">₹0 (100% Free Complimentary Copy)</strong>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-xs text-slate-400 font-bold">INR</span>
+                            <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                              ₹{pass.price.toLocaleString('en-IN')}
+                            </span>
+                            <span className="text-xs text-amber-400 font-bold">+ {pass.gstPercentage || 18}% GST {isMagazine && '+ Delivery'}</span>
+                          </div>
+                          <div className="text-[11px] text-slate-400">
+                            Total Payable: <strong className="text-slate-200">₹{passTotal.toLocaleString('en-IN')}</strong> (incl. ₹{passGst.toLocaleString('en-IN')} GST {isMagazine && '+ ₹60 courier'})
+                          </div>
+                        </div>
+                      )}
                       {pass.seatsLeft && (
                         <div className="text-[11px] text-orange-400 font-semibold pt-1">
-                          Only {pass.seatsLeft} slots remaining at this rate
+                          {isFree ? 'Open to all registered business owners' : 'Limited capacity — contact us to check availability'}
                         </div>
                       )}
                     </div>
 
                     {/* Benefits Checklist */}
                     <div className="space-y-3 pt-2">
-                      <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Pass Benefits:</div>
+                      <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        {isMagazine ? 'Edition Features:' : 'Package Inclusions & Benefits:'}
+                      </div>
                       <ul className="space-y-2.5 text-xs text-slate-200">
                         {pass.benefits.map((b, i) => (
                           <li key={i} className="flex items-start gap-2.5">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${isFree ? 'text-emerald-400' : 'text-amber-400'}`} />
                             <span className="leading-snug">{b}</span>
                           </li>
                         ))}
@@ -623,22 +813,267 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                     <button
                       onClick={() => handleBookPass(pass)}
                       className={`w-full py-4 px-6 rounded-xl font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg ${
-                        isRec
+                        isFree
+                          ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-emerald-950/70'
+                          : isRec
                           ? 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white shadow-orange-950/70'
                           : 'bg-slate-800 hover:bg-orange-600 text-white hover:shadow-orange-950/40'
                       }`}
                     >
-                      <span>BOOK THIS PASS</span>
+                      <span>
+                        {isFree
+                          ? 'GET FREE DIGITAL COPY NOW'
+                          : isMagazine
+                          ? 'ORDER PHYSICAL PRINT (₹500 + GST)'
+                          : 'BOOK THIS PASS'}
+                      </span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <div className="text-[10px] text-center text-slate-500 mt-2 font-medium">
-                      Instant Confirmation &bull; MCA Reg. Foundation
+                      {isFree ? 'Instant Email Delivery • Free Lifetime Access' : 'Official Tax Invoicing • Speed Post Courier Dispatch'}
                     </div>
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* Double Phase Sourcing Discount Banner */}
+          {event.doublePhaseDiscount && (
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#172554] via-[#0f172a] to-[#1e1b4b] border-2 border-cyan-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{event.doublePhaseDiscount.title}</span>
+                </div>
+                <p className="text-sm text-slate-200 leading-relaxed font-medium max-w-3xl">
+                  {event.doublePhaseDiscount.description}
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  const doublePass = event.passes.find((p) => p.id === 'double-phase-package') || event.passes[0];
+                  handleBookPass(doublePass);
+                }}
+                className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl shadow-lg shadow-cyan-950/80 transition-all shrink-0 cursor-pointer"
+              >
+                {event.doublePhaseDiscount.actionText || 'Register Double Phase'} →
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6B. PACKAGE INCLUSIONS & PACKAGE EXCLUSIONS */}
+      {/* ========================================================================= */}
+      {event.inclusions && event.exclusions && (
+        <section className="py-16 px-4 sm:px-6 bg-[#091220] border-b border-slate-800">
+          <div className="max-w-[1400px] mx-auto space-y-10">
+            <div className="text-center max-w-3xl mx-auto space-y-2">
+              <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>DELEGATION SCOPE &amp; TRANSPARENCY</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                PACKAGE INCLUSIONS &amp; EXCLUSIONS
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 font-light">
+                Clear, transparent breakdown of what is covered in your official delegation package.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Inclusions */}
+              <div className="bg-[#0b172a] rounded-3xl p-6 sm:p-8 border border-emerald-500/30 space-y-6 shadow-xl">
+                <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                    <CheckCircle2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black text-white">Package Inclusions</h3>
+                    <div className="text-xs text-emerald-400 font-semibold">Fully Covered in Delegation Fee</div>
+                  </div>
+                </div>
+                <ul className="space-y-3.5 text-xs sm:text-sm text-slate-200">
+                  {event.inclusions.map((inc, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="leading-relaxed font-medium">{inc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Exclusions */}
+              <div className="bg-[#0b172a] rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-6 shadow-xl">
+                <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
+                  <div className="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center font-bold">
+                    <X className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black text-white">Package Exclusions</h3>
+                    <div className="text-xs text-slate-400 font-semibold">Self-funded / Optional Extra Items</div>
+                  </div>
+                </div>
+                <ul className="space-y-3.5 text-xs sm:text-sm text-slate-300">
+                  {event.exclusions.map((exc, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-2 h-2 rounded-full bg-slate-500 shrink-0 mt-1.5" />
+                      <span className="leading-relaxed font-light">{exc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 6C. CANCELLATION POLICY & VISA PROTECTION */}
+      {/* ========================================================================= */}
+      {event.cancellationPolicy && (
+        <section className="py-12 px-4 sm:px-6 bg-[#070e1a] border-b border-slate-800">
+          <div className="max-w-[1200px] mx-auto p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0d2238] via-[#0b172a] to-[#0c1f36] border-2 border-cyan-500/40 shadow-2xl flex flex-col md:flex-row items-center gap-6">
+            <div className="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-8 h-8" />
+            </div>
+            <div className="space-y-2 text-center md:text-left flex-1">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-cyan-400">
+                🛡️ Cancellation Policy &amp; Visa Protection
+              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-white">
+                100% Peace of Mind Guarantee
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                {event.cancellationPolicy}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 6D. RESERVE DELEGATION SEAT INLINE FORM */}
+      {/* ========================================================================= */}
+      <section id="reserve-seat-form" className="py-16 px-4 sm:px-6 bg-[#091322] border-b border-slate-800">
+        <div className="max-w-[800px] mx-auto bg-[#0b182b] rounded-3xl border border-slate-700 p-6 sm:p-10 shadow-2xl space-y-6">
+          <div className="text-center space-y-2">
+            <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>RESERVE DELEGATION SEAT</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">
+              Reserve Your Sourcing Delegation Slot
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 font-light">
+              Reserve your seat now. Contact us for pricing and deposit details.
+            </p>
+          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const passToBook = event.passes.find((p) => p.id === selectedReservationPhase) || event.passes[0];
+              handleBookPass(passToBook);
+            }}
+            className="space-y-4"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Sunil Singhal"
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Business Email *
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="e.g. sunil@singhaltextiles.com"
+                  value={formData.emailAddress}
+                  onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
+                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Phone / Mobile (WhatsApp preferred) *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="e.g. +91 98300 98300"
+                  value={formData.mobileNumber}
+                  onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Selected Delegation Phase *
+                </label>
+                <select
+                  value={selectedReservationPhase}
+                  onChange={(e) => setSelectedReservationPhase(e.target.value)}
+                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                >
+                  <option value="phase-2-package">Phase 2: Building Materials &amp; Furniture (Apr 23 - 29)</option>
+                  <option value="phase-3-package">Phase 3: Textiles, Fashion &amp; Health Products (Apr 30 - May 7)</option>
+                  <option value="double-phase-package">Double Phase: Phase 2 + Phase 3 (Apr 23 - May 7)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                What products do you plan to source? (Helps guide matchmaking)
+              </label>
+              <textarea
+                rows={3}
+                placeholder="E.g. Sourcing outdoor rattan furniture, sanitaries..."
+                value={formData.productDetails}
+                onChange={(e) => setFormData({ ...formData, productDetails: e.target.value })}
+                className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+              />
+            </div>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+              <button
+                type="submit"
+                className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Reserve Sourcing Seat</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <a
+                href={`https://wa.me/${event.supportWhatsapp.replace(/[^0-9]/g, '')}?text=Hello%2C%20I%20want%20to%20reserve%20a%20seat%20for%20Canton%20Fair%202026%20Delegation.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Consult Booking Desk on WhatsApp</span>
+              </a>
+            </div>
+          </form>
         </div>
       </section>
 
@@ -950,6 +1385,54 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
       </section>
 
       {/* ========================================================================= */}
+      {/* 13B. READY TO SOURCE PRODUCTS FROM CHINA? CONSULTATION BANNER */}
+      {/* ========================================================================= */}
+      {event.consultationBanner && (
+        <section className="py-14 px-4 sm:px-6 bg-gradient-to-r from-[#0b172a] via-[#091e33] to-[#0b172a] border-b border-slate-800">
+          <div className="max-w-[1200px] mx-auto text-center space-y-8">
+            <div className="space-y-3 max-w-2xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-black text-white">
+                {event.consultationBanner.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+                {event.consultationBanner.subtitle}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {event.consultationBanner.stats.map((s, idx) => (
+                <div key={idx} className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-1">
+                  <div className="text-xl sm:text-2xl font-black text-amber-400">{s.value}</div>
+                  <div className="text-xs font-semibold text-slate-300">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <button
+                onClick={() => {
+                  const el = document.getElementById('reserve-seat-form') || document.getElementById('delegate-passes');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-xl shadow-lg transition-all cursor-pointer"
+              >
+                {event.consultationBanner.ctaText || 'Book Free Consultation'}
+              </button>
+              <a
+                href={`https://wa.me/${event.supportWhatsapp.replace(/[^0-9]/g, '')}?text=Hello%2C%20I%20am%20ready%20to%20source%20products%20from%20China.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-950"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>WhatsApp Us Now</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
       {/* 14. WHATSAPP & DIRECT SUPPORT DESK */}
       {/* ========================================================================= */}
       <section className="py-12 px-4 sm:px-6 bg-[#050912] border-b border-slate-800">
@@ -1051,237 +1534,183 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
       {/* ========================================================================= */}
       {isCheckoutOpen && selectedPass && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto animate-in fade-in">
-          <div className="bg-[#0b172a] text-slate-100 rounded-3xl border border-slate-700 shadow-2xl w-full max-w-2xl overflow-hidden my-8 relative flex flex-col max-h-[90vh]">
-            {/* Modal Header */}
-            <div className="p-5 bg-gradient-to-r from-[#0c1c33] to-[#1e293b] border-b border-slate-800 flex items-center justify-between shrink-0">
-              <div className="space-y-0.5">
-                <div className="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">
-                  OFFICIAL EVENT REGISTRATION &bull; {event.brand}
-                </div>
-                <h3 className="text-lg font-bold text-white">{event.title}</h3>
-              </div>
-              <button
-                onClick={() => setIsCheckoutOpen(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Modal Body with Step Progress */}
-            <div className="p-6 overflow-y-auto space-y-6 flex-1">
-              {/* Selected Pass Notification Bar */}
-              <div className="p-4 bg-[#081220] rounded-2xl border border-orange-500/30 flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-[10px] uppercase font-bold text-slate-400">Selected Pass Tier:</div>
-                  <div className="text-sm font-black text-amber-300">{selectedPass.name}</div>
-                  <div className="text-xs text-slate-400">
-                    ₹{selectedPass.price.toLocaleString('en-IN')} + 18% GST per delegate
-                  </div>
-                </div>
+          <div className={`rounded-[14px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full max-w-2xl overflow-hidden my-8 relative flex flex-col max-h-[90vh] ${checkoutStep === 'details' ? 'bg-white text-gray-900 border border-gray-100' : 'bg-[#0b172a] text-slate-100 border border-slate-700'}`}>
+            
+            {checkoutStep === 'details' ? (
+              <>
                 <button
-                  type="button"
-                  onClick={() => {
-                    setIsCheckoutOpen(false);
-                    scrollToPasses();
-                  }}
-                  className="text-xs text-amber-400 hover:underline font-bold"
+                  onClick={() => setIsCheckoutOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 flex items-center justify-center transition-colors z-10 cursor-pointer"
                 >
-                  Change Pass
+                  <X className="w-5 h-5" />
                 </button>
-              </div>
-
-              {/* Step 1: Delegate & Company Info Form */}
-              {checkoutStep === 'details' && (
-                <form onSubmit={handleProceedToPayment} className="space-y-4">
-                  <div className="text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">
-                    1. Delegate &amp; Enterprise Details
+                <div className="p-8 overflow-y-auto flex-1">
+                  <div className="text-center mb-8">
+                    <h3 className="text-[22px] font-semibold text-[#0d3b44] mb-2">Complete Your Registration</h3>
+                    <div className="text-gray-600 text-[15px]">
+                      You have selected: <span className="font-bold text-[#0d3b44]">{selectedPass.name} ({selectedPass.price === 0 ? 'Free' : `INR ${selectedPass.price.toLocaleString('en-IN')}`})</span>
+                    </div>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Full Name */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder="e.g. Rajesh Sharma"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.fullName && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.fullName}</p>}
+                  
+                  <form onSubmit={handleProceedToPayment} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          placeholder="Enter your full name"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.fullName && <p className="text-xs text-red-500 mt-1">{formErrors.fullName}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Mobile Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          value={formData.mobileNumber}
+                          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                          placeholder="10-digit mobile number"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.mobileNumber && <p className="text-xs text-red-500 mt-1">{formErrors.mobileNumber}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Email Address *</label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.emailAddress}
+                          onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
+                          placeholder="name@company.com"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.emailAddress && <p className="text-xs text-red-500 mt-1">{formErrors.emailAddress}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Company Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.companyName}
+                          onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                          placeholder="Enter company name"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.companyName && <p className="text-xs text-red-500 mt-1">{formErrors.companyName}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">City *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.city}
+                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                          placeholder="e.g. Mumbai"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.city && <p className="text-xs text-red-500 mt-1">{formErrors.city}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Company Turnover *</label>
+                        <select
+                          value={formData.turnover}
+                          onChange={(e) => setFormData({ ...formData, turnover: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px] cursor-pointer"
+                        >
+                          <option value="Under ₹50 lakh">Under ₹50 lakh</option>
+                          <option value="₹50 lakh – ₹2 crore">₹50 lakh – ₹2 crore</option>
+                          <option value="₹2 crore – ₹10 crore">₹2 crore – ₹10 crore</option>
+                          <option value="Above ₹10 crore">Above ₹10 crore</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Nature of Business *</label>
+                        <select
+                          value={formData.natureOfBusiness}
+                          onChange={(e) => setFormData({ ...formData, natureOfBusiness: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px] cursor-pointer"
+                        >
+                          <option value="Manufacturing & Industrial">Manufacturing &amp; Industrial</option>
+                          <option value="Export & Import">Export &amp; Import</option>
+                          <option value="Agro & Food Processing">Agro &amp; Food Processing</option>
+                          <option value="Technology & Startup">Technology &amp; Startup</option>
+                          <option value="Wholesale & Trading">Wholesale &amp; Trading</option>
+                          <option value="Services & Consulting">Services &amp; Consulting</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Product / Service Details *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.productDetails}
+                          onChange={(e) => setFormData({ ...formData, productDetails: e.target.value })}
+                          placeholder="Briefly describe products"
+                          className="w-full px-4 py-2.5 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px]"
+                        />
+                        {formErrors.productDetails && <p className="text-xs text-red-500 mt-1">{formErrors.productDetails}</p>}
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-[#0d3b44] mb-1.5">Challenges Faced Doing Business *</label>
+                        <textarea
+                          rows={3}
+                          required
+                          value={formData.challengesFaced}
+                          onChange={(e) => setFormData({ ...formData, challengesFaced: e.target.value })}
+                          placeholder="Describe the key challenges you are currently facing in your business operations..."
+                          className="w-full px-4 py-3 rounded-[10px] bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#0d3b44] focus:ring-1 focus:ring-[#0d3b44] outline-none transition-shadow text-[15px] resize-none"
+                        />
+                      </div>
                     </div>
 
-                    {/* Mobile Number */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Mobile Number (+91) *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.mobileNumber}
-                        onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-                        placeholder="10-digit mobile number"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.mobileNumber && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.mobileNumber}</p>}
-                    </div>
-
-                    {/* Email Address */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Email Address (for Pass &amp; Invoice) *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.emailAddress}
-                        onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
-                        placeholder="name@company.com"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.emailAddress && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.emailAddress}</p>}
-                    </div>
-
-                    {/* Company Name */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Company / Enterprise Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.companyName}
-                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                        placeholder="e.g. Apex Industries Pvt Ltd"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.companyName && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.companyName}</p>}
-                    </div>
-
-                    {/* City */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        City &amp; State *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        placeholder="e.g. Navi Mumbai, Maharashtra"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.city && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.city}</p>}
-                    </div>
-
-                    {/* Company Turnover */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Company Annual Turnover *
-                      </label>
-                      <select
-                        value={formData.turnover}
-                        onChange={(e) => setFormData({ ...formData, turnover: e.target.value })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
+                    <div className="pt-6">
+                      <button
+                        type="submit"
+                        disabled={isProcessingPayment}
+                        className="w-full py-3.5 rounded-[10px] bg-[#d4af37] hover:bg-[#c5a030] text-[#0d3b44] font-semibold text-[15px] transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                       >
-                        <option value="Below ₹50 Lakhs">Below ₹50 Lakhs</option>
-                        <option value="₹50 Lakhs – ₹2 Crores">₹50 Lakhs – ₹2 Crores</option>
-                        <option value="₹2 Crores – ₹10 Crores">₹2 Crores – ₹10 Crores</option>
-                        <option value="₹10 Crores – ₹50 Crores">₹10 Crores – ₹50 Crores</option>
-                        <option value="₹50 Crores+">₹50 Crores+</option>
-                      </select>
+                        {isProcessingPayment ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-5 h-5 border-2 border-[#0d3b44] border-t-transparent rounded-full animate-spin" />
+                            <span>Processing...</span>
+                          </div>
+                        ) : (
+                          <>
+                            PROCEED TO PAYMENT →
+                          </>
+                        )}
+                      </button>
                     </div>
-
-                    {/* Nature of Business */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Nature of Business *
-                      </label>
-                      <select
-                        value={formData.natureOfBusiness}
-                        onChange={(e) => setFormData({ ...formData, natureOfBusiness: e.target.value })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                      >
-                        <option value="Manufacturing & Industrial">Manufacturing &amp; Industrial</option>
-                        <option value="Export & Import">Export &amp; Import</option>
-                        <option value="Agro & Food Processing">Agro &amp; Food Processing</option>
-                        <option value="Technology & Startup">Technology &amp; Startup</option>
-                        <option value="Wholesale & Trading">Wholesale &amp; Trading</option>
-                        <option value="Services & Consulting">Services &amp; Consulting</option>
-                      </select>
+                  </form>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Modal Header */}
+                <div className="p-5 bg-gradient-to-r from-[#0c1c33] to-[#1e293b] border-b border-slate-800 flex items-center justify-between shrink-0">
+                  <div className="space-y-0.5">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">
+                      {isMagazine
+                        ? (selectedPass.price === 0 ? 'COMPLIMENTARY DIGITAL MAGAZINE' : 'ORDER PHYSICAL HARD COPY')
+                        : `OFFICIAL EVENT REGISTRATION • ${event.brand}`}
                     </div>
-
-                    {/* Number of Passes */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Number of Passes
-                      </label>
-                      <select
-                        value={formData.quantity}
-                        onChange={(e) => setFormData({ ...formData, quantity: parseInt(e.target.value) || 1 })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                      >
-                        <option value="1">1 Delegate Pass</option>
-                        <option value="2">2 Delegate Passes</option>
-                        <option value="3">3 Delegate Passes</option>
-                        <option value="5">5 Delegate Passes (Team)</option>
-                      </select>
-                    </div>
+                    <h3 className="text-lg font-bold text-white">{event.title}</h3>
                   </div>
+                  <button
+                    onClick={() => setIsCheckoutOpen(false)}
+                    className="w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
 
-                  {/* Product / Service Details */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Product / Service Details *
-                    </label>
-                    <textarea
-                      rows={2}
-                      required
-                      value={formData.productDetails}
-                      onChange={(e) => setFormData({ ...formData, productDetails: e.target.value })}
-                      placeholder="Briefly describe your key products, manufactured items, or specialized services..."
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                    />
-                    {formErrors.productDetails && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.productDetails}</p>}
-                  </div>
-
-                  {/* Challenges Faced */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
-                      Key Objective / Challenge for Attending *
-                    </label>
-                    <select
-                      value={formData.challengesFaced}
-                      onChange={(e) => setFormData({ ...formData, challengesFaced: e.target.value })}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                    >
-                      <option value="Expanding into Overseas Export Corridors">Expanding into Overseas Export Corridors</option>
-                      <option value="Direct OEM Supplier Sourcing & Machinery">Direct OEM Supplier Sourcing &amp; Machinery</option>
-                      <option value="Government Subsidies & Bank Credit DPR">Government Subsidies &amp; Bank Credit DPR</option>
-                      <option value="B2B Buyer-Seller Matchmaking">B2B Buyer-Seller Matchmaking</option>
-                      <option value="Brand Packaging & Retail Standardization">Brand Packaging &amp; Retail Standardization</option>
-                      <option value="Investor Pitching & Incubation">Investor Pitching &amp; Incubation</option>
-                    </select>
-                  </div>
-
-                  {/* Next Step CTA */}
-                  <div className="pt-3">
-                    <button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-sm py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <span>PROCEED TO PAYMENT (₹{totalPayable.toLocaleString('en-IN')}) →</span>
-                    </button>
-                  </div>
-                </form>
-              )}
-
-              {/* Step 2: Payment Gateway Selection */}
+                {/* Modal Body with Step Progress */}
+                <div className="p-6 overflow-y-auto space-y-6 flex-1">
+                {/* Step 2: Payment Gateway Selection */}
               {checkoutStep === 'payment' && (
                 <div className="space-y-5">
                   <div className="flex items-center justify-between border-b border-slate-800 pb-2">
@@ -1301,13 +1730,19 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                   {/* Summary Box */}
                   <div className="p-4 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-2 text-xs">
                     <div className="flex justify-between text-slate-300">
-                      <span>Pass: {selectedPass.name} (x{formData.quantity})</span>
+                      <span>{selectedPass.name} (x{formData.quantity})</span>
                       <span className="font-semibold text-white">₹{basePrice.toLocaleString('en-IN')}</span>
                     </div>
                     <div className="flex justify-between text-slate-300">
-                      <span>GST @ 18% (Itemized Invoiced)</span>
+                      <span>GST @ 18% (Itemized Tax Invoice)</span>
                       <span className="font-semibold text-amber-400">₹{gstAmount.toLocaleString('en-IN')}</span>
                     </div>
+                    {shippingFee > 0 && (
+                      <div className="flex justify-between text-slate-300">
+                        <span>Speed Post / Doorstep Courier Delivery</span>
+                        <span className="font-semibold text-cyan-400">₹{shippingFee.toLocaleString('en-IN')}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between text-sm font-black text-white pt-2 border-t border-slate-800">
                       <span>Total Amount Payable</span>
                       <span className="text-amber-400">₹{totalPayable.toLocaleString('en-IN')}</span>
@@ -1349,7 +1784,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                         <CreditCard className="w-5 h-5 text-cyan-400" />
                         <div>
                           <div className="text-xs font-bold">Credit / Debit Card</div>
-                          <div className="text-[10px] text-slate-400">Visa, Master, RuPay</div>
+                          <div className="text-[10px] text-slate-400">Visa, Mastercard, RuPay</div>
                         </div>
                       </button>
 
@@ -1362,10 +1797,10 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                             : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
                         }`}
                       >
-                        <Building className="w-5 h-5 text-amber-400" />
+                        <Building2 className="w-5 h-5 text-emerald-400" />
                         <div>
                           <div className="text-xs font-bold">Net Banking</div>
-                          <div className="text-[10px] text-slate-400">All Major Indian Banks</div>
+                          <div className="text-[10px] text-slate-400">50+ Indian Banks</div>
                         </div>
                       </button>
 
@@ -1378,10 +1813,10 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                             : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
                         }`}
                       >
-                        <FileText className="w-5 h-5 text-emerald-400" />
+                        <FileText className="w-5 h-5 text-amber-400" />
                         <div>
-                          <div className="text-xs font-bold">Corporate NEFT / RTGS</div>
-                          <div className="text-[10px] text-slate-400">Institutional Bank Wire</div>
+                          <div className="text-xs font-bold">NEFT / RTGS</div>
+                          <div className="text-[10px] text-slate-400">Direct Foundation A/C</div>
                         </div>
                       </button>
                     </div>
@@ -1461,7 +1896,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                     {isProcessingPayment ? (
                       <div className="flex items-center gap-2">
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Securing Transaction &amp; Issuing Pass...</span>
+                        <span>Securing Transaction &amp; Processing Order...</span>
                       </div>
                     ) : (
                       <>
@@ -1478,7 +1913,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                 </div>
               )}
 
-              {/* Step 3: Success Confirmation & Download Pass */}
+              {/* Step 3: Success Confirmation & Download */}
               {checkoutStep === 'success' && (
                 <div className="space-y-6 text-center py-4">
                   <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto animate-bounce">
@@ -1487,20 +1922,40 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
                   <div className="space-y-1">
                     <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                      REGISTRATION CONFIRMED &bull; PASS ISSUED
+                      {isMagazine
+                        ? (selectedPass.price === 0 ? 'DIGITAL E-MAGAZINE CONFIRMED' : 'PHYSICAL PRINT ORDER CONFIRMED')
+                        : 'REGISTRATION CONFIRMED • PASS ISSUED'}
                     </div>
-                    <h3 className="text-2xl font-black text-white">Welcome, {formData.fullName}!</h3>
-                    <p className="text-xs text-slate-300 font-light max-w-md mx-auto">
-                      Your delegate pass and official GST Tax Invoice have been confirmed and sent to{' '}
-                      <strong className="text-amber-300">{formData.emailAddress}</strong>.
+                    <h3 className="text-2xl font-black text-white">
+                      {isMagazine && selectedPass.price === 0 ? `Thank you, ${formData.fullName}!` : `Welcome, ${formData.fullName}!`}
+                    </h3>
+                    <p className="text-sm text-slate-300 font-light max-w-md mx-auto leading-relaxed">
+                      {isMagazine && selectedPass.price === 0 ? (
+                        <>
+                          Your complimentary copy of <strong>Namaste Entrepreneur 2026 Magazine</strong> has been sent via Email to{' '}
+                          <strong className="text-amber-300">{formData.emailAddress}</strong>.
+                        </>
+                      ) : isMagazine ? (
+                        <>
+                          Your physical print order has been placed. Order confirmation and GST tax invoice have been dispatched to{' '}
+                          <strong className="text-amber-300">{formData.emailAddress}</strong>.
+                        </>
+                      ) : (
+                        <>
+                          Your delegate pass and official GST Tax Invoice have been confirmed and sent to{' '}
+                          <strong className="text-amber-300">{formData.emailAddress}</strong>.
+                        </>
+                      )}
                     </p>
                   </div>
 
-                  {/* Pass Badge Card */}
+                  {/* Confirmation Badge Card */}
                   <div className="bg-gradient-to-br from-[#0c1c33] to-[#16233b] border-2 border-orange-500/50 p-6 rounded-3xl text-left space-y-4 max-w-md mx-auto shadow-2xl relative">
                     <div className="flex items-start justify-between">
                       <div>
-                        <div className="text-[10px] uppercase font-bold text-amber-400">OFFICIAL DELEGATE PASS</div>
+                        <div className="text-[10px] uppercase font-bold text-amber-400">
+                          {isMagazine ? 'OFFICIAL PUBLICATION REGISTRATION' : 'OFFICIAL DELEGATE PASS'}
+                        </div>
                         <h4 className="text-base font-extrabold text-white">{event.title}</h4>
                       </div>
                       <div className="w-14 h-14 bg-white p-1 rounded-xl shrink-0 flex items-center justify-center shadow-md">
@@ -1510,7 +1965,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
                     <div className="grid grid-cols-2 gap-2 text-xs border-t border-slate-700/80 pt-3">
                       <div>
-                        <div className="text-[10px] text-slate-400">Delegate Name:</div>
+                        <div className="text-[10px] text-slate-400">{isMagazine ? 'Reader / Recipient:' : 'Delegate Name:'}</div>
                         <div className="font-bold text-white">{formData.fullName}</div>
                       </div>
                       <div>
@@ -1518,43 +1973,79 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                         <div className="font-bold text-white">{formData.companyName}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] text-slate-400">Pass Type:</div>
+                        <div className="text-[10px] text-slate-400">Edition / Pass:</div>
                         <div className="font-bold text-amber-300">{selectedPass.name}</div>
                       </div>
                       <div>
-                        <div className="text-[10px] text-slate-400">Pass ID:</div>
+                        <div className="text-[10px] text-slate-400">Reference ID:</div>
                         <div className="font-bold text-cyan-300">{confirmedOrderId}</div>
                       </div>
+                      {selectedPass.id === 'physical-print-pass' && (
+                        <div className="col-span-2">
+                          <div className="text-[10px] text-slate-400">Delivery Address:</div>
+                          <div className="font-semibold text-slate-200 text-[11px]">{formData.shippingAddress}, {formData.city} - {formData.pincode}</div>
+                        </div>
+                      )}
                       <div>
-                        <div className="text-[10px] text-slate-400">Event Date:</div>
-                        <div className="font-bold text-white">{event.date}</div>
+                        <div className="text-[10px] text-slate-400">Status:</div>
+                        <div className="font-bold text-emerald-400">
+                          {selectedPass.price === 0 ? 'Email Dispatched' : 'Order Placed & Invoiced'}
+                        </div>
                       </div>
                       <div>
-                        <div className="text-[10px] text-slate-400">Total Paid:</div>
-                        <div className="font-bold text-emerald-400">₹{totalPayable.toLocaleString('en-IN')} (Incl. GST)</div>
+                        <div className="text-[10px] text-slate-400">Total:</div>
+                        <div className="font-bold text-emerald-400">
+                          {selectedPass.price === 0 ? 'FREE (₹0)' : `₹${totalPayable.toLocaleString('en-IN')}`}
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                    <button
-                      onClick={() => window.print()}
-                      className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <Printer className="w-4 h-4 text-slate-300" />
-                      <span>Print Official Pass</span>
-                    </button>
+                    {isMagazine && selectedPass.price === 0 ? (
+                      <>
+                        <button
+                          onClick={() => {
+                            alert(`Downloading Namaste Entrepreneur 2026 Magazine PDF. A permanent download link has also been sent to ${formData.emailAddress}`);
+                          }}
+                          className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Download E-Magazine PDF</span>
+                        </button>
 
-                    <button
-                      onClick={() => {
-                        alert(`GST Tax Invoice ${confirmedOrderId}-INV generated. A copy has been dispatched to ${formData.emailAddress}`);
-                      }}
-                      className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Download Tax Invoice</span>
-                    </button>
+                        <a
+                          href={`https://wa.me/917499492860?text=Hello%2C%20I%20have%20registered%20for%20Namaste%20Entrepreneur%202026%20Magazine%20(Ref%3A%20${confirmedOrderId})%20and%20would%20like%20to%20inquire%20about%20editorial%20story%20submissions.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <MessageSquare className="w-4 h-4 text-emerald-400" />
+                          <span>Submit Story on WhatsApp</span>
+                        </a>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => window.print()}
+                          className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <Printer className="w-4 h-4 text-slate-300" />
+                          <span>Print Receipt / Pass</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            alert(`GST Tax Invoice ${confirmedOrderId}-INV generated. A copy has been dispatched to ${formData.emailAddress}`);
+                          }}
+                          className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Download Tax Invoice</span>
+                        </button>
+                      </>
+                    )}
 
                     <button
                       onClick={() => setIsCheckoutOpen(false)}
@@ -1566,6 +2057,8 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                 </div>
               )}
             </div>
+            </>
+          )}
           </div>
         </div>
       )}

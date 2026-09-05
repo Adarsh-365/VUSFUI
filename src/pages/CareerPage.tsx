@@ -172,7 +172,7 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onMemberClick }) => {
             <div className="lg:col-span-8 space-y-6">
               <div className="inline-flex items-center gap-2 bg-orange-500/15 border border-orange-500/30 text-amber-300 text-xs font-bold px-4 py-1.5 rounded-full">
                 <Briefcase className="w-4 h-4 text-orange-400" />
-                <span>VISHWA UDYAM SAHAYATA FOUNDATION (VUSF) / NAMASTE INDIA GROUP</span>
+                <span>VISHWA UDYAM SAHAYTA FOUNDATION (VUSF) / NAMASTE INDIA GROUP</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] text-white">
@@ -244,7 +244,7 @@ export const CareerPage: React.FC<CareerPageProps> = ({ onMemberClick }) => {
               Current Job Openings (8 Positions &bull; {totalVacancies} Total Vacancies)
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
-              Vishwa Udyam Sahayata Foundation (VUSF) / Namaste India Group &bull; Navi Mumbai Corporate Desk
+              Vishwa Udyam Sahayta Foundation (VUSF) / Namaste India Group &bull; Navi Mumbai Corporate Desk
             </p>
           </div>
 

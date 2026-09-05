@@ -57,7 +57,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             onClick={onContactClick}
             className="flex items-center gap-1.5 hover:text-amber-200 transition-colors cursor-pointer"
           >
-            <span className="hidden sm:inline text-[11.5px]">Contact Vashi Office</span>
+            <span className="hidden sm:inline text-[11.5px]">Contact Us</span>
             <span className="sm:hidden text-[11.5px]">Contact</span>
           </button>
 
@@ -102,9 +102,19 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             >
               🌐
             </a>
+            {/* X / Twitter */}
+            <a
+              href="https://twitter.com/namastevishwaudyam"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="VUSF on X"
+              className="w-5 h-5 flex items-center justify-center hover:opacity-80 transition-opacity bg-black rounded-xs text-[10px] font-bold text-white"
+            >
+              𝕏
+            </a>
             {/* Facebook */}
             <a
-              href="https://facebook.com"
+              href="https://facebook.com/namastevishwaudyam"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on Facebook"
@@ -114,7 +124,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             </a>
             {/* Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/namastevishwaudyam"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on Instagram"
@@ -124,7 +134,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             </a>
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/company/namaste-vishwa-udyam-sahayta-foundation"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on LinkedIn"
@@ -134,7 +144,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             </a>
             {/* YouTube */}
             <a
-              href="https://youtube.com"
+              href="https://youtube.com/@namastevishwaudyam"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on YouTube"

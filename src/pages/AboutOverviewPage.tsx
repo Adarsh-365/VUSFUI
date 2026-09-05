@@ -206,7 +206,7 @@ export const AboutOverviewPage: React.FC<AboutOverviewPageProps> = ({
                   {[
                     {
                       title: 'Registered Section 8 Non-Profit',
-                      desc: 'Incorporated under the Companies Act, MCA Govt. of India for non-commercial industrial facilitation.',
+                      desc: 'Incorporated under the Companies Act, Ministry of Corporate Affairs, Government of India for non-commercial industrial facilitation.',
                     },
                     {
                       title: 'National & Global Presence',

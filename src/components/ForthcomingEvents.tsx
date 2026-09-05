@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ChevronsRight, Calendar, MapPin, ArrowRight, Sparkles, Globe } from 'lucide-react';
 
 interface ForthcomingEventsProps {
@@ -12,14 +12,14 @@ export const ForthcomingEvents: React.FC<ForthcomingEventsProps> = ({
 }) => {
   const featuredFlagship = {
     id: 'canton-fair-delegation',
-    title: 'Canton Fair Business Delegation (Phase 1 & Phase 3)',
-    date: 'Phase 1: 15–19 Oct 2026 | Phase 3: 31 Oct–4 Nov 2026',
+    title: 'Canton Fair 2026 Delegation - Guangzhou',
+    date: 'Phase 2: Apr 23–29, 2026 | Phase 3: Apr 30–May 7, 2026',
     location: 'Guangzhou, China',
     category: 'INTERNATIONAL TRADE DELEGATION',
     badge: 'FLAGSHIP GLOBAL DELEGATION',
     image: '/banner/namaste-china.jpeg',
-    desc: 'Join our official Indian business delegation to the Canton Fair in Guangzhou, China. Direct factory visits, verified OEM suppliers, machinery sourcing, and cross-border trade matchmaking.',
-    highlight: 'Direct Factory Visits & Global OEM Sourcing',
+    desc: "Join India's leading trade delegation for the world's largest import-export exhibition. Direct OEM factory visits, verified suppliers, and B2B matchmaking.",
+    highlight: 'Return Flights • 4-Star Stay • 100% Visa Protection',
   };
 
   return (

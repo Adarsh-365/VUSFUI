@@ -47,7 +47,7 @@ export const StartupPage: React.FC<StartupPageProps> = ({ onMemberClick }) => {
             <span>/</span>
             <Link to="/service" className="hover:underline text-slate-400">Services</Link>
             <span>/</span>
-            <span className="text-orange-400">StartUp Support</span>
+            <span className="text-orange-400">Startup Support</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -58,14 +58,14 @@ export const StartupPage: React.FC<StartupPageProps> = ({ onMemberClick }) => {
               </div>
 
               <h1 className="text-3xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] text-white">
-                StartUp Acceleration: <br />
+                Startup Acceleration: <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-300">
                   DPIIT Benefits, Grant Funding, Investors &amp; Sandbox Support
                 </span>
               </h1>
 
               <p className="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl font-light">
-                Empowering innovative startups from ideation to unicorn status. We provide complete handholding for Startup India DPIIT recognition, 100% tax exemptions (80-IAC), non-dilutive government seed grants up to ₹50 Lakhs, curated angel/VC investor matchmaking, and regulatory sandbox authorization.
+                Empowering innovative startups from ideation to unicorn status. We provide complete handholding for Startup India DPIIT recognition, Section 80-IAC income tax holiday (subject to eligibility), non-dilutive government seed grants up to ₹50 lakh, curated angel/VC investor matchmaking, and regulatory sandbox authorisation.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -99,11 +99,11 @@ export const StartupPage: React.FC<StartupPageProps> = ({ onMemberClick }) => {
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800">
                   <span className="text-slate-400">Sec. 80-IAC Tax Exemption:</span>
-                  <span className="font-bold text-amber-300">3 Years 100% Tax-Free</span>
+                  <span className="font-bold text-amber-300">Up to 3 Yrs Tax Holiday (Eligible Startups)</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800">
                   <span className="text-slate-400">Non-Dilutive Seed Grants:</span>
-                  <span className="font-bold text-cyan-300">Up to ₹50 Lakhs (SISFS/BIG)</span>
+                  <span className="font-bold text-cyan-300">Up to ₹50 lakh (SISFS/BIG)</span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">Sandbox Ecosystem:</span>
@@ -165,9 +165,9 @@ export const StartupPage: React.FC<StartupPageProps> = ({ onMemberClick }) => {
               {[
                 {
                   title: 'Section 80-IAC Tax Holiday',
-                  badge: '100% Tax Exemption',
-                  desc: 'Eligible DPIIT-recognized startups receive 100% income tax exemption on profits for 3 consecutive financial years out of the first 10 years from incorporation.',
-                  tag: 'Zero Corporate Tax',
+                  badge: 'Eligible Tax Holiday',
+                  desc: 'DPIIT-recognised startups may apply for income tax exemption on profits for 3 consecutive financial years out of the first 10 years from incorporation, subject to Section 80-IAC eligibility criteria.',
+                  tag: 'Tax Incentive',
                 },
                 {
                   title: 'Section 56(2)(viib) Angel Tax Relief',
@@ -262,7 +262,7 @@ export const StartupPage: React.FC<StartupPageProps> = ({ onMemberClick }) => {
                 },
                 {
                   scheme: 'BIRAC BIG (Biotechnology Ignition Grant)',
-                  funding: 'Up to ₹50 Lakhs Non-Dilutive Grant',
+                  funding: 'Up to ₹50 lakh Non-Dilutive Grant',
                   eligibility: 'Biotech, MedTech, Diagnostics, AgroTech & Healthcare innovators',
                   coverage: '18-month product discovery, clinical validation, and laboratory prototype development.',
                   tag: 'Department of Biotechnology',

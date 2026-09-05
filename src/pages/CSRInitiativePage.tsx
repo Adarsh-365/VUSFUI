@@ -42,7 +42,7 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
     {
       label: 'Tree & Sapling Distribution',
       value: '1,00,000+ Trees',
-      sub: 'Afforestation & rural agro-forestry drive',
+      sub: 'Afforestation & rural agroforestry drive',
       color: 'text-emerald-300',
     },
     {
@@ -70,7 +70,7 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
         'Promotion of eco-friendly, biodegradable menstrual waste disposal',
         'Dignity-first kits distributed with zero social stigma',
       ],
-      image: '/timeline_photos/sanitary pad/IMG-20260206-WA0088.jpg',
+      image: '/timeline_photos/CSR project/IMG-20260311-WA0087.jpeg',
     },
     {
       id: 'tree-distribution',
@@ -80,15 +80,15 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
       badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
       icon: Trees,
       iconBg: 'bg-emerald-500/20 text-emerald-400',
-      tagline: 'Mass Afforestation, Ecological Balance & Rural Agro-Forestry',
-      desc: 'Mass environmental restoration and agro-forestry campaign distributing over 1 Lakh native fruit-bearing, medicinal, and shade trees to farmers, rural households, schools, and industrial green buffers to combat desertification and build sustainable green corridors.',
+      tagline: 'Mass Afforestation, Ecological Balance & Rural Agroforestry',
+      desc: 'Mass environmental restoration and agroforestry campaign distributing over 1 lakh native fruit-bearing, medicinal, and shade trees to farmers, rural households, schools, and industrial green buffers to combat desertification and build sustainable green corridors.',
       highlights: [
         'Distribution of native drought-resistant & fruit-bearing saplings',
         'Green belt development across industrial corridors and MSME parks',
-        'Farmer livelihood support through agro-forestry & horticulture trees',
+        'Farmer livelihood support through agroforestry & horticulture trees',
         'Student-led environmental stewardship drives in educational institutes',
       ],
-      image: '/timeline_photos/tree plantation/IMG_20220809_143825_867.webp',
+      image: '/timeline_photos/CSR project/IMG-20260310-WA0084.jpeg',
     },
     {
       id: 'hygiene-awareness',
@@ -106,7 +106,7 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
         'Guidance on reproductive hygiene, nutrition, and wellness practices',
         'Empowering mothers and teachers as primary health mentors',
       ],
-      image: '/timeline_photos/sanitary pad/IMG-20260206-WA0087.jpg',
+      image: '/timeline_photos/CSR project/IMG-20260311-WA0082.jpeg',
     },
     {
       id: 'ek-gao-ek-didi',
@@ -124,7 +124,7 @@ export const CSRInitiativePage: React.FC<CSRInitiativePageProps> = ({ onMemberCl
         'Grassroots execution of sanitary distribution, financial literacy & health camps',
         'Bridging rural families directly with PMEGP, Stand-Up India & welfare schemes',
       ],
-      image: '/timeline_photos/ek gao ek didi/IMG-20260206-WA0079.jpg',
+      image: '/timeline_photos/CSR project/IMG-20260311-WA0091.jpeg',
     },
   ];
 

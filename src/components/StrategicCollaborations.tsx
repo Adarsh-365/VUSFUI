@@ -133,7 +133,7 @@ export const StrategicCollaborations: React.FC = () => {
     },
     {
       id: 'pen-stationery-association',
-      name: 'Pen and Stationary Association of India',
+      name: 'Pen and Stationery Association of India',
       logoText: 'STATIONERY',
       category: 'Industry Body',
       accentGradient: 'from-orange-600/20 to-red-500/30',

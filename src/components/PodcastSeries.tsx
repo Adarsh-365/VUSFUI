@@ -146,7 +146,7 @@ export const PodcastSeries: React.FC<PodcastSeriesProps> = ({
                 Experience the best moments from the <strong>Navi Mumbai Business Summit 2026</strong>, where entrepreneurs, MSME owners, startup founders, manufacturers, exporters, professionals, and business leaders came together to build meaningful connections and explore new business opportunities.
               </p>
               <p>
-                Organized by <strong>Vishwa Udyam Sahayata Foundation</strong>, <strong>SecureLife Fincorp</strong>, and <strong>India Post</strong>, the summit featured inspiring keynote sessions, business networking, knowledge sharing, and collaboration aimed at empowering businesses and fostering growth.
+                Organized by <strong>Vishwa Udyam Sahayta Foundation</strong>, <strong>SecureLife Fincorp</strong>, and <strong>India Post</strong>, the summit featured inspiring keynote sessions, business networking, knowledge sharing, and collaboration aimed at empowering businesses and fostering growth.
               </p>
               <p className="text-slate-600">
                 The event created a platform for entrepreneurs to connect, exchange ideas, discover opportunities, and strengthen India's business ecosystem.
@@ -162,7 +162,7 @@ export const PodcastSeries: React.FC<PodcastSeriesProps> = ({
               <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-medium text-slate-700">
                 <li className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>Vishwa Udyam Sahayata Foundation</span>
+                  <span>Vishwa Udyam Sahayta Foundation</span>
                 </li>
                 <li className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />

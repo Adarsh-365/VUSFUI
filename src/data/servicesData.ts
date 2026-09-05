@@ -350,7 +350,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     id: 'namaste-china',
     slug: 'namaste-china',
     title: 'Namaste China: Machinery Sourcing, Canton Fair & Factory Audits',
-    shortTitle: 'Namste china',
+    shortTitle: 'Namaste China',
     tag: 'DIRECT OEM SOURCING',
     category: 'Global Trade & Export',
     badge: 'China Sourcing Desk',
@@ -453,7 +453,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     features: [
       'PMEGP & CMEGP capital margin money subsidy applications (up to 35%)',
-      'CGTMSE collateral-free bank loans up to Rs. 5 Crores',
+      'CGTMSE collateral-free bank loans up to Rs. 5 crore',
       'MSME ZED (Zero Defect Zero Effect) certification and cash subsidies',
       'Delayed payment grievance settlement through MSME Samadhaan',
     ],
@@ -506,20 +506,20 @@ export const SERVICES_DATA: ServiceItem[] = [
     summary:
       'Complete acceleration support for innovative startups: Startup India DPIIT recognition, 100% Tax Exemption (80-IAC), ₹50L+ non-dilutive seed grants (SISFS/BIG), Angel/VC investor connect, and RBI/SEBI/IRDAI sandbox testing.',
     fullDescription: [
-      'The VUSF StartUp Advisory Cell is dedicated to empowering emerging founders and tech entrepreneurs with institutional acceleration, government recognition, and venture capital linkages.',
+      'The VUSF Startup Advisory Cell is dedicated to empowering emerging founders and tech entrepreneurs with institutional acceleration, government recognition, and venture capital linkages.',
       'We facilitate rapid 48-hour DPIIT certification under Startup India, unlocking sovereign privileges including Section 80-IAC 3-year tax holidays, Section 56(2)(viib) angel tax exemptions, 80% patent fee waivers, and priority access to GeM public procurement tenders.',
-      'For capital requirements, our specialized grant division handholds founders in securing non-dilutive grants of up to ₹50 Lakhs under the Startup India Seed Fund Scheme (SISFS), BIRAC BIG, MeitY TIDE 2.0, SAMRIDH, and state government innovation funds.',
+      'For capital requirements, our specialised grant division handholds founders in securing non-dilutive grants of up to ₹50 lakh under the Startup India Seed Fund Scheme (SISFS), BIRAC BIG, MeitY TIDE 2.0, SAMRIDH, and state government innovation funds.',
       'We actively bridge startups with 500+ angel syndicates and early-stage venture capital funds while guiding disruptive FinTech, InsurTech, and WealthTech startups through RBI, IRDAI, and SEBI live Regulatory Sandboxes.',
     ],
     features: [
-      'Fast-track DPIIT Recognition & Section 80-IAC 100% Tax Exemption filings',
-      'Non-dilutive grant proposal drafting up to ₹50 Lakhs (SISFS, BIRAC BIG, MeitY TIDE)',
+      'Fast-track DPIIT Recognition & Section 80-IAC tax holiday filings (subject to eligibility)',
+      'Non-dilutive grant proposal drafting up to ₹50 lakh (SISFS, BIRAC BIG, MeitY TIDE)',
       '1-on-1 Angel & Venture Capital matchmaking with pitch deck & financial modeling',
       'Regulatory Sandbox application & live cohort authorization (RBI, SEBI, IRDAI)',
     ],
     whyChooseUs: [
       'Over 1,200+ startups certified under DPIIT with zero compliance rejections',
-      '₹250+ Crores in non-dilutive grants and institutional seed capital unlocked',
+      '₹250+ crore in non-dilutive grants and institutional seed capital unlocked',
       'Dedicated regulatory affairs desk for fintech, healthtech & deeptech sandboxes',
     ],
     ctaText: 'Accelerate Your Startup with VUSF',

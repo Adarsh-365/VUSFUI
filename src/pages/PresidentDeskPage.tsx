@@ -49,7 +49,7 @@ export const PresidentDeskPage: React.FC<PresidentDeskPageProps> = ({
             <span>/</span>
             <Link to="/about/overview" className="hover:underline text-slate-300">About Foundation</Link>
             <span>/</span>
-            <span className="text-amber-400">Founder &amp; President Desk</span>
+            <span className="text-amber-400">Founder and President's Desk</span>
           </div>
 
           <div className="max-w-3xl space-y-4">

@@ -93,15 +93,15 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800">
                   <span className="text-slate-400">CGTMSE Collateral-Free:</span>
-                  <span className="font-bold text-blue-300">Up to ₹5 Crores</span>
+            <span className="font-bold text-blue-300">Up to ₹5 crore</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800">
                   <span className="text-slate-400">Term Loans &amp; Project Debt:</span>
-                  <span className="font-bold text-emerald-300">Up to ₹25 Crores</span>
+                  <span className="font-bold text-emerald-300">Up to ₹25 crore</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800">
                   <span className="text-slate-400">DPR &amp; CMA Modeling:</span>
-                  <span className="font-bold text-cyan-300">Bank-Sanction Guaranteed</span>
+                  <span className="font-bold text-cyan-300">Bank-Ready Preparation</span>
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">State Industrial Policy (PSI):</span>
@@ -134,10 +134,10 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
             The Government of India, alongside state governments like Maharashtra, has formulated powerful financial support frameworks to empower micro, small, and medium enterprises (MSMEs), startup innovators, and women entrepreneurs. These flagship subsidy programs are engineered to lower capital acquisition barriers, reduce commercial borrowing costs, and provide substantial capital grants on plant, machinery, and industrial infrastructure.
           </p>
           <p>
-            Flagship national schemes such as the <strong>Prime Minister&apos;s Employment Generation Programme (PMEGP)</strong> offer capital subsidies ranging from <strong>15% to 35%</strong> of the total project cost (up to ₹50 Lakhs for manufacturing units and ₹20 Lakhs for service enterprises). Similarly, the <strong>Chief Minister Employment Generation Programme (CMEGP)</strong> provides targeted state subsidies for setting up micro-industrial units with fast-tracked bank credit linkages.
+            Flagship national schemes such as the <strong>Prime Minister&apos;s Employment Generation Programme (PMEGP)</strong> offer capital subsidies ranging from <strong>15% to 35%</strong> of the total project cost (up to ₹50 lakh for manufacturing units and ₹20 lakh for service enterprises). Similarly, the <strong>Chief Minister Employment Generation Programme (CMEGP)</strong> provides targeted state subsidies for setting up micro-industrial units with fast-tracked bank credit linkages.
           </p>
           <p>
-            For expanding enterprises seeking debt without mortgaging personal real estate, the <strong>Credit Guarantee Fund Trust for Micro and Small Enterprises (CGTMSE)</strong> enables collateral-free bank credit up to <strong>₹5 Crores</strong> with a sovereign credit guarantee of 75% to 85%. Additionally, schemes like <strong>Stand-Up India</strong> (₹10 Lakhs to ₹1 Crore for SC/ST and Women entrepreneurs) and <strong>MUDRA Yojana</strong> (up to ₹20 Lakhs) ensure robust grassroots financial inclusion.
+            For expanding enterprises seeking debt without mortgaging personal real estate, the <strong>Credit Guarantee Fund Trust for Micro and Small Enterprises (CGTMSE)</strong> enables collateral-free bank credit up to <strong>₹5 crore</strong> with a sovereign credit guarantee of 75% to 85%. Additionally, schemes like <strong>Stand-Up India</strong> (₹10 lakh to ₹1 crore for SC/ST and Women entrepreneurs) and <strong>MUDRA Yojana</strong> (up to ₹20 lakh) ensure robust grassroots financial inclusion.
           </p>
           <p>
             Under state industrial policies such as the <strong>Package Scheme of Incentives (PSI)</strong> in Maharashtra, eligible MSMEs receive up to <strong>5% interest subsidies</strong>, electricity duty exemptions, stamp duty waivers, and 100% SGST refunds, dramatically improving internal rate of return (IRR) and operational cash flows.
@@ -156,7 +156,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
               </div>
               <h3 className="text-xl font-bold text-white">PMEGP Capital Subsidy</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Central government credit-linked capital subsidy for establishing new manufacturing units (up to ₹50 Lakhs) and service ventures (up to ₹20 Lakhs) with 15%–35% margin money grant.
+                Central government credit-linked capital subsidy for establishing new manufacturing units (up to ₹50 lakh) and service ventures (up to ₹20 lakh) with 15%–35% margin money grant.
               </p>
             </div>
             <div className="text-[11px] font-semibold text-amber-200 bg-amber-950/50 p-2.5 rounded-xl border border-amber-800/40">
@@ -174,7 +174,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
               </div>
               <h3 className="text-xl font-bold text-white">CMEGP State Subsidy</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Maharashtra State flagship subsidy initiative offering up to ₹50 Lakhs project funding with 15%–35% direct government grant for youth, women, and SC/ST industrial innovators.
+                Maharashtra State flagship subsidy initiative offering up to ₹50 lakh project funding with 15%–35% direct government grant for youth, women, and SC/ST industrial innovators.
               </p>
             </div>
             <div className="text-[11px] font-semibold text-emerald-200 bg-emerald-950/50 p-2.5 rounded-xl border border-emerald-800/40">
@@ -192,7 +192,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
               </div>
               <h3 className="text-xl font-bold text-white">CGTMSE Collateral-Free Loans</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Bank loans up to ₹5 Crores without third-party guarantee or property hypothecation, backed by 75% to 85% credit guarantee from the Ministry of MSME and SIDBI.
+                Bank loans up to ₹5 crore without third-party guarantee or property hypothecation, backed by 75% to 85% credit guarantee from the Ministry of MSME and SIDBI.
               </p>
             </div>
             <div className="text-[11px] font-semibold text-blue-200 bg-blue-950/50 p-2.5 rounded-xl border border-blue-800/40">
@@ -210,7 +210,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
               </div>
               <h3 className="text-xl font-bold text-white">Stand-Up India Scheme</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Bank credit between ₹10 Lakhs and ₹1 Crore for SC/ST and Women entrepreneurs to establish greenfield manufacturing, service, or trading enterprises.
+                Bank credit between ₹10 lakh and ₹1 crore for SC/ST and Women entrepreneurs to establish greenfield manufacturing, service, or trading enterprises.
               </p>
             </div>
             <div className="text-[11px] font-semibold text-rose-200 bg-rose-950/50 p-2.5 rounded-xl border border-rose-800/40">
@@ -246,7 +246,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
               </div>
               <h3 className="text-xl font-bold text-white">Pradhan Mantri MUDRA Yojana</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Collateral-free micro loans up to ₹20 Lakhs categorized under Shishu (up to ₹50k), Kishore (up to ₹5L), and Tarun (up to ₹20L) for working capital and equipment.
+                Collateral-free micro loans up to ₹20 lakh categorised under Shishu (up to ₹50k), Kishore (up to ₹5L), and Tarun (up to ₹20L) for working capital and equipment.
               </p>
             </div>
             <div className="text-[11px] font-semibold text-indigo-200 bg-indigo-950/50 p-2.5 rounded-xl border border-indigo-800/40">
@@ -322,7 +322,7 @@ export const FinanceAndInvestmentPage: React.FC<FinanceAndInvestmentPageProps> =
             </div>
             <h3 className="text-lg font-bold text-white">Bank Term Loans</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Long-term credit facility for purchasing industrial plant, land, machinery, and factory construction up to ₹25 Crores.
+              Long-term credit facility for purchasing industrial plant, land, machinery, and factory construction up to ₹25 crore.
             </p>
           </div>
 

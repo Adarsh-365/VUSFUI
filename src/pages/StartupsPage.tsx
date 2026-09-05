@@ -89,7 +89,7 @@ export const StartupsPage: React.FC<StartupsPageProps> = ({ onMemberClick }) => 
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">Seed Fund Scheme:</span>
-                  <span className="font-bold text-amber-300">Up to 50 Lakhs Grant/Debt</span>
+                  <span className="font-bold text-amber-300">Up to 50 lakh Grant/Debt</span>
                 </div>
               </div>
             </div>

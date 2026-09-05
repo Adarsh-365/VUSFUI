@@ -291,7 +291,7 @@ export const SeminarWebinarPage: React.FC<SeminarWebinarPageProps> = ({
                   onClick={() => onMemberClick('become')}
                   className="w-full bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-500 hover:to-sky-500 text-white text-xs sm:text-sm font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-indigo-950/60 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Apply &amp; Reserve Seat</span>
+                  <span>Register for Event</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

@@ -72,7 +72,6 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       '/timeline_photos/start namste india/IMG-20260206-WA0041.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0096.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0099.jpeg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0104.jpg',
       '/timeline_photos/start namste india/IMG-20260206-WA0109.jpeg',
     ],
   },
@@ -92,20 +91,20 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
     fullArticle: [
       'As part of the nationwide "Azadi Ka Amrit Mahotsav" celebrations, the Government of Maharashtra and District Industries Centre (DIC) Buldhana organized a high-impact Exporter Conclave on 24-25 September 2021 in Buldhana.',
       'The conclave convened district-level manufacturers, agricultural producers, commodity traders, and aspiring exporters to explore concrete pathways for scaling their products into global export markets.',
-      'Namaste India Group actively participated in strategic discussions with key dignitaries including Sunil Patil (Industry Officer, DIC Buldana), Manoj Burad (Secretary, Buldana Industrial Association), Sankalp Tayde (Exporter, Khamgaon), Chetan Patil (General Manager, DIC Buldana), and Rajesh Lahase (Editor & President, Maharashtra OBC Council).',
+      'Namaste India Group actively participated in strategic discussions with key dignitaries including Sunil Patil (Industry Officer, DIC Buldhana), Manoj Burad (Secretary, Buldhana Industrial Association), Sankalp Tayde (Exporter, Khamgaon), Chetan Patil (General Manager, DIC Buldhana), and Rajesh Lahase (Editor & President, Maharashtra OBC Council).',
       'The conclave focused on resolving key export bottlenecks for Vidarbha enterprises, including international quality certifications, phytosanitary standards, packaging innovations for agricultural perishables, and leveraging central and state export incentive schemes.'
     ],
     keyHighlights: [
       'Strategic district export conclave organized under Azadi Ka Amrit Mahotsav with DIC Buldhana.',
-      'Key interactions with Sunil Patil (Industry Officer DIC Buldana), Manoj Burad (Secretary, Buldana Industrial Association), Sankalp Tayde (Exporter, Khamgaon), Chetan Patil (GM, DIC Buldana), and Rajesh Lahase (President, Maha OBC Council).',
+      'Key interactions with Sunil Patil (Industry Officer DIC Buldhana), Manoj Burad (Secretary, Buldhana Industrial Association), Sankalp Tayde (Exporter, Khamgaon), Chetan Patil (GM, DIC Buldhana), and Rajesh Lahase (President, Maha OBC Council).',
       'Action plan laid down for district-level export quality control, packaging standards, and international buyer linkages.',
       'Formulated direct handholding modules for first-time exporters in Buldhana and Khamgaon.'
     ],
     keyPeople: [
-      'Sunil Patil (Industry Officer, DIC Buldana)',
-      'Manoj Burad (Secretary, Buldana Industrial Association)',
+      'Sunil Patil (Industry Officer, DIC Buldhana)',
+      'Manoj Burad (Secretary, Buldhana Industrial Association)',
       'Sankalp Tayde (Exporter, Khamgaon)',
-      'Chetan Patil (General Manager, DIC Buldana)',
+      'Chetan Patil (General Manager, DIC Buldhana)',
       'Rajesh Lahase (Editor & President, Maharashtra OBC Council)'
     ],
     impactMetrics: [
@@ -343,7 +342,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
     ],
     keyHighlights: [
       'Bilateral networking with Australian delegates exploring import-export partnerships and consumer goods distribution.',
-      'Exchanged insights on Australian regulatory standards, bio-security compliance, and market entry routes.',
+      'Exchanged insights on Australian regulatory standards, biosecurity compliance, and market entry routes.',
       'Emphasized long-term relationship building, cultural understanding, and mutual business growth.',
       'Leveraged opportunities under the India-Australia Economic Cooperation and Trade Agreement (ECTA).'
     ],
@@ -1263,24 +1262,24 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
     category: 'CSR & Community Health',
     badge: 'COMMUNITY CSR & HEALTH',
     description:
-      'Organized by Vishwa Udyam Sahayata Foundation (VUSF), led by Pragati Tayde, in collaboration with Dharati Foundation (represented by Sattar Khan Sir) at Sane Guruji Madhyamik Vidyalaya, Kannad, distributing organic sanitary pads and educating school girls on menstrual hygiene and personal wellness.',
+      'Organized by Vishwa Udyam Sahayta Foundation (VUSF), led by Pragati Tayde, in collaboration with Dharati Foundation (represented by Sattar Khan Sir) at Sane Guruji Madhyamik Vidyalaya, Kannad, distributing organic sanitary pads and educating school girls on menstrual hygiene and personal wellness.',
     fullArticle: [
       'On 14 March 2026, as part of its steadfast commitment to women’s health, education, and community dignity, Vishwa Udyam Sahayta Foundation (VUSF) conducted a Menstrual Hygiene Awareness and Organic Sanitary Pad Distribution Program at Sane Guruji Madhyamik Vidyalaya in Kannad, District Chhatrapati Sambhajinagar.',
       'The humanitarian initiative was organized under the leadership of Pragati Tayde in dedicated collaboration with Dharati Foundation, represented by Sattar Khan Sir.',
       'During the interactive session, high-grade organic sanitary pads were distributed to all female students, accompanied by an open, scientifically grounded masterclass addressing menstrual hygiene, personal cleanliness, and dispelling centuries-old taboos.',
-      'The informative session was expertly demonstrated and coordinated by Madhuri Narkhed Madam in the gracious presence of Harshada Kadam Madam, Alka Jadhav Madam, and respected school board trustees.',
+      'The informative session was expertly demonstrated and coordinated by Madhuri Narkhede Madam in the gracious presence of Harshada Kadam Madam, Alka Jadhav Madam, and respected school board trustees.',
       'The program affirmed VUSF\'s belief that healthy, confident girls build strong, empowered futures for the nation.'
     ],
     keyHighlights: [
       'Distributed organic sanitary pads to school girls accompanied by informative health and cleanliness sessions.',
-      'Session expertly demonstrated and coordinated by Madhuri Narkhed Madam with Harshada Kadam Madam and Alka Jadhav Madam.',
+      'Session expertly demonstrated and coordinated by Madhuri Narkhede Madam with Harshada Kadam Madam and Alka Jadhav Madam.',
       'Eliminated taboos and empowered young girls to manage their health with knowledge, dignity, and confidence.',
       'Strengthened ongoing CSR commitments toward girl-child education, sanitation, and rural health.'
     ],
     keyPeople: [
       'Pragati Tayde (President, VUSF)',
       'Sattar Khan Sir (Dharati Foundation)',
-      'Madhuri Narkhed Madam (Session Coordinator)',
+      'Madhuri Narkhede Madam (Session Coordinator)',
       'Harshada Kadam Madam & Alka Jadhav Madam',
       'Faculty & Students of Sane Guruji Vidyalaya, Kannad'
     ],
@@ -1484,9 +1483,9 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Textiles & Garments',
     ],
     representatives: [
-      { name: 'Mohan Kaushal', designation: 'Convenor • Namaste Nepal', image: 'https://namastevishwaudyam.org/img/c18.png' },
-      { name: 'Pradip Shah', designation: 'Trade Officer • Nepal Desk', image: 'https://namastevishwaudyam.org/img/c100.png' },
-      { name: 'Pushkar Malla', designation: 'Bilateral Liaison • Kathmandu', image: 'https://namastevishwaudyam.org/img/c111.png' },
+      { name: 'Mohan Kaushal', designation: 'Convenor • Namaste Nepal', image: '/img/c18.png' },
+      { name: 'Pradip Shah', designation: 'Trade Officer • Nepal Desk', image: '/img/c100.png' },
+      { name: 'Pushkar Malla', designation: 'Bilateral Liaison • Kathmandu', image: '/img/c111.png' },
     ],
     galleryImages: [
       '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpeg',
@@ -1521,8 +1520,8 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
     ],
     representatives: [
       { name: 'Kamlesh Kumar', designation: 'Convenor • Namaste Dubai | CEO, Kashivishwanath FPC', image: '/members/kamlesh.jpeg' },
-      { name: 'R. Bhattacharya', designation: 'Trade Advisor • UAE Desk', image: 'https://namastevishwaudyam.org/img/c122.png' },
-      { name: 'Saleem Sagar', designation: 'Commercial Liaison • UAE Desk', image: 'https://namastevishwaudyam.org/img/c133.png' },
+      { name: 'R. Bhattacharya', designation: 'Trade Advisor • the UAE Desk', image: '/img/c122.png' },
+      { name: 'Saleem Sagar', designation: 'Commercial Liaison • the UAE Desk', image: '/img/c133.png' },
     ],
     galleryImages: [
       '/timeline_photos/asian banking club/WhatsApp Image 2026-08-28 at 10.18.58 PM.jpeg',
@@ -1554,7 +1553,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Hospitality & Tourism Supply',
     ],
     representatives: [
-      { name: 'Vardhaman', designation: 'Convenor • Namaste Thailand', image: 'https://namastevishwaudyam.org/img/c188.png' },
+      { name: 'Vardhaman', designation: 'Convenor • Namaste Thailand', image: '/img/c188.png' },
     ],
     galleryImages: [
       '/timeline_photos/thailand exibition/IMG-20260206-WA0048.jpeg',
@@ -1588,7 +1587,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Plastics & Specialty Chemicals',
     ],
     representatives: [
-      { name: 'Tran Thuy Duong (Naomi)', designation: 'Convenor • Namaste Vietnam', image: 'https://namastevishwaudyam.org/img/c177.png' },
+      { name: 'Tran Thuy Duong (Naomi)', designation: 'Convenor • Namaste Vietnam', image: '/img/c177.png' },
     ],
     galleryImages: [
       '/timeline_photos/veitnam buyer seller meet/IMG-20260206-WA0092.jpeg',
@@ -1622,7 +1621,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Cross-Border Holding Companies',
     ],
     representatives: [
-      { name: 'Singapore Strategic Desk', designation: 'Bilateral Trade Directorate', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Singapore Strategic Desk', designation: 'Bilateral Trade Directorate', image: '/img/vlogo.png' },
     ],
     galleryImages: [
       '/timeline_photos/money expo/IMG-20260206-WA0093.jpeg',
@@ -1655,7 +1654,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Renewable Energy Equipment',
     ],
     representatives: [
-      { name: 'Jevy Cai', designation: 'Convenor • Namaste China', image: 'https://namastevishwaudyam.org/img/ch11.png' },
+      { name: 'Jevy Cai', designation: 'Convenor • Namaste China', image: '/img/ch11.png' },
     ],
     galleryImages: [
       '/timeline_photos/china 2025/20251104_151304.jpeg',
@@ -1724,7 +1723,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Construction Materials & Hardware',
     ],
     representatives: [
-      { name: 'Dhaka Trade Directorate', designation: 'Bilateral Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Dhaka Trade Directorate', designation: 'Bilateral Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [
       '/timeline_photos/nepal exibition/IMG-20260206-WA0043.jpeg',
@@ -1755,7 +1754,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Textile Fabrics & Garments',
     ],
     representatives: [
-      { name: 'Colombo Commercial Desk', designation: 'Bilateral Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Colombo Commercial Desk', designation: 'Bilateral Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1802,7 +1801,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Green Hydrogen & Clean Energy',
     ],
     representatives: [
-      { name: 'Tokyo Bilateral Desk', designation: 'CEPA Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Tokyo Bilateral Desk', designation: 'CEPA Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1831,7 +1830,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Petrochemical Derivatives',
     ],
     representatives: [
-      { name: 'Kuala Lumpur Commerce Desk', designation: 'Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Kuala Lumpur Commerce Desk', designation: 'Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1860,7 +1859,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Renewable Energy & Mining Equipment',
     ],
     representatives: [
-      { name: 'Jakarta Trade Directorate', designation: 'Bilateral Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Jakarta Trade Directorate', designation: 'Bilateral Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1889,7 +1888,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Electric Vehicle Power Inverters',
     ],
     representatives: [
-      { name: 'Taipei Technology Desk', designation: 'Hardware Sourcing Lead', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Taipei Technology Desk', designation: 'Hardware Sourcing Lead', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1917,7 +1916,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Consumer Electronics & Displays',
     ],
     representatives: [
-      { name: 'Seoul Bilateral Desk', designation: 'CEPA Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Seoul Bilateral Desk', designation: 'CEPA Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1963,7 +1962,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Textiles & Industrial Uniforms',
     ],
     representatives: [
-      { name: 'Muscat Commercial Desk', designation: 'Bilateral Trade Lead', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Muscat Commercial Desk', designation: 'Bilateral Trade Lead', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -1992,7 +1991,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Engineering Equipment & Pipes',
     ],
     representatives: [
-      { name: 'Doha Bilateral Desk', designation: 'Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Doha Bilateral Desk', designation: 'Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -2021,7 +2020,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Textiles & Leather Products',
     ],
     representatives: [
-      { name: 'Johannesburg Trade Desk', designation: 'SADC Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Johannesburg Trade Desk', designation: 'SADC Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -2064,7 +2063,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Chemicals & Plastic Packaging',
     ],
     representatives: [
-      { name: 'Addis Ababa Commerce Desk', designation: 'Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Addis Ababa Commerce Desk', designation: 'Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -2093,7 +2092,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'High-End Metal Engineering Castings',
     ],
     representatives: [
-      { name: 'Frankfurt Bilateral Desk', designation: 'EU Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Frankfurt Bilateral Desk', designation: 'EU Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },
@@ -2122,7 +2121,7 @@ export const COUNTRY_CORRIDORS: Record<string, CountryWingData> = {
       'Heavy Metallurgy & Engineering',
     ],
     representatives: [
-      { name: 'Moscow Bilateral Desk', designation: 'INSTC Trade Officer', image: 'https://namastevishwaudyam.org/img/vlogo.png' },
+      { name: 'Moscow Bilateral Desk', designation: 'INSTC Trade Officer', image: '/img/vlogo.png' },
     ],
     galleryImages: [],
   },

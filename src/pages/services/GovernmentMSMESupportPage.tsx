@@ -24,7 +24,7 @@ export const GovernmentMSMESupportPage: React.FC<GovernmentMSMESupportPageProps>
   const [category, setCategory] = useState<'general' | 'special'>('special');
 
   const subsidyPercentage = category === 'special' ? '35%' : '25%';
-  const maxProject = sectorType === 'manufacturing' ? '50 Lakhs' : '20 Lakhs';
+  const maxProject = sectorType === 'manufacturing' ? '50 lakh' : '20 lakh';
   const ownContribution = category === 'special' ? '5%' : '10%';
 
   return (
@@ -90,11 +90,11 @@ export const GovernmentMSMESupportPage: React.FC<GovernmentMSMESupportPageProps>
               <div className="space-y-2 pt-2 border-t border-white/10 text-xs">
                 <div className="flex justify-between text-slate-200">
                   <span>Manufacturing Ceiling:</span>
-                  <span className="font-bold text-amber-300">Rs. 50 Lakhs</span>
+                  <span className="font-bold text-amber-300">Rs. 50 lakh</span>
                 </div>
                 <div className="flex justify-between text-slate-200">
                   <span>Service Unit Ceiling:</span>
-                  <span className="font-bold text-amber-300">Rs. 20 Lakhs</span>
+                  <span className="font-bold text-amber-300">Rs. 20 lakh</span>
                 </div>
               </div>
             </div>

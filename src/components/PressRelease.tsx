@@ -15,11 +15,11 @@ export const PressRelease: React.FC<PressReleaseProps> = ({
   return (
     <section id="press-release" className="relative py-10 bg-white border-b border-slate-200">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-        {/* Section Header with "Making Headline" watermark */}
+        {/* Section Header with "Making Headlines" watermark */}
         <div className="relative flex items-center justify-between pb-6">
           <div className="relative">
             <span className="absolute -top-7 -left-1 text-5xl sm:text-6xl font-serif-title section-watermark whitespace-nowrap">
-              Making Headline
+              Making Headlines
             </span>
             <h2 className="relative text-xl sm:text-2xl font-bold text-slate-800 tracking-tight">
               Press Releases & Announcements

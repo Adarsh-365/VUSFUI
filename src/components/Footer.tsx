@@ -30,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
 
             <div className="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded text-xs text-slate-300">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span className="font-semibold text-[11px]">Section 8 Registered Non-Profit &bull; MCA Govt. of India</span>
+              <span className="font-semibold text-[11px]">Section 8 Registered Non-Profit &bull; Ministry of Corporate Affairs, Government of India</span>
             </div>
           </div>
 
@@ -42,13 +42,13 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
             <ul className="space-y-1.5 text-xs text-slate-300">
               {[
                 { label: 'B2B Service', path: '/services/b2b-service' },
-                { label: 'Start company', path: '/services/start-company' },
-                { label: 'Start import and export', path: '/services/start-import-export' },
-                { label: 'One to One Counselling', path: '/services/one-to-one-counselling' },
-                { label: 'Product launch other country', path: '/services/product-launch-other-country' },
-                { label: 'Start business in other country', path: '/services/start-business-other-country' },
-                { label: 'Infrastructure development', path: '/services/infrastructure-development' },
-                { label: 'GeM PORTAL', path: '/services/gem-portal' },
+                { label: 'Start a Company', path: '/services/start-company' },
+                { label: 'Start an Import-Export Business', path: '/services/start-import-export' },
+                { label: 'One-to-One Counselling', path: '/services/one-to-one-counselling' },
+                { label: 'Launch a Product in Another Country', path: '/services/product-launch-other-country' },
+                { label: 'Start a Business in Another Country', path: '/services/start-business-other-country' },
+                { label: 'Infrastructure Development', path: '/services/infrastructure-development' },
+                { label: 'GeM Portal', path: '/services/gem-portal' },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
@@ -75,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
               </li>
               <li>
                 <Link to="/about/president" className="hover:text-orange-400 transition-colors block py-0.5">
-                  Founder &amp; President Desk
+                  Founder and President’s Desk
                 </Link>
               </li>
               <li>
@@ -89,8 +89,13 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
                 </Link>
               </li>
               <li>
-                <Link to="/chapter" className="hover:text-orange-400 transition-colors block py-0.5">
+                <Link to="/chapters" className="hover:text-orange-400 transition-colors block py-0.5">
                   Regional &amp; District Desks
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-orange-400 transition-colors block py-0.5">
+                  Contact Us
                 </Link>
               </li>
               <li>
@@ -110,17 +115,19 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  Vishwa Udyam Sahayta Foundation, Sector 15, CBD Belapur, Navi Mumbai, Maharashtra - 400614, India
+                  Office No. 123, 1st Floor, Mahaveer Market, Plot No. 1, Sector 18, Vashi, Navi Mumbai - 400703, Maharashtra, India
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-orange-400 shrink-0" />
-                <span>+91 22 2757 0000 / +91 98200 00000</span>
+                <a href="tel:+918169080686" className="hover:text-orange-400">
+                  +91-8169080686
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-orange-400 shrink-0" />
-                <a href="mailto:secretariat@vusf.org.in" className="hover:text-orange-400 underline">
-                  secretariat@vusf.org.in
+                <a href="mailto:info@namastevishwaudyam.org" className="hover:text-orange-400 underline">
+                  info@namastevishwaudyam.org
                 </a>
               </div>
             </div>
@@ -136,26 +143,26 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
           </div>
 
           <div className="flex items-center gap-4">
-            <button
-              onClick={() => onLegalClick('Privacy Policy')}
+            <Link
+              to="/privacy-policy"
               className="hover:text-white transition-colors cursor-pointer"
             >
               Privacy Policy
-            </button>
+            </Link>
             <span>&bull;</span>
-            <button
-              onClick={() => onLegalClick('Terms of Service')}
+            <Link
+              to="/terms-of-service"
               className="hover:text-white transition-colors cursor-pointer"
             >
               Terms of Service
-            </button>
+            </Link>
             <span>&bull;</span>
-            <button
-              onClick={() => onLegalClick('MSME Charter')}
+            <Link
+              to="/msme-charter"
               className="hover:text-white transition-colors cursor-pointer"
             >
               MSME Charter
-            </button>
+            </Link>
           </div>
         </div>
       </div>

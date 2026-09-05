@@ -1,57 +1,76 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { TopBar } from './components/TopBar';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 
-// Pages
+// Core Landing Page (immediate load)
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { AboutOverviewPage } from './pages/AboutOverviewPage';
-import { PresidentDeskPage } from './pages/PresidentDeskPage';
-import { BoardOfDirectorsPage } from './pages/BoardOfDirectorsPage';
-import { ServicePage } from './pages/ServicePage';
+
+// Lazy Loaded Pages
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const AboutOverviewPage = lazy(() => import('./pages/AboutOverviewPage').then(m => ({ default: m.AboutOverviewPage })));
+const PresidentDeskPage = lazy(() => import('./pages/PresidentDeskPage').then(m => ({ default: m.PresidentDeskPage })));
+const BoardOfDirectorsPage = lazy(() => import('./pages/BoardOfDirectorsPage').then(m => ({ default: m.BoardOfDirectorsPage })));
+const ServicePage = lazy(() => import('./pages/ServicePage').then(m => ({ default: m.ServicePage })));
 
 // 13 Distinct Dedicated Service Pages
-import { B2BServicePage } from './pages/services/B2BServicePage';
-import { StartCompanyPage } from './pages/services/StartCompanyPage';
-import { StartImportExportPage } from './pages/services/StartImportExportPage';
-import { OneToOneCounsellingPage } from './pages/services/OneToOneCounsellingPage';
-import { ProductLaunchOtherCountryPage } from './pages/services/ProductLaunchOtherCountryPage';
-import { StartBusinessOtherCountryPage } from './pages/services/StartBusinessOtherCountryPage';
-import { InfrastructureDevelopmentPage } from './pages/services/InfrastructureDevelopmentPage';
-import { ExhibitionSeminarWebinarPage } from './pages/services/ExhibitionSeminarWebinarPage';
-import { ExhibitionPage } from './pages/services/ExhibitionPage';
-import { SeminarWebinarPage } from './pages/services/SeminarWebinarPage';
-import { GeMPortalPage } from './pages/services/GeMPortalPage';
-import { NamasteChinaPage } from './pages/services/NamasteChinaPage';
-import { ForeignInvestmentPage } from './pages/services/ForeignInvestmentPage';
-import { FinanceAndInvestmentPage } from './pages/services/FinanceAndInvestmentPage';
-import { GovernmentMSMESupportPage } from './pages/services/GovernmentMSMESupportPage';
-import { MarketLinkagePage } from './pages/services/MarketLinkagePage';
-import { StartupPage } from './pages/services/StartupPage';
+const B2BServicePage = lazy(() => import('./pages/services/B2BServicePage').then(m => ({ default: m.B2BServicePage })));
+const StartCompanyPage = lazy(() => import('./pages/services/StartCompanyPage').then(m => ({ default: m.StartCompanyPage })));
+const StartImportExportPage = lazy(() => import('./pages/services/StartImportExportPage').then(m => ({ default: m.StartImportExportPage })));
+const OneToOneCounsellingPage = lazy(() => import('./pages/services/OneToOneCounsellingPage').then(m => ({ default: m.OneToOneCounsellingPage })));
+const ProductLaunchOtherCountryPage = lazy(() => import('./pages/services/ProductLaunchOtherCountryPage').then(m => ({ default: m.ProductLaunchOtherCountryPage })));
+const StartBusinessOtherCountryPage = lazy(() => import('./pages/services/StartBusinessOtherCountryPage').then(m => ({ default: m.StartBusinessOtherCountryPage })));
+const InfrastructureDevelopmentPage = lazy(() => import('./pages/services/InfrastructureDevelopmentPage').then(m => ({ default: m.InfrastructureDevelopmentPage })));
+const ExhibitionSeminarWebinarPage = lazy(() => import('./pages/services/ExhibitionSeminarWebinarPage').then(m => ({ default: m.ExhibitionSeminarWebinarPage })));
+const ExhibitionPage = lazy(() => import('./pages/services/ExhibitionPage').then(m => ({ default: m.ExhibitionPage })));
+const SeminarWebinarPage = lazy(() => import('./pages/services/SeminarWebinarPage').then(m => ({ default: m.SeminarWebinarPage })));
+const GeMPortalPage = lazy(() => import('./pages/services/GeMPortalPage').then(m => ({ default: m.GeMPortalPage })));
+const NamasteChinaPage = lazy(() => import('./pages/services/NamasteChinaPage').then(m => ({ default: m.NamasteChinaPage })));
+const ForeignInvestmentPage = lazy(() => import('./pages/services/ForeignInvestmentPage').then(m => ({ default: m.ForeignInvestmentPage })));
+const FinanceAndInvestmentPage = lazy(() => import('./pages/services/FinanceAndInvestmentPage').then(m => ({ default: m.FinanceAndInvestmentPage })));
+const GovernmentMSMESupportPage = lazy(() => import('./pages/services/GovernmentMSMESupportPage').then(m => ({ default: m.GovernmentMSMESupportPage })));
+const MarketLinkagePage = lazy(() => import('./pages/services/MarketLinkagePage').then(m => ({ default: m.MarketLinkagePage })));
+const StartupPage = lazy(() => import('./pages/services/StartupPage').then(m => ({ default: m.StartupPage })));
 
 // Sectors Hub and Dedicated Sector Page
-import { SectorsPage } from './pages/SectorsPage';
-import { SectorDetailPage } from './pages/SectorDetailPage';
+const SectorsPage = lazy(() => import('./pages/SectorsPage').then(m => ({ default: m.SectorsPage })));
+const SectorDetailPage = lazy(() => import('./pages/SectorDetailPage').then(m => ({ default: m.SectorDetailPage })));
 
 // Chapter Page
-import { ChapterPage } from './pages/ChapterPage';
+const ChapterPage = lazy(() => import('./pages/ChapterPage').then(m => ({ default: m.ChapterPage })));
 
 // International Hub & Dedicated Country Pages
-import { InternationalPage } from './pages/InternationalPage';
-import { NamasteIndiaPage } from './pages/international/NamasteIndiaPage';
-import { NamasteIndiaEventDetailPage } from './pages/international/NamasteIndiaEventDetailPage';
-import { CountryCorridorPage } from './pages/international/CountryCorridorPage';
+const InternationalPage = lazy(() => import('./pages/InternationalPage').then(m => ({ default: m.InternationalPage })));
+const NamasteIndiaPage = lazy(() => import('./pages/international/NamasteIndiaPage').then(m => ({ default: m.NamasteIndiaPage })));
+const NamasteIndiaEventDetailPage = lazy(() => import('./pages/international/NamasteIndiaEventDetailPage').then(m => ({ default: m.NamasteIndiaEventDetailPage })));
+const CountryCorridorPage = lazy(() => import('./pages/international/CountryCorridorPage').then(m => ({ default: m.CountryCorridorPage })));
 
 // Events & Media
-import { EventsPage } from './pages/EventsPage';
-import { EventLandingPage } from './pages/EventLandingPage';
-import { BlogDetailPage } from './pages/BlogDetailPage';
+const EventsPage = lazy(() => import('./pages/EventsPage').then(m => ({ default: m.EventsPage })));
+const EventLandingPage = lazy(() => import('./pages/EventLandingPage').then(m => ({ default: m.EventLandingPage })));
+const WomenEntrepreneur1DayPage = lazy(() => import('./pages/events/WomenEntrepreneur1DayPage').then(m => ({ default: m.WomenEntrepreneur1DayPage })));
+const ScStEntrepreneurship1DayPage = lazy(() => import('./pages/events/ScStEntrepreneurship1DayPage').then(m => ({ default: m.ScStEntrepreneurship1DayPage })));
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage').then(m => ({ default: m.BlogDetailPage })));
 
 // CSR Initiative & Career Pages
-import { CSRInitiativePage } from './pages/CSRInitiativePage';
-import { CareerPage } from './pages/CareerPage';
+const CSRInitiativePage = lazy(() => import('./pages/CSRInitiativePage').then(m => ({ default: m.CSRInitiativePage })));
+const CareerPage = lazy(() => import('./pages/CareerPage').then(m => ({ default: m.CareerPage })));
+
+// Contact & NotFound Pages
+const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+
+// Legal Pages
+const PrivacyPolicyPage = lazy(() => import('./pages/legal/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const TermsOfServicePage = lazy(() => import('./pages/legal/TermsOfServicePage').then(m => ({ default: m.TermsOfServicePage })));
+const MsmeCharterPage = lazy(() => import('./pages/legal/MsmeCharterPage').then(m => ({ default: m.MsmeCharterPage })));
+
+// Admin Management Dashboard
+const AdminDashboardPage = lazy(() => import('./pages/AdminDashboardPage').then(m => ({ default: m.AdminDashboardPage })));
+
+// SEO Manager
+import { SEOManager } from './components/SEOManager';
 
 // Modals
 import { SearchModal } from './components/SearchModal';
@@ -83,6 +102,8 @@ function ScrollToTop() {
 
 function MainLayout() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith('/admin');
 
   // Modal states
   const [searchOpen, setSearchOpen] = useState(false);
@@ -118,24 +139,36 @@ function MainLayout() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans text-slate-800">
       <ScrollToTop />
+      <SEOManager />
 
       {/* 1. Top Bar */}
-      <TopBar
-        onContactClick={() => {
-          const footer = document.querySelector('footer');
-          footer?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
+      {!isAdmin && (
+        <TopBar
+          onContactClick={() => {
+            navigate('/contact');
+          }}
+        />
+      )}
 
       {/* 2. Main Navigation Bar */}
-      <Navbar
-        onSearchOpen={handleSearchOpen}
-        onMemberClick={(type) => setMemberModalType(type)}
-      />
+      {!isAdmin && (
+        <Navbar
+          onSearchOpen={handleSearchOpen}
+          onMemberClick={(type) => setMemberModalType(type)}
+        />
+      )}
 
       {/* 3. Multi-Page Route Outlet */}
       <main className="flex-1">
-        <Routes>
+        <Suspense
+          fallback={
+            <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3">
+              <div className="w-8 h-8 border-3 border-orange-500 border-t-transparent rounded-full animate-spin" />
+              <span className="text-xs text-slate-400 font-medium tracking-wider uppercase">Loading...</span>
+            </div>
+          }
+        >
+          <Routes>
           {/* 1. Home */}
           <Route
             path="/"
@@ -438,6 +471,38 @@ function MainLayout() {
             }
           />
           <Route
+            path="/events/women-entrepreneur-growth-program"
+            element={
+              <WomenEntrepreneur1DayPage
+                onMemberClick={(type) => setMemberModalType(type)}
+              />
+            }
+          />
+          <Route
+            path="/event/women-entrepreneur-growth-program"
+            element={
+              <WomenEntrepreneur1DayPage
+                onMemberClick={(type) => setMemberModalType(type)}
+              />
+            }
+          />
+          <Route
+            path="/events/sc-st-startup-program"
+            element={
+              <ScStEntrepreneurship1DayPage
+                onMemberClick={(type) => setMemberModalType(type)}
+              />
+            }
+          />
+          <Route
+            path="/event/sc-st-startup-program"
+            element={
+              <ScStEntrepreneurship1DayPage
+                onMemberClick={(type) => setMemberModalType(type)}
+              />
+            }
+          />
+          <Route
             path="/events/:eventSlug"
             element={
               <EventLandingPage
@@ -500,32 +565,56 @@ function MainLayout() {
             }
           />
 
-          {/* Fallback */}
+          {/* 11. Contact Page */}
+          <Route
+            path="/contact"
+            element={<ContactPage />}
+          />
+
+          {/* 12. Legal Documentation Pages */}
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicyPage />}
+          />
+          <Route
+            path="/terms-of-service"
+            element={<TermsOfServicePage />}
+          />
+          <Route
+            path="/terms"
+            element={<TermsOfServicePage />}
+          />
+          <Route
+            path="/msme-charter"
+            element={<MsmeCharterPage />}
+          />
+
+          {/* Admin Dashboard */}
+          <Route
+            path="/admin"
+            element={<AdminDashboardPage />}
+          />
+
+          {/* Fallback 404 */}
           <Route
             path="*"
-            element={
-              <HomePage
-                onSearchOpen={handleSearchOpen}
-                onVoiceAssistantOpen={() => setVoiceAssistantOpen(true)}
-                onSelectPressRelease={(pr) => setSelectedPressRelease(pr)}
-                onSelectEvent={(ev) => setSelectedEvent(ev)}
-                onSelectPublication={(pub) => setSelectedPublication(pub)}
-                onSelectLeader={(bearer) => setSelectedLeader(bearer)}
-              />
-            }
+            element={<NotFoundPage onSearchOpen={handleSearchOpen} />}
           />
         </Routes>
+        </Suspense>
       </main>
 
       {/* 4. Footer */}
-      <Footer
-        onLegalClick={(type) => {
-          alert(`${type}: Official policy documentation of Vishwa Udyam Sahayta Foundation.`);
-        }}
-        onLinkClick={(link) => {
-          handleSearchOpen(link);
-        }}
-      />
+      {!isAdmin && (
+        <Footer
+          onLegalClick={(type) => {
+            alert(`${type}: Official policy documentation of Vishwa Udyam Sahayta Foundation.`);
+          }}
+          onLinkClick={(link) => {
+            handleSearchOpen(link);
+          }}
+        />
+      )}
 
       {/* Interactive Modals */}
       <SearchModal
@@ -561,7 +650,7 @@ function MainLayout() {
       />
 
       {/* Floating WhatsApp Support Button */}
-      <WhatsAppButton />
+      {!isAdmin && <WhatsAppButton />}
 
       {/* Voice Assistant Hidden for now */}
       {/* <VoiceAssistantModal

@@ -41,7 +41,7 @@ export const StartCompanyPage: React.FC<StartCompanyPageProps> = ({ onMemberClic
       timeline: '5-7 Working Days',
       benefits: [
         'Partners enjoy limited liability protection',
-        'Zero mandatory statutory audit up to 40 Lakhs turnover',
+        'Zero mandatory statutory audit up to 40 lakh turnover',
         'No minimum capital contribution mandate',
         'Lower annual compliance maintenance costs',
       ],
@@ -66,7 +66,7 @@ export const StartCompanyPage: React.FC<StartCompanyPageProps> = ({ onMemberClic
       benefits: [
         'Direct access to Priority Sector Lending (PSL) credit',
         'Up to 35% margin money subsidy under PMEGP/CMEGP',
-        'Collateral-free CGTMSE bank loans up to 5 Crores',
+        'Collateral-free CGTMSE bank loans up to 5 crore',
         'Protection against delayed payments under MSMED Act',
       ],
       idealFor: 'Micro factories, local workshops, retail traders, service units.',

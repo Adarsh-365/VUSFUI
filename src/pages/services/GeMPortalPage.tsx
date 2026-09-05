@@ -81,7 +81,7 @@ export const GeMPortalPage: React.FC<GeMPortalPageProps> = ({ onMemberClick }) =
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-800">
                   <span className="text-slate-400">Annual Procurement:</span>
-                  <span className="font-bold text-amber-300">Rs. 4+ Lakh Crores</span>
+                  <span className="font-bold text-amber-300">Rs. 4+ lakh crore</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-800">
                   <span className="text-slate-400">MSME Mandate:</span>
@@ -89,7 +89,7 @@ export const GeMPortalPage: React.FC<GeMPortalPageProps> = ({ onMemberClick }) =
                 </div>
                 <div className="flex justify-between py-1">
                   <span className="text-slate-400">Payment Security:</span>
-                  <span className="font-bold text-emerald-300">PFMS Guaranteed</span>
+                  <span className="font-bold text-emerald-300">PFMS-Backed Payments</span>
                 </div>
               </div>
             </div>
@@ -151,7 +151,7 @@ export const GeMPortalPage: React.FC<GeMPortalPageProps> = ({ onMemberClick }) =
           <div className="space-y-2 text-center lg:text-left">
             <h3 className="text-2xl sm:text-3xl font-black">Sell to Central &amp; State Government Buyers</h3>
             <p className="text-xs sm:text-sm text-emerald-100 max-w-2xl">
-              Get certified, list your product catalog, and access guaranteed public sector procurement tenders today.
+              Get certified, list your product catalogue, and access eligible public sector procurement opportunities on GeM today.
             </p>
           </div>
           <button
