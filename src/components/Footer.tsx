@@ -32,6 +32,46 @@ export const Footer: React.FC<FooterProps> = ({ onLegalClick, onLinkClick }) => 
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               <span className="font-semibold text-[11px]">Section 8 Registered Non-Profit &bull; Ministry of Corporate Affairs, Government of India</span>
             </div>
+
+            {/* Official Social Links */}
+            <div className="flex items-center gap-2 pt-2">
+              <a
+                href="https://www.facebook.com/namasteindiagroup/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Namaste India Group on Facebook"
+                className="w-8 h-8 rounded-md bg-slate-800 hover:bg-[#1877f2] text-white flex items-center justify-center text-sm font-bold transition-colors"
+              >
+                f
+              </a>
+              <a
+                href="https://www.instagram.com/namasteindia.group/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Namaste India Group on Instagram"
+                className="w-8 h-8 rounded-md bg-slate-800 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] text-white flex items-center justify-center text-xs transition-colors"
+              >
+                📷
+              </a>
+              <a
+                href="https://www.linkedin.com/company/vishwa-udyam-sahayta-foundation/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="VUSF on LinkedIn"
+                className="w-8 h-8 rounded-md bg-slate-800 hover:bg-[#0077b5] text-white flex items-center justify-center text-xs font-bold transition-colors"
+              >
+                in
+              </a>
+              <a
+                href="https://www.youtube.com/@namaste_india_foundation"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Namaste India Foundation on YouTube"
+                className="w-8 h-8 rounded-md bg-slate-800 hover:bg-[#ff0000] text-white flex items-center justify-center text-xs transition-colors"
+              >
+                ▶
+              </a>
+            </div>
           </div>
 
           {/* Column 2: Key Specialized Services */}

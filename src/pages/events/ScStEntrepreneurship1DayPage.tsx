@@ -359,13 +359,13 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
           </div>
 
           <div className="p-5 rounded-2xl bg-[#0b1a30] border border-slate-800 text-center space-y-1">
-            <div className="text-2xl sm:text-3xl font-black text-cyan-400">4% Mandate</div>
-            <div className="text-xs font-bold text-white uppercase tracking-wider">GeM Procurement</div>
-            <div className="text-[11px] text-slate-400">PSU vendor onboarding &amp; tendering route</div>
+            <div className="text-2xl sm:text-3xl font-black text-cyan-400">SCSTHUB</div>
+            <div className="text-xs font-bold text-white uppercase tracking-wider">Connect with SCSTHUB</div>
+            <div className="text-[11px] text-slate-400">National SC-ST Hub linkage &amp; support</div>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#0b1a30] border border-slate-800 text-center space-y-1">
-            <div className="text-2xl sm:text-3xl font-black text-orange-400">Pillai Univ.</div>
+            <div className="text-2xl sm:text-3xl font-black text-orange-400">Pillai University</div>
             <div className="text-xs font-bold text-white uppercase tracking-wider">Official Certificate</div>
             <div className="text-[11px] text-slate-400">Certificate of Participation Awarded</div>
           </div>
@@ -480,15 +480,15 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
 
             <div className="p-6 rounded-2xl bg-[#0b172a] border border-slate-800 space-y-3">
               <div className="text-2xl font-black text-emerald-400">03</div>
-              <h3 className="text-base font-bold text-white">GeM &amp; 4% Procurement Route</h3>
+              <h3 className="text-base font-bold text-white">CONNECT WITH SCSTHUB</h3>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Understand the 4% public procurement mandate reserved for SC/ST enterprises and receive on-the-spot GeM vendor onboarding steps.
+                Connect directly with the National SC-ST Hub (SCSTHUB) for special subsidies, vendor onboarding, tender fee exemptions, and enterprise credit linkages.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#0b172a] border border-slate-800 space-y-3">
               <div className="text-2xl font-black text-cyan-400">04</div>
-              <h3 className="text-base font-bold text-white">Pillai Univ. Certificate</h3>
+              <h3 className="text-base font-bold text-white">Pillai University Certificate</h3>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
                 Official Certificate of Participation from Pillai University MDP, plus ongoing access to the cohort WhatsApp support network.
               </p>
@@ -498,189 +498,358 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
       </section>
 
       {/* 6. DETAILED SESSION-BY-SESSION CURRICULUM */}
-      <section className="py-20 px-4 sm:px-6 bg-[#060c16] border-b border-slate-800">
-        <div className="max-w-[1200px] mx-auto space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+      <section className="py-24 px-4 sm:px-6 bg-[#060c16] border-b border-slate-800/80">
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/25 text-amber-400 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-widest">
               <BookOpen className="w-3.5 h-3.5" />
-              <span>DETAILED 4-SESSION MASTERCLASS</span>
+              <span>OFFICIAL PROGRAM SCHEDULE &amp; CURRICULUM</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
-              Full-Day Curriculum &amp; Workshop Schedule
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Full-Day Schedule &amp; Curriculum Detail
             </h2>
-            <p className="text-sm text-slate-400 font-light">
-              Carefully structured from 09:30 AM to 04:45 PM for concrete, actionable takeaways and zero time wasted.
+            <p className="text-sm sm:text-base text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
+              Carefully structured from 09:30 AM to 04:45 PM at Pillai University campus for concrete, actionable takeaways and zero time wasted.
             </p>
           </div>
 
-          {/* Timeline Cards */}
-          <div className="space-y-6">
-            {/* Intake */}
-            <div className="p-6 rounded-2xl bg-[#091526] border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 text-amber-400 text-xs font-black uppercase">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>09:30 AM – 10:00 AM &bull; Registration &amp; Breakfast</span>
-                </div>
-                <h3 className="text-lg font-bold text-white">Arrival, Profile Intake &amp; Networking Breakfast</h3>
-                <p className="text-xs text-slate-300 font-light">
-                  Sign-in, welcome kit distribution, and collection of basic profile data (sector, business stage, turnover) so facilitators can pre-draft your personal GOV SCHEMES Snapshot before Session 3.
-                </p>
-              </div>
-              <div className="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-semibold shrink-0">
-                Hot Breakfast Included
-              </div>
-            </div>
+          {/* Continuous Editorial Timeline */}
+          <div className="relative pl-6 sm:pl-44">
+            {/* Continuous Vertical Timeline Line */}
+            <div className="absolute left-[11px] sm:left-[136px] top-3 bottom-6 w-px bg-gradient-to-b from-orange-500/80 via-teal-500/50 to-slate-800" />
 
-            {/* Session 1 */}
-            <div className="p-6 rounded-2xl bg-[#0b1a30] border-2 border-orange-500/40 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <div className="inline-flex items-center gap-1.5 text-orange-400 text-xs font-black uppercase">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>10:00 AM – 11:00 AM &bull; Core Module 1</span>
+            <div className="space-y-12">
+              {/* Item 1: 09:30 - 10:00 Registration and breakfast */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-amber-400/80 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-amber-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  09:30 – 10:00
                 </div>
-                <span className="bg-orange-500/20 text-orange-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-orange-500/40">
-                  Mindset &amp; Sector Pathways
-                </span>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Registration and Breakfast
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                      Registration
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Arrival, sign-in, informal networking over breakfast. Basic profile information — sector, business stage, and rough income bracket — is collected at registration so facilitators can pre-draft a first-pass Scheme Eligibility Snapshot for each participant before Session 3.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <h3 className="text-xl font-black text-white">Session 1: Mindset, Myth-Busting &amp; Startup Fundamentals</h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Overcoming common misconceptions and establishing a strong formal business foundation:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Myth-Busting:</strong> Clarifying what is realistically accessible to SC/ST entrepreneurs in banking today.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Sector Opportunities:</strong> Manufacturing production units, ancillary supply, job work, logistics, and skilled trades.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Udyam Registration:</strong> Step-by-step verification, category tagging, and MSME certificate generation.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Business Structures:</strong> Choosing Sole Proprietorship, Partnership, LLP, OPC, or Pvt Ltd + Current Account opening.</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Tea Break */}
-            <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <Coffee className="w-4 h-4 text-amber-400" />
-                <span><strong>11:00 AM – 11:15 AM:</strong> Morning Tea &amp; Peer Connect</span>
+              {/* Item 2: 10:00 - 11:00 Session 1: Mindset and Sector Overview */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-orange-500 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-orange-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  10:00 – 11:00
+                </div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Session 1: Mindset and Sector Overview
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-orange-300 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-md">
+                      Session 1
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Manufacturing and services pathways; startup process basics — Udyam registration, business structure, and bank account setup:
+                  </p>
+                  <div className="pt-1 space-y-2 text-xs text-slate-300">
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Entrepreneurial Mindset &amp; Myth-Busting:</strong> Unpacking and dispelling common myths around what financial schemes and support are actually accessible to SC/ST entrepreneurs today.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Sector Overview:</strong> Comprehensive analysis covering both manufacturing units and services enterprise pathways suited to regional markets.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Startup Process Basics:</strong> Step-by-step Udyam registration, choosing the right legal business structure (Proprietorship, Partnership, LLP, OPC, or Pvt Ltd), and opening a commercial current account.</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <span className="text-slate-500">Fresh Tea &amp; Cookies</span>
-            </div>
 
-            {/* Session 2 */}
-            <div className="p-6 rounded-2xl bg-[#0b1a30] border-2 border-amber-500/40 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <div className="inline-flex items-center gap-1.5 text-amber-400 text-xs font-black uppercase">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>11:15 AM – 12:45 PM &bull; Core Module 2</span>
+              {/* Item 3: 11:00 - 11:15 Tea break */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-slate-500 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-slate-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  11:00 – 11:15
                 </div>
-                <span className="bg-amber-500/20 text-amber-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-amber-500/40">
-                  Finance &amp; Capital Schemes
-                </span>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Tea Break
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-slate-800/70 border border-slate-700/60 px-2 py-0.5 rounded-md">
+                      Break
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Fresh morning tea and refreshments with informal networking among participants.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <h3 className="text-xl font-black text-white">Session 2: Access to Finance, Bank Loans &amp; Subsidies</h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Comprehensive deep dive into major credit and subsidy mechanisms specifically structured for SC/ST enterprises:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span><strong>Stand-Up India:</strong> Greenfield bank loans from ₹10 lakh to ₹1 crore with dedicated branch allocation.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span><strong>National SC-ST Hub (NSSH):</strong> Special Credit Linked Capital Subsidy offering 25% subsidy up to ₹25 lakh on machinery.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span><strong>MUDRA Loans:</strong> Funding across Shishu (up to ₹50k), Kishor (₹50k–₹5L) and Tarun (₹5L–₹10L) tiers.</span>
-                </div>
-                <div className="flex items-start gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span><strong>CGTMSE &amp; PMEGP:</strong> Collateral-free credit guarantees and higher special category subsidy rates under PMEGP.</span>
-                </div>
-              </div>
-              <div className="p-3 bg-slate-950/70 rounded-xl border border-slate-800 text-[11px] text-slate-400">
-                <strong>12:45 PM – 01:00 PM:</strong> Built-in buffer for individual bank eligibility doubts before lunch.
-              </div>
-            </div>
 
-            {/* Lunch */}
-            <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-center justify-between text-xs text-emerald-300">
-              <div className="flex items-center gap-2">
-                <Utensils className="w-4 h-4 text-emerald-400" />
-                <span><strong>01:00 PM – 02:00 PM:</strong> Networking Luncheon (In-House Prepared Hot Buffet)</span>
-              </div>
-              <span className="font-semibold text-emerald-400">Pillai Campus Dining Hall</span>
-            </div>
-
-            {/* Session 3 */}
-            <div className="p-6 rounded-2xl bg-[#0b1a30] border-2 border-cyan-500/40 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <div className="inline-flex items-center gap-1.5 text-cyan-400 text-xs font-black uppercase">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>02:00 PM – 03:00 PM &bull; Core Module 3 (Hands-On)</span>
+              {/* Item 4: 11:15 - 12:45 Session 2: Access to Finance and Schemes */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-teal-400 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-teal-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  11:15 – 12:45
                 </div>
-                <span className="bg-cyan-500/20 text-cyan-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-cyan-500/40">
-                  Market Access &amp; Application Clinic
-                </span>
-              </div>
-              <h3 className="text-xl font-black text-white">Session 3: GeM Onboarding, 4% Public Procurement &amp; Application Clinic</h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Practical execution: unlock government sales and start your real scheme application with facilitator guidance:
-              </p>
-              <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 space-y-2 text-xs text-slate-300">
-                <div className="font-bold text-cyan-300 flex items-center gap-1.5">
-                  <FileText className="w-4 h-4" />
-                  <span>The 1-Page Personal GOV SCHEMES Snapshot &amp; GeM Registration:</span>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Session 2: Access to Finance and Schemes
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded-md">
+                      Session 2
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Stand-Up India, MUDRA (Shishu/Kishor/Tarun), CGTMSE, PMEGP, and the NSSH Special Credit Linked Capital Subsidy Scheme:
+                  </p>
+                  <div className="pt-1 space-y-2 text-xs text-slate-300">
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span><strong>Stand-Up India:</strong> Greenfield bank loans from ₹10 lakh to ₹1 crore specifically designed for SC/ST and women entrepreneurs.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span><strong>MUDRA Loans:</strong> Collateral-free funding across the Shishu (up to ₹50k), Kishor (₹50k–₹5L), and Tarun (₹5L–₹10L) tiers.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span><strong>CGTMSE:</strong> Collateral-free credit guarantee coverage for micro and small enterprises.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span><strong>PMEGP:</strong> Prime Minister's Employment Generation Programme credit-linked subsidy for setting up new micro-enterprises.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span><strong>National SC-ST Hub (NSSH) Support:</strong> Special Credit Linked Capital Subsidy Scheme (SCLCSS) offering a 25% capital subsidy up to ₹25 lakh on machinery and equipment.</span>
+                    </div>
+                  </div>
                 </div>
-                <p>
-                  Every participant refines a pre-drafted 1-page Scheme Eligibility Snapshot naming the 2 to 3 qualifying schemes for their sector, begins a real scheme application in hand, and learns how to register on GeM to bid under the 4% public procurement mandate reserved for SC/ST enterprises.
-                </p>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <div className="p-3 bg-slate-950/70 rounded-xl border border-slate-800 text-[11px] text-slate-400">
-                <strong>03:00 PM – 03:15 PM:</strong> Buffer for 1-on-1 clinic follow-up and document verification.
-              </div>
-            </div>
 
-            {/* Session 4 */}
-            <div className="p-6 rounded-2xl bg-[#0b1a30] border-2 border-emerald-500/40 space-y-4 shadow-xl">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <div className="inline-flex items-center gap-1.5 text-emerald-400 text-xs font-black uppercase">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>03:15 PM – 03:45 PM &bull; Core Module 4</span>
+              {/* Item 5: 12:45 - 1:00 Buffer and open questions */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-slate-500 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-slate-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  12:45 – 01:00
                 </div>
-                <span className="bg-emerald-500/20 text-emerald-300 text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border border-emerald-500/40">
-                  Peer Networking
-                </span>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Buffer and Open Questions
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-slate-800/70 border border-slate-700/60 px-2 py-0.5 rounded-md">
+                      Q&amp;A Buffer
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Built-in slack for the individual questions this session typically generates, before moving to lunch.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <h3 className="text-xl font-black text-white">Session 4: Peer Networking &amp; Local Business Linkages</h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Structured networking with fellow SC/ST entrepreneurs, industrial contractors, and operating small business leaders for joint venture opportunities and vendor partnerships.
-              </p>
-            </div>
 
-            {/* Closing */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#0d2340] to-[#091526] border border-slate-700 space-y-3">
-              <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs font-black uppercase">
-                <Clock className="w-3.5 h-3.5" />
-                <span>03:45 PM – 04:45 PM &bull; Keynote &amp; Certification</span>
+              {/* Item 6: 1:00 - 2:00 Lunch */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-slate-500 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-slate-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  01:00 – 02:00
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Lunch
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-slate-800/70 border border-slate-700/60 px-2 py-0.5 rounded-md">
+                      Lunch Break
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    In-house hot buffet lunch at Pillai Campus dining hall, followed by informal peer networking.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
               </div>
-              <h3 className="text-lg font-bold text-white">Keynote Q&amp;A, Certificate Award &amp; Next-Stage Desk</h3>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                • <strong>03:45 – 04:00 PM:</strong> Action roadmap and cohort WhatsApp community setup.<br />
-                • <strong>04:00 – 04:25 PM:</strong> Keynote address by Upasana Chaudhari (Pillai University) on institutional scaling &amp; incubation, followed by an open Q&amp;A floor.<br />
-                • <strong>04:25 – 04:45 PM:</strong> Distribution of official Pillai University Certificates of Participation and on-the-spot enrollment desk.
-              </p>
+
+              {/* Item 7: 2:00 - 3:00 Session 3: Market Access and Application Clinic */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-orange-400 group-hover:scale-125 transition-transform ring-4 ring-orange-500/15" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-orange-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  02:00 – 03:00
+                </div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Session 3: Market Access and Application Clinic
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300 bg-orange-500/15 border border-orange-500/30 px-2 py-0.5 rounded-md">
+                      Session 3 &bull; Core Clinic
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Participants refine a pre-drafted Scheme Eligibility Snapshot and begin a real scheme application, with guided support:
+                  </p>
+                  <div className="pt-1 space-y-2 text-xs text-slate-300">
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Udyam &amp; GeM Onboarding:</strong> Udyam and GeM (Government e-Marketplace) onboarding process and portal linkage.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>4% Public Procurement Mandate:</strong> Understanding the 4 percent public procurement mandate reserved for SC/ST enterprises, tender fee exemptions, and vendor registration with PSUs.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Hands-On Application Clinic:</strong> Participants begin an actual scheme application with direct facilitator guidance and review.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Pre-Drafted Intake Workflow:</strong> Basic profile information — sector, business stage, and rough income bracket — is collected at registration, so facilitators can pre-draft a first-pass Scheme Eligibility Snapshot for each participant before the day itself. Session 3 becomes refining that draft and starting the application, not building the assessment from zero in a crowded room.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-orange-400 font-bold">&bull;</span>
+                      <span><strong>Personal Scheme Eligibility Snapshot:</strong> Every participant leaves with a personal Scheme Eligibility Snapshot — a one-page summary, refined during the clinic, naming the 2 to 3 schemes he or she specifically qualifies for based on sector and business stage.</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
+              </div>
+
+              {/* Item 8: 3:00 - 3:15 Buffer and open questions */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-slate-500 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-slate-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  03:00 – 03:15
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Buffer and Open Questions
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-slate-800/70 border border-slate-700/60 px-2 py-0.5 rounded-md">
+                      Clinic Buffer
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Built-in slack for one-on-one follow-up from the clinic before moving on.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
+              </div>
+
+              {/* Item 9: 3:15 - 3:45 Session 4: Peer Networking */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-teal-400 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-teal-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  03:15 – 03:45
+                </div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Session 4: Peer Networking
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded-md">
+                      Session 4
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Structured networking with other participants and local entrepreneurs:
+                  </p>
+                  <div className="pt-1 space-y-2 text-xs text-slate-300">
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span>Structured networking session with other participants and, where possible, local entrepreneurs already operating in similar sectors.</span>
+                    </div>
+                    <div className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <span className="text-teal-400 font-bold">&bull;</span>
+                      <span>Facilitated small-group exchanges for vendor linkages, consortium bidding, and mutual business support.</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
+              </div>
+
+              {/* Item 10: 3:45 - 4:00 Your Path Forward */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-amber-400 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-amber-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  03:45 – 04:00
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Your Path Forward
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                      Roadmap
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Introduction to the fuller multi-module program; today's fee credited toward it for anyone who enrolls within 7 days.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
+              </div>
+
+              {/* Item 11: 4:00 - 4:25 Closing: Success Story and Q&A */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-orange-400 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-orange-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  04:00 – 04:25
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Closing: Success Story and Q&amp;A
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-orange-300 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-md">
+                      Keynote &bull; Success Story
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    A peer or community success story, open floor for questions, and keynote address by Upasana Chaudhari (Pillai University) on institutional scaling &amp; incubation.
+                  </p>
+                </div>
+                <div className="mt-8 border-b border-slate-800/60" />
+              </div>
+
+              {/* Item 12: 4:25 - 4:45 Feedback, certificates and enrollment desk */}
+              <div className="relative group">
+                <div className="absolute -left-[20px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-[#060c16] border-2 border-emerald-400 group-hover:scale-125 transition-transform" />
+                <div className="sm:absolute sm:-left-44 sm:top-0.5 text-xs font-mono font-bold tracking-wider text-emerald-400 sm:text-right sm:w-28 mb-1.5 sm:mb-0">
+                  04:25 – 04:45
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                      Feedback, Certificates and Enrollment Desk
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
+                      Certification
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300 font-normal leading-relaxed">
+                    Feedback form, distribution of official Pillai University Certificates of Participation, and an on-the-spot desk for anyone ready to enrol in the next stage.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1378,7 +1547,7 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
                       </div>
                       <div>
                         <div className="text-[10px] text-slate-400">Date &amp; Venue:</div>
-                        <div className="font-bold text-white">24 Oct 2026 • Pillai Univ.</div>
+                        <div className="font-bold text-white">24 Oct 2026 • Pillai University</div>
                       </div>
                       <div>
                         <div className="text-[10px] text-slate-400">Amount Paid:</div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ChevronLeft,
   ChevronRight,
@@ -12,25 +13,47 @@ import {
   Layers,
 } from 'lucide-react';
 
+export interface HeroSlide {
+  id: string;
+  slug?: string;
+  eventUrl?: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  stat: string;
+  location: string;
+  image: string;
+  category: string;
+  actionText: string;
+}
+
 interface HeroSliderProps {
   onSearchClick: () => void;
   onVoiceAssistantClick: () => void;
-  onPillarClick: (pillar: string) => void;
+  onPillarClick?: (pillar: string) => void;
+  onEventClick?: (slide: HeroSlide) => void;
+  onViewAllClick?: () => void;
 }
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({
   onSearchClick,
   onVoiceAssistantClick,
   onPillarClick,
+  onEventClick,
+  onViewAllClick,
 }) => {
-  const slides = [
+  const navigate = useNavigate();
+
+  const slides: HeroSlide[] = [
     {
       id: 'canton-fair-delegation',
+      slug: 'canton-fair-delegation',
+      eventUrl: '/events/canton-fair-delegation',
       badge: 'GLOBAL TRADE & SOURCING',
-      title: 'Canton Fair 2026 Delegation (Phase 2: Apr 23–29 | Phase 3: Apr 30–May 7, 2026)',
+      title: 'Canton Fair 2026 Delegation (Phase 1: 15–19 Oct | Phase 3: 31 Oct – 04 Nov 2026)',
       subtitle:
-        "Join India's leading trade delegation for the world's largest import-export exhibition in Guangzhou, China. Phase 2 & Phase 3 packages with return flights, 4-star hotel stay, and dedicated visa facilitation support.",
-      stat: 'Phase 2: Apr 23–29 • Phase 3: Apr 30–May 7 • Guangzhou, China',
+        "Join India's leading trade delegation for the world's largest import-export exhibition in Guangzhou, China. Phase 1 & Phase 3 packages with return flights, 4-star hotel stay, and dedicated visa facilitation support.",
+      stat: 'Phase 1: 15–19 Oct • Phase 3: 31 Oct – 04 Nov • Guangzhou, China',
       location: 'Guangzhou, China',
       image: '/banner/namaste-china.jpeg',
       category: 'International Delegation',
@@ -38,6 +61,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'sc-st-entrepreneur-program',
+      slug: 'sc-st-entrepreneur-program',
+      eventUrl: '/events',
       badge: 'INCLUSIVE EMPOWERMENT',
       title: 'SC / ST Entrepreneur Program (12–14 Dec 2026)',
       subtitle:
@@ -50,6 +75,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'sc-st-startup-program',
+      slug: 'sc-st-startup-program',
+      eventUrl: '/events/sc-st-startup-program',
       badge: 'STARTUP ACCELERATION',
       title: 'SC / ST Startup Program (24 Oct 2026)',
       subtitle:
@@ -62,6 +89,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'women-entrepreneur-growth-program',
+      slug: 'women-entrepreneur-growth-program',
+      eventUrl: '/events/women-entrepreneur-growth-program',
       badge: 'STREE SHAKTI MISSION',
       title: 'Women Entrepreneur Growth Program (10 Oct 2026)',
       subtitle:
@@ -74,6 +103,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'namaste-india-magazine',
+      slug: 'namaste-india-magazine',
+      eventUrl: '/events/namaste-india-magazine',
       badge: 'NATIONAL MEDIA & PUBLICATION',
       title: 'Namaste India Entrepreneur Magazine — Application Deadline: 20 Sep 2026 | Publication Date: 2 Oct 2026',
       subtitle:
@@ -86,6 +117,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'women-business-success-program',
+      slug: 'women-business-success-program',
+      eventUrl: '/events',
       badge: 'EXECUTIVE MASTERCLASS',
       title: 'Women Business Success Program (10–12 Jan 2027)',
       subtitle:
@@ -98,6 +131,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'women-enter-success-1day',
+      slug: 'women-entrepreneur-growth-program',
+      eventUrl: '/events/women-entrepreneur-growth-program',
       badge: 'ENTREPRENEURSHIP WORKSHOP',
       title: 'Women Entrepreneur Success Program (1-Day Masterclass)',
       subtitle:
@@ -110,6 +145,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'msme-excellence-awards',
+      slug: 'msme-excellence-awards',
+      eventUrl: '/events',
       badge: 'NATIONAL RECOGNITION',
       title: 'MSME Excellence Award Show (22 Nov 2026)',
       subtitle:
@@ -122,6 +159,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'navi-mumbai-export-summit',
+      slug: 'navi-mumbai-export-summit',
+      eventUrl: '/events/navi-mumbai-export-summit',
       badge: 'REGIONAL EXPORT CONCLAVE',
       title: 'Navi Mumbai Export Summit 2026',
       subtitle:
@@ -134,6 +173,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'pune-export-summit',
+      slug: 'pune-export-summit',
+      eventUrl: '/events',
       badge: 'WESTERN TRADE CORRIDOR',
       title: 'Pune Export Summit (28 Nov 2026)',
       subtitle:
@@ -146,6 +187,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'nashik-export-summit',
+      slug: 'nashik-export-summit',
+      eventUrl: '/events',
       badge: 'AGRO & INDUSTRIAL CORRIDOR',
       title: 'Nashik Export Summit (12 Dec 2026)',
       subtitle:
@@ -158,6 +201,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     },
     {
       id: 'sambhaji-nagar-export-summit',
+      slug: 'sambhaji-nagar-export-summit',
+      eventUrl: '/events',
       badge: 'MARATHWADA EXPORT HUB',
       title: 'Chhatrapati Sambhaji Nagar Export Summit (17 Jan 2027)',
       subtitle:
@@ -191,6 +236,15 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const handleSlideAction = (slide: HeroSlide) => {
+    if (onEventClick) {
+      onEventClick(slide);
+    } else {
+      const targetUrl = slide.eventUrl || `/events/${slide.slug || slide.id}`;
+      navigate(targetUrl);
+    }
   };
 
   const currentSlide = slides[currentIndex];
@@ -258,11 +312,19 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
 
                   {/* Big Hero Title — only the first/active slide renders as H1; rest are H2 for accessibility */}
                   {idx === 0 ? (
-                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                    <h1
+                      onClick={() => handleSlideAction(slide)}
+                      className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md cursor-pointer hover:text-amber-200 transition-colors"
+                      title="View Event Details"
+                    >
                       {slide.title}
                     </h1>
                   ) : (
-                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md">
+                    <h2
+                      onClick={() => handleSlideAction(slide)}
+                      className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-md cursor-pointer hover:text-amber-200 transition-colors"
+                      title="View Event Details"
+                    >
                       {slide.title}
                     </h2>
                   )}
@@ -281,14 +343,14 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                   {/* Action Buttons */}
                   <div className="pt-2 flex items-center gap-3 flex-wrap">
                     <button
-                      onClick={() => onPillarClick(slide.title)}
+                      onClick={() => handleSlideAction(slide)}
                       className="bg-[#c2410c] hover:bg-[#9a3412] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
                     >
                       <span>{slide.actionText}</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <button
-                      onClick={onSearchClick}
+                      onClick={onViewAllClick || (() => navigate('/events'))}
                       className="bg-white/15 hover:bg-white/25 text-white backdrop-blur-md border border-white/30 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded transition-all cursor-pointer"
                     >
                       View All Initiatives

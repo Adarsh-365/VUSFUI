@@ -191,27 +191,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </Link>
 
-        {/* Action Buttons: Join as Member, Member Portal, Staff Desk */}
+        {/* Action Buttons: Join as Member, Contact Us */}
         <div className="hidden md:flex items-center gap-1.5 lg:gap-2 shrink-0">
-          <button
-            onClick={() => onMemberClick('become')}
+          <Link
+            to="/contact"
             className="bg-[#15803d] hover:bg-[#166534] text-white text-[11px] lg:text-xs font-semibold px-3 py-1.5 lg:px-3.5 lg:py-2 rounded shadow-xs transition-colors cursor-pointer flex items-center gap-1"
           >
             <Sparkles className="w-3 h-3" />
             <span>Join as Member</span>
-          </button>
-          <button
-            onClick={() => onMemberClick('members')}
+          </Link>
+          <Link
+            to="/contact"
             className="bg-[#ea580c] hover:bg-[#c2410c] text-white text-[11px] lg:text-xs font-semibold px-3 py-1.5 lg:px-3.5 lg:py-2 rounded shadow-xs transition-colors cursor-pointer"
           >
-            Member Portal
-          </button>
-          <button
-            onClick={() => onMemberClick('employee')}
-            className="bg-[#0f172a] hover:bg-[#1e293b] text-white text-[11px] lg:text-xs font-semibold px-2.5 py-1.5 lg:px-3 lg:py-2 rounded shadow-xs transition-colors cursor-pointer"
-          >
-            Staff Desk
-          </button>
+            Contact Us
+          </Link>
         </div>
 
         {/* Mobile menu toggle */}
@@ -482,34 +476,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </form>
 
           {/* Action buttons on mobile */}
-          <div className="grid grid-cols-3 gap-2 pt-1 pb-2 border-b border-slate-100">
-            <button
-              onClick={() => {
-                onMemberClick('become');
-                setMobileMenuOpen(false);
-              }}
-              className="bg-[#15803d] text-white text-[11px] font-semibold py-1.5 px-2 rounded text-center"
+          <div className="grid grid-cols-2 gap-2 pt-1 pb-2 border-b border-slate-100">
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-[#15803d] text-white text-[11px] font-semibold py-1.5 px-2 rounded text-center block"
             >
               Join Member
-            </button>
-            <button
-              onClick={() => {
-                onMemberClick('members');
-                setMobileMenuOpen(false);
-              }}
-              className="bg-[#ea580c] text-white text-[11px] font-semibold py-1.5 px-2 rounded text-center"
+            </Link>
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-[#ea580c] text-white text-[11px] font-semibold py-1.5 px-2 rounded text-center block"
             >
-              Portal Login
-            </button>
-            <button
-              onClick={() => {
-                onMemberClick('employee');
-                setMobileMenuOpen(false);
-              }}
-              className="bg-[#0f172a] text-white text-[11px] font-semibold py-1.5 px-2 rounded text-center"
-            >
-              Staff Desk
-            </button>
+              Contact Us
+            </Link>
           </div>
 
           <div className="space-y-1">

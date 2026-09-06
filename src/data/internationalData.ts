@@ -67,11 +67,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Target Corridors', value: 'Domestic & Global' }
     ],
     images: [
-      '/timeline_photos/start namste india/IMG-20260206-WA0035.jpeg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0039.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0041.jpeg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0096.jpeg',
-      '/timeline_photos/start namste india/IMG-20260206-WA0099.jpeg',
       '/timeline_photos/start namste india/IMG-20260206-WA0109.jpeg',
     ],
   },
@@ -527,14 +523,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Chief Guest', value: 'Hon. Industries Minister' },
       { label: 'Location', value: 'Pune, Maharashtra' }
     ],
-    images: [
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0052.jpeg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0054.jpeg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0065.jpeg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0066.jpeg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0073.jpeg',
-      '/timeline_photos/uday sawant award/IMG-20250614-WA0074.jpeg',
-    ],
+    images: [],
   },
   {
     id: 'milestone-13',
@@ -1245,10 +1234,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Core Philosophy', value: 'One Didi → Self-Reliant Village' },
       { label: 'Target Reach', value: 'Rural SHGs & Micro-Enterprises' }
     ],
-    images: [
-      '/timeline_photos/mahila support/IMG-20260206-WA0102.jpeg',
-      '/timeline_photos/mahu sc st/IMG-20251206-WA0060.jpeg',
-    ],
+    images: [],
   },
   {
     id: 'milestone-30',
@@ -1441,19 +1427,7 @@ export const NAMASTE_INDIA_EVENTS: InternationalEvent[] = [
       { label: 'Key Programs', value: 'Chinese Language, SC/ST & Women Startups' },
       { label: 'MoU Date', value: '21 August 2026' }
     ],
-    images: [
-      '/timeline_photos/college/16_20250710_130302_0015.jpeg',
-      '/timeline_photos/college/17_20250710_130302_0016.jpeg',
-      '/timeline_photos/college/18_20250710_130302_0017.jpeg',
-      '/timeline_photos/college/5_20250710_130301_0004.jpeg',
-      '/timeline_photos/college/IMG-20250614-WA0075.jpeg',
-      '/timeline_photos/college/IMG-20250614-WA0076.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0077.jpg',
-      '/timeline_photos/college/IMG-20250614-WA0078.jpeg',
-      '/timeline_photos/college/IMG-20250614-WA0085.jpg',
-      '/timeline_photos/channel partner/Blue White Modern Geometric Certificate of Completion_20260106_123118_0000.jpeg',
-      '/timeline_photos/channel partner/Untitled-design-35-1.jpeg',
-    ],
+    images: [],
   },
 ];
 

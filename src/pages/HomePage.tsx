@@ -43,9 +43,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       <HeroSlider
         onSearchClick={() => onSearchOpen()}
         onVoiceAssistantClick={onVoiceAssistantOpen}
-        onPillarClick={(pillar) => {
-          onSearchOpen(pillar);
+        onEventClick={(slide) => {
+          const target = slide.eventUrl || `/events/${slide.slug || slide.id}`;
+          navigate(target);
         }}
+        onViewAllClick={() => navigate('/events')}
       />
 
       {/* Press Release & Bulletins */}
@@ -91,21 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       />
 
       {/* Major Initiatives */}
-      <MajorInitiatives
-        onSelectInitiative={(init: MajorInitiative) => {
-          onSelectPublication({
-            id: init.id,
-            title: init.name,
-            subtitle: init.tagline,
-            partner: 'VUSF Flagship Wing',
-            date: 'Active 2026',
-            coverColor: init.bgColor,
-            summary: init.description,
-            tags: ['Initiative', 'MSME Development', 'Global Corridor'],
-          });
-        }}
-        onViewAll={() => onSearchOpen('Initiative')}
-      />
+      <MajorInitiatives />
 
       {/* Governing Council & Office Bearers */}
       <OfficeBearers

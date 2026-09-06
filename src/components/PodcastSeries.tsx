@@ -39,11 +39,11 @@ export const PodcastSeries: React.FC<PodcastSeriesProps> = ({
           </div>
 
           <a
-            href={youtubeUrl}
+            href="https://www.youtube.com/@namaste_india_foundation"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-slate-500 hover:text-[#c2410c] text-xs sm:text-sm font-bold transition-colors p-1"
-            title="Watch full channel on YouTube"
+            title="Visit official YouTube Channel"
           >
             <span>Watch on YouTube</span>
             <ExternalLink className="w-4 h-4" />

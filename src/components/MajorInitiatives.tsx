@@ -4,12 +4,11 @@ import { MAJOR_INITIATIVES_DATA } from '../data/vusfData';
 import { MajorInitiative } from '../types';
 
 interface MajorInitiativesProps {
-  onSelectInitiative: (init: MajorInitiative) => void;
-  onViewAll: () => void;
+  onSelectInitiative?: (init: MajorInitiative) => void;
+  onViewAll?: () => void;
 }
 
 export const MajorInitiatives: React.FC<MajorInitiativesProps> = ({
-  onSelectInitiative,
   onViewAll,
 }) => {
   return (
@@ -29,21 +28,22 @@ export const MajorInitiatives: React.FC<MajorInitiativesProps> = ({
             </p>
           </div>
 
-          <button
-            onClick={onViewAll}
-            className="flex items-center gap-1 text-slate-500 hover:text-[#c2410c] font-bold text-lg transition-colors p-1 cursor-pointer"
-            title="View all initiatives"
-          >
-            <ChevronsRight className="w-6 h-6" />
-          </button>
+          {onViewAll && (
+            <button
+              onClick={onViewAll}
+              className="flex items-center gap-1 text-slate-500 hover:text-[#c2410c] font-bold text-lg transition-colors p-1 cursor-pointer"
+              title="View all initiatives"
+            >
+              <ChevronsRight className="w-6 h-6" />
+            </button>
+          )}
         </div>
 
         {/* 4 Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-2">
           {/* Card 1: Women Entrepreneur Cell */}
           <div
-            onClick={() => onSelectInitiative(MAJOR_INITIATIVES_DATA[0])}
-            className="group cursor-pointer aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#9f1239] via-[#be185d] to-[#e11d48] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative"
+            className="group aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#9f1239] via-[#be185d] to-[#e11d48] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative select-none"
           >
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:14px_14px]" />
             <div className="absolute -right-6 -bottom-6 w-28 h-28 rounded-full border-4 border-white/20" />
@@ -72,8 +72,7 @@ export const MajorInitiatives: React.FC<MajorInitiativesProps> = ({
 
           {/* Card 2: Kids Entrepreneur Cell */}
           <div
-            onClick={() => onSelectInitiative(MAJOR_INITIATIVES_DATA[1])}
-            className="group cursor-pointer aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#3730a3] via-[#4338ca] to-[#6366f1] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative"
+            className="group aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#3730a3] via-[#4338ca] to-[#6366f1] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative select-none"
           >
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:14px_14px]" />
             <div className="absolute -right-6 -bottom-6 w-28 h-28 rounded-full border-4 border-white/20" />
@@ -102,8 +101,7 @@ export const MajorInitiatives: React.FC<MajorInitiativesProps> = ({
 
           {/* Card 3: SC / ST Entrepreneur Cell */}
           <div
-            onClick={() => onSelectInitiative(MAJOR_INITIATIVES_DATA[2])}
-            className="group cursor-pointer aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#9a3412] via-[#c2410c] to-[#ea580c] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative"
+            className="group aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#9a3412] via-[#c2410c] to-[#ea580c] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative select-none"
           >
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:14px_14px]" />
             <div className="absolute -right-6 -bottom-6 w-28 h-28 rounded-full border-4 border-white/20" />
@@ -132,8 +130,7 @@ export const MajorInitiatives: React.FC<MajorInitiativesProps> = ({
 
           {/* Card 4: Gen-Z Entrepreneur Cell */}
           <div
-            onClick={() => onSelectInitiative(MAJOR_INITIATIVES_DATA[3])}
-            className="group cursor-pointer aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#047857] to-[#059669] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative"
+            className="group aspect-[16/10] sm:aspect-[16/11] rounded-xl overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#047857] to-[#059669] p-4 sm:p-5 flex flex-col justify-between text-white shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative select-none"
           >
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:14px_14px]" />
             <div className="absolute -right-6 -bottom-6 w-28 h-28 rounded-full border-4 border-white/20" />

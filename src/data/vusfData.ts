@@ -24,6 +24,12 @@ export const FOUNDATION_INFO = {
   state: 'Maharashtra',
   pincode: '400703',
   iso: 'ISO 9001:2015 Certified Non-Profit Organization (Section 8, MCA, Govt. of India)',
+  social: {
+    youtube: 'https://www.youtube.com/@namaste_india_foundation',
+    linkedin: 'https://www.linkedin.com/company/vishwa-udyam-sahayta-foundation/',
+    instagram: 'https://www.instagram.com/namasteindia.group/',
+    facebook: 'https://www.facebook.com/namasteindiagroup/',
+  },
 };
 
 export const PUBLICATIONS_DATA: Publication[] = [

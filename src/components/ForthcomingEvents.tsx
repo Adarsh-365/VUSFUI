@@ -13,13 +13,13 @@ export const ForthcomingEvents: React.FC<ForthcomingEventsProps> = ({
   const featuredFlagship = {
     id: 'canton-fair-delegation',
     title: 'Canton Fair 2026 Delegation - Guangzhou',
-    date: 'Phase 2: Apr 23–29, 2026 | Phase 3: Apr 30–May 7, 2026',
+    date: 'Phase 1: 15–19 Oct, 2026 | Phase 3: 31 Oct – 04 Nov, 2026',
     location: 'Guangzhou, China',
     category: 'INTERNATIONAL TRADE DELEGATION',
     badge: 'FLAGSHIP GLOBAL DELEGATION',
     image: '/banner/namaste-china.jpeg',
     desc: "Join India's leading trade delegation for the world's largest import-export exhibition. Direct OEM factory visits, verified suppliers, and B2B matchmaking.",
-    highlight: 'Return Flights • 4-Star Stay • 100% Visa Protection',
+    highlight: 'Return Flights • 4-Star Stay • 70% Visa Success Rate',
   };
 
   return (

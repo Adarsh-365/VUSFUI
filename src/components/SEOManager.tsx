@@ -143,7 +143,7 @@ const STATIC_SEO_MAP: Record<string, MetaData> = {
     description: 'Register for upcoming export conclaves, national MSME summits, buyer-seller meets, and executive trade delegations organized by VUSF.',
   },
   '/events/women-entrepreneur-growth-program': {
-    title: 'Women Entrepreneurship Development Program | Pillai University & VUSF',
+    title: 'Women Entrepreneurship Growth Program | Pillai University & VUSF',
     description: 'Exclusive 1-day executive development program for women founders, offering mentorship, funding pathways, and export linkages at Pillai University, Panvel.',
     image: '/banner/women-enter-growth-prg1da.jpeg',
   },

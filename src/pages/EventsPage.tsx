@@ -44,6 +44,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: '5,000+ national prints across 10+ states featuring 50% dedicated coverage of visionary MSME leaders and homegrown innovators. Register for free digital edition or order physical print.',
       highlight: '5,000+ Prints Across 10+ States • 100% Free Digital Access',
       priceSnippet: 'Digital Copy Free • Physical Print ₹500 + GST',
+      hasDetailPage: true,
     },
     {
       id: 'women-entrepreneur-growth-program',
@@ -55,21 +56,23 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       filterCategory: 'women',
       image: '/banner/women-enter-growth-prg1da.jpeg',
       desc: 'From idea & informal business to registered enterprise, government scheme credit & market connect. Includes personal 1-page GOV SCHEMES Snapshot and live hands-on application clinic at Pillai University campus.',
-      highlight: 'GOV SCHEMES Snapshot • Live Application Clinic • Pillai Univ.',
+      highlight: 'GOV SCHEMES Snapshot • Live Application Clinic • Pillai University',
       priceSnippet: 'Delegate Pass ₹3,000 + GST • VIP Pass ₹5,000 + GST',
+      hasDetailPage: true,
     },
     {
       id: 'canton-fair-delegation',
       title: 'Canton Fair 2026 Delegation - Guangzhou',
-      date: 'Phase 2: Apr 23–29 | Phase 3: Apr 30–May 7, 2026',
-      dateBadge: '23 APR – 07 MAY 2026',
+      date: 'Phase 1: 15–19 Oct | Phase 3: 31 Oct – 04 Nov 2026',
+      dateBadge: '15 OCT – 04 NOV 2026',
       location: 'Pazhou Exhibition Complex, Guangzhou, China',
       category: 'INTERNATIONAL TRADE DELEGATION',
       filterCategory: 'delegations',
       image: '/banner/namaste-china.jpeg',
-      desc: "Join India's leading trade delegation for the world's largest import-export exhibition in Guangzhou, China. Phase 2 & Phase 3 packages with verified OEM suppliers, 4-star hotel stay, and dedicated visa facilitation support.",
-      highlight: 'Return Flights • 4-Star Luxury Stay • 100% Visa Protection',
-      priceSnippet: 'Phase 2 & 3 Early Bird Packages Available',
+      desc: "Join India's leading trade delegation for the world's largest import-export exhibition in Guangzhou, China. Phase 1 & Phase 3 packages with verified OEM suppliers, 4-star hotel stay, and dedicated visa facilitation support.",
+      highlight: 'Return Flights • 4-Star Luxury Stay • 70% Visa Success Rate',
+      priceSnippet: 'Phase 1 & 3 Early Bird Packages Available',
+      hasDetailPage: true,
     },
     {
       id: 'sc-st-startup-program',
@@ -80,9 +83,10 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       category: '1-DAY ACTION WORKSHOP & CLINIC',
       filterCategory: 'entrepreneurship',
       image: '/banner/sc-ststartup1day.jpeg',
-      desc: 'From informal business & idea to registered enterprise, NSSH 25% machinery subsidy, Stand-Up India credit & 4% GeM public procurement access. Includes personal GOV SCHEMES Snapshot & application clinic.',
-      highlight: 'GOV SCHEMES Snapshot • 4% GeM Public Procurement • Pillai Univ.',
+      desc: 'From informal business & idea to registered enterprise, NSSH 25% machinery subsidy, Stand-Up India credit & Connect with SCSTHUB. Includes personal GOV SCHEMES Snapshot & application clinic.',
+      highlight: 'GOV SCHEMES Snapshot • Connect with SCSTHUB • Pillai University',
       priceSnippet: 'Delegate Pass ₹3,000 + GST • VIP Pass ₹5,000 + GST',
+      hasDetailPage: true,
     },
     {
       id: 'navi-mumbai-export-summit',
@@ -96,6 +100,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Connecting MMR and Konkan manufacturers, agro-producers, and industrial exporters with direct international buyers, shipping liners, customs clearance specialists, and trade facilitation councils.',
       highlight: 'JNPA Port Logistics & International Buyer-Seller Conclave',
       priceSnippet: 'Passes from ₹2,499 + 18% GST',
+      hasDetailPage: true,
     },
     {
       id: 'msme-excellence-awards',
@@ -109,6 +114,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Celebrating and felicitating trailblazing MSMEs, visionary entrepreneurs, manufacturing leaders, and dynamic startup innovators who drive India’s industrial and economic growth.',
       highlight: '50+ Sector Awards & Dignitary Felicitations',
       priceSnippet: 'Passes from ₹2,999 + 18% GST',
+      hasDetailPage: false,
     },
     {
       id: 'pune-export-summit',
@@ -122,6 +128,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Unlocking overseas trade corridors for Pune’s engineering, automotive ancillary, electronics, and agro-processing clusters with cross-border trade facilitation and buyer linkages.',
       highlight: 'Engineering & Auto-Ancillary B2B Meet',
       priceSnippet: 'Passes from ₹2,499 + 18% GST',
+      hasDetailPage: false,
     },
     {
       id: 'nashik-export-summit',
@@ -135,6 +142,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Catalyzing export opportunities for Nashik’s grape, horticulture, agro-commodities, precision engineering, and defense manufacturing clusters with global buyers and cold-chain logistics.',
       highlight: 'Agro-Horticulture & Engineering Corridors',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
+      hasDetailPage: false,
     },
     {
       id: 'sc-st-entrepreneur-program',
@@ -148,6 +156,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Specialized 3-day empowerment initiative offering comprehensive bank credit linkages, government subsidies (PMEGP / CMEGP), bank-ready DPR preparation, and expert business mentorship.',
       highlight: '3-Day Intensive Mentorship & Subsidy Linkage',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
+      hasDetailPage: false,
     },
     {
       id: 'women-business-success-program',
@@ -161,6 +170,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'An intensive 3-day executive coaching program focusing on international export readiness, supply chain mastery, financial sustainability, and institutional partnerships for women leaders.',
       highlight: '3-Day Global Export & Scaling Masterclass',
       priceSnippet: 'Passes from ₹4,999 + 18% GST',
+      hasDetailPage: false,
     },
     {
       id: 'sambhaji-nagar-export-summit',
@@ -174,6 +184,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Accelerating export potential for Marathwada’s automotive, pharmaceutical, plastic, and heavy engineering MSMEs with international trade delegations and port logistics access.',
       highlight: 'Marathwada Industrial & Pharma Export Meet',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
+      hasDetailPage: false,
     },
   ];
 
@@ -296,28 +307,53 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
                 <div className="w-full bg-[#0b1626] rounded-3xl border border-slate-800 shadow-2xl hover:border-orange-500/60 transition-all duration-300 overflow-hidden hover:shadow-orange-950/20">
                   
                   {/* 1. Full Banner Image (Stretching edge-to-edge with NO cropping on left, right, top, or bottom) */}
-                  <Link to={`/events/${ev.id}`} className="block relative bg-slate-950 border-b border-slate-800 overflow-hidden">
-                    <img
-                      src={ev.image}
-                      alt={ev.title}
-                      className="w-full h-auto object-contain block group-hover:scale-[1.01] transition-transform duration-500"
-                    />
+                  {ev.hasDetailPage ? (
+                    <Link to={`/events/${ev.id}`} className="block relative bg-slate-950 border-b border-slate-800 overflow-hidden cursor-pointer">
+                      <img
+                        src={ev.image}
+                        alt={ev.title}
+                        className="w-full h-auto object-contain block group-hover:scale-[1.01] transition-transform duration-500"
+                      />
 
-                    {/* Top Floating Badges */}
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
-                      <span className="bg-orange-600 text-white text-[10px] sm:text-xs font-extrabold uppercase px-3 py-1 rounded-md shadow-md tracking-wider">
-                        {ev.category}
-                      </span>
-                      <span className="bg-black/80 backdrop-blur-md text-amber-300 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md border border-slate-700">
-                        Conclave #{String(idx + 1).padStart(2, '0')}
-                      </span>
-                    </div>
+                      {/* Top Floating Badges */}
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+                        <span className="bg-orange-600 text-white text-[10px] sm:text-xs font-extrabold uppercase px-3 py-1 rounded-md shadow-md tracking-wider">
+                          {ev.category}
+                        </span>
+                        <span className="bg-black/80 backdrop-blur-md text-amber-300 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md border border-slate-700">
+                          Conclave #{String(idx + 1).padStart(2, '0')}
+                        </span>
+                      </div>
 
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/80 backdrop-blur-md text-cyan-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-md border border-slate-700 flex items-center gap-1.5 shadow-md">
-                      <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>{ev.dateBadge}</span>
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/80 backdrop-blur-md text-cyan-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-md border border-slate-700 flex items-center gap-1.5 shadow-md">
+                        <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>{ev.dateBadge}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="block relative bg-slate-950 border-b border-slate-800 overflow-hidden">
+                      <img
+                        src={ev.image}
+                        alt={ev.title}
+                        className="w-full h-auto object-contain block"
+                      />
+
+                      {/* Top Floating Badges */}
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap items-center gap-2">
+                        <span className="bg-orange-600 text-white text-[10px] sm:text-xs font-extrabold uppercase px-3 py-1 rounded-md shadow-md tracking-wider">
+                          {ev.category}
+                        </span>
+                        <span className="bg-black/80 backdrop-blur-md text-amber-300 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-md border border-slate-700">
+                          Conclave #{String(idx + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/80 backdrop-blur-md text-cyan-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-md border border-slate-700 flex items-center gap-1.5 shadow-md">
+                        <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>{ev.dateBadge}</span>
+                      </div>
                     </div>
-                  </Link>
+                  )}
 
                   {/* 2. Detailed Event Info & Action Bar */}
                   <div className="p-6 sm:p-8 space-y-6">
@@ -338,11 +374,19 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
                         </div>
 
                         {/* Title */}
-                        <Link to={`/events/${ev.id}`} className="block group-hover:text-amber-300 transition-colors">
-                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight">
-                            {ev.title}
-                          </h3>
-                        </Link>
+                        {ev.hasDetailPage ? (
+                          <Link to={`/events/${ev.id}`} className="block group-hover:text-amber-300 transition-colors">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight">
+                              {ev.title}
+                            </h3>
+                          </Link>
+                        ) : (
+                          <div className="block">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight">
+                              {ev.title}
+                            </h3>
+                          </div>
+                        )}
 
                         {/* Description */}
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
@@ -368,42 +412,32 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
                           </div>
                         </div>
 
-                        <div className="space-y-2.5 pt-2 border-t border-slate-800/80">
-                          <Link
-                            to={`/events/${ev.id}`}
-                            className="w-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-black py-3.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-orange-950/60"
+                        <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                          {ev.hasDetailPage ? (
+                            <Link
+                              to={`/events/${ev.id}`}
+                              className="w-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs font-black py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-orange-950/60"
+                            >
+                              <span>View Event Page &amp; Book Pass</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </Link>
+                          ) : (
+                            <div className="w-full bg-slate-900/90 border border-slate-800 text-amber-300 text-xs font-bold py-3 px-4 rounded-xl text-center flex items-center justify-center gap-2 select-none">
+                              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                              <span>Registrations Opening Soon</span>
+                            </div>
+                          )}
+
+                          <a
+                            href={`https://wa.me/918169080686?text=Hello%2C%20I%20would%20like%20information%20regarding%20${encodeURIComponent(ev.title)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-2 px-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-400 rounded-xl transition-all flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer"
+                            title="WhatsApp Inquiry"
                           >
-                            <span>View Event Page &amp; Book Pass</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
-
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() =>
-                                onSelectEvent({
-                                  title: ev.title,
-                                  date: ev.date,
-                                  location: ev.location,
-                                  description: ev.desc,
-                                  image: ev.image,
-                                })
-                              }
-                              className="flex-1 text-xs font-semibold text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 py-2.5 px-3 rounded-xl border border-slate-800 transition-colors cursor-pointer text-center"
-                              title="Quick preview modal"
-                            >
-                              Quick View
-                            </button>
-
-                            <a
-                              href={`https://wa.me/918169080686?text=Hello%2C%20I%20would%20like%20information%20regarding%20${encodeURIComponent(ev.title)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2.5 bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600 hover:text-white rounded-xl transition-all flex items-center justify-center shrink-0"
-                              title="WhatsApp Inquiry"
-                            >
-                              <MessageSquare className="w-4 h-4" />
-                            </a>
-                          </div>
+                            <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                            <span>WhatsApp Inquiry Desk</span>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -568,28 +602,13 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
                     </p>
                   </div>
 
-                  {/* Dual Action Buttons */}
-                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
-                    <button
-                      onClick={() =>
-                        onSelectEvent({
-                          title: item.title,
-                          date: item.date,
-                          location: item.location,
-                          description: item.description,
-                          image: primaryImg,
-                        })
-                      }
-                      className="text-xs font-bold text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors cursor-pointer"
-                    >
-                      Quick Preview
-                    </button>
-
+                  {/* Action Button */}
+                  <div className="pt-3 border-t border-slate-800">
                     <Link
                       to={`/namaste-india-group/${item.slug}`}
-                      className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 hover:underline group-hover:translate-x-0.5 transition-transform"
+                      className="w-full text-xs font-bold text-amber-400 hover:text-amber-300 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-amber-500/50 py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 hover:underline group-hover:border-amber-500/50 transition-all"
                     >
-                      <span>Full Timeline Report</span>
+                      <span>Full Timeline Report &amp; Photos</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>

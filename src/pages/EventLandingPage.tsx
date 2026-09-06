@@ -46,6 +46,21 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
   const { eventSlug } = useParams<{ eventSlug: string }>();
   const navigate = useNavigate();
 
+  // Redirect if event does not have a dedicated subpage
+  useEffect(() => {
+    const noPageSlugs = [
+      'msme-excellence-awards',
+      'pune-export-summit',
+      'nashik-export-summit',
+      'sc-st-entrepreneur-program',
+      'women-business-success-program',
+      'sambhaji-nagar-export-summit',
+    ];
+    if (eventSlug && noPageSlugs.includes(eventSlug.toLowerCase())) {
+      navigate('/events', { replace: true });
+    }
+  }, [eventSlug, navigate]);
+
   // Find the event by slug or id
   const event: DetailedEvent = useMemo(() => {
     if (!eventSlug) return DETAILED_EVENTS[0];
@@ -93,7 +108,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
   // Copy Link notification
   const [copiedLink, setCopiedLink] = useState(false);
-  const [selectedReservationPhase, setSelectedReservationPhase] = useState<string>('phase-2-package');
+  const [selectedReservationPhase, setSelectedReservationPhase] = useState<string>('phase-1-package');
   const [downloadedBrochure, setDownloadedBrochure] = useState(false);
 
   const isMagazine = event.id === 'namaste-india-magazine' || event.passes.some((p) => p.price === 0);
@@ -103,6 +118,7 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
     if (event && event.passes && event.passes.length > 0) {
       const rec = event.passes.find((p) => p.recommended) || event.passes[0];
       setSelectedPass(rec);
+      setSelectedReservationPhase(rec.id);
     }
     // Scroll to top
     window.scrollTo(0, 0);
@@ -955,127 +971,244 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
       )}
 
       {/* ========================================================================= */}
-      {/* 6D. RESERVE DELEGATION SEAT INLINE FORM */}
+      {/* 6D. RESERVE DELEGATION SEAT OR PUBLISH ARTICLE FORM */}
       {/* ========================================================================= */}
-      <section id="reserve-seat-form" className="py-16 px-4 sm:px-6 bg-[#091322] border-b border-slate-800">
-        <div className="max-w-[800px] mx-auto bg-[#0b182b] rounded-3xl border border-slate-700 p-6 sm:p-10 shadow-2xl space-y-6">
-          <div className="text-center space-y-2">
-            <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>RESERVE DELEGATION SEAT</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
-              Reserve Your Sourcing Delegation Slot
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-light">
-              Reserve your seat now. Contact us for pricing and deposit details.
-            </p>
-          </div>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const passToBook = event.passes.find((p) => p.id === selectedReservationPhase) || event.passes[0];
-              handleBookPass(passToBook);
-            }}
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Sunil Singhal"
-                  value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                />
+      {isMagazine ? (
+        <section id="reserve-seat-form" className="py-16 px-4 sm:px-6 bg-[#091322] border-b border-slate-800">
+          <div className="max-w-[850px] mx-auto bg-[#0b182b] rounded-3xl border border-slate-700 p-6 sm:p-10 shadow-2xl space-y-6">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>OPEN CALL FOR CONTRIBUTORS</span>
               </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Business Email *
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="e.g. sunil@singhaltextiles.com"
-                  value={formData.emailAddress}
-                  onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
-                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                />
-              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white">
+                Publish your article
+              </h2>
+              <p className="text-xs sm:text-sm text-amber-300 font-medium">
+                Thank you for your interest in NAMASTE ENTREPRENEUR 2026 – Ideas • Opportunities • Growth. 🌟
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Phone / Mobile (WhatsApp preferred) *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="e.g. +91 98300 98300"
-                  value={formData.mobileNumber}
-                  onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                />
+            <div className="bg-slate-900/90 rounded-2xl border border-slate-700/80 p-6 sm:p-8 space-y-6 text-slate-200 text-sm leading-relaxed">
+              <p className="text-base sm:text-lg font-semibold text-slate-100">
+                We would be delighted to have you as a contributor to our FREE Edition.
+              </p>
+
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30 space-y-3">
+                <p className="font-bold text-white text-sm sm:text-base">
+                  To proceed, please share the following details:
+                </p>
+                <div className="pt-1">
+                  <a
+                    href="https://forms.gle/GRm3DbmdnryCAUdW9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm py-3.5 px-6 rounded-xl shadow-lg transition-all cursor-pointer"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Fill Contributor Form</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+                <div className="text-[11px] text-slate-400 break-all font-mono">
+                  Direct Form Link: <a href="https://forms.gle/GRm3DbmdnryCAUdW9" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">https://forms.gle/GRm3DbmdnryCAUdW9</a>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Selected Delegation Phase *
-                </label>
-                <select
-                  value={selectedReservationPhase}
-                  onChange={(e) => setSelectedReservationPhase(e.target.value)}
-                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+              <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300 border-t border-slate-800">
+                <p className="flex items-start gap-2 text-slate-200 font-medium">
+                  <span className="text-base leading-none">📖</span>
+                  <span>After receiving your details, our team will share the article submission guidelines and next steps.</span>
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div className="p-3.5 bg-slate-950/70 rounded-xl border border-slate-800 flex items-center gap-2 text-emerald-400 font-bold text-xs sm:text-sm">
+                    <CheckCircle2 className="w-4 h-4 shrink-0" />
+                    <span>Article contribution is completely FREE.</span>
+                  </div>
+                  <div className="p-3.5 bg-slate-950/70 rounded-xl border border-slate-800 flex items-center gap-2 text-cyan-300 font-bold text-xs sm:text-sm">
+                    <Sparkles className="w-4 h-4 shrink-0 text-amber-400" />
+                    <span>✨ Contributors will receive a FREE Digital Copy of the magazine.</span>
+                  </div>
+                </div>
+                <p className="flex items-center gap-2 text-slate-300 pt-1">
+                  <span className="text-base leading-none">📚</span>
+                  <span>Printed hard copies will also be available to order online.</span>
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs">
+                <div>
+                  <div className="font-black text-white tracking-wide text-sm">NAMASTE ENTREPRENEUR 2026</div>
+                  <div className="text-amber-400 font-semibold text-xs">Ideas • Opportunities • Growth</div>
+                  <div className="text-slate-400 text-[11px]">An Initiative of Namaste India Group</div>
+                </div>
+                <div className="space-y-1 sm:text-right text-slate-300">
+                  <div>
+                    <a href="mailto:Info@namastevishwaudyam.org" className="text-cyan-400 hover:underline">
+                      Info@namastevishwaudyam.org
+                    </a>
+                  </div>
+                  <div>
+                    <a href="https://www.namastevishwaudyam.org" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white hover:underline">
+                      Www.namastevishwaudyam.org
+                    </a>
+                  </div>
+                  <div>
+                    <a href="tel:+917499492860" className="text-amber-400 font-bold hover:underline">
+                      +91 7499492860
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href="https://forms.gle/GRm3DbmdnryCAUdW9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <option value="phase-2-package">Phase 2: Building Materials &amp; Furniture (Apr 23 - 29)</option>
-                  <option value="phase-3-package">Phase 3: Textiles, Fashion &amp; Health Products (Apr 30 - May 7)</option>
-                  <option value="double-phase-package">Double Phase: Phase 2 + Phase 3 (Apr 23 - May 7)</option>
-                </select>
+                  <FileText className="w-4 h-4" />
+                  <span>Fill Article Contribution Form</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="https://wa.me/917499492860?text=Hello%2C%20I%20would%20like%20to%20publish%20my%20article%20in%20Namaste%20Entrepreneur%202026."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>WhatsApp Editorial Desk (+91-7499492860)</span>
+                </a>
               </div>
             </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
-                What products do you plan to source? (Helps guide matchmaking)
-              </label>
-              <textarea
-                rows={3}
-                placeholder="E.g. Sourcing outdoor rattan furniture, sanitaries..."
-                value={formData.productDetails}
-                onChange={(e) => setFormData({ ...formData, productDetails: e.target.value })}
-                className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-              />
+          </div>
+        </section>
+      ) : (
+        <section id="reserve-seat-form" className="py-16 px-4 sm:px-6 bg-[#091322] border-b border-slate-800">
+          <div className="max-w-[800px] mx-auto bg-[#0b182b] rounded-3xl border border-slate-700 p-6 sm:p-10 shadow-2xl space-y-6">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-1.5 bg-orange-500/15 border border-orange-500/30 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>RESERVE DELEGATION SEAT</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white">
+                Reserve Your Sourcing Delegation Slot
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 font-light">
+                Reserve your seat now. Contact us for pricing and deposit details.
+              </p>
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-              <button
-                type="submit"
-                className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Reserve Sourcing Seat</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const passToBook = event.passes.find((p) => p.id === selectedReservationPhase) || event.passes[0];
+                handleBookPass(passToBook);
+              }}
+              className="space-y-4"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Sunil Singhal"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                  />
+                </div>
 
-              <a
-                href={`https://wa.me/${event.supportWhatsapp.replace(/[^0-9]/g, '')}?text=Hello%2C%20I%20want%20to%20reserve%20a%20seat%20for%20Canton%20Fair%202026%20Delegation.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Consult Booking Desk on WhatsApp</span>
-              </a>
-            </div>
-          </form>
-        </div>
-      </section>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Business Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="e.g. sunil@singhaltextiles.com"
+                    value={formData.emailAddress}
+                    onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
+                    className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Phone / Mobile (WhatsApp preferred) *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="e.g. +91 98300 98300"
+                    value={formData.mobileNumber}
+                    onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                    className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    Selected Delegation Phase *
+                  </label>
+                  <select
+                    value={selectedReservationPhase}
+                    onChange={(e) => setSelectedReservationPhase(e.target.value)}
+                    className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                  >
+                    {event.passes.map((pass) => (
+                      <option key={pass.id} value={pass.id}>
+                        {pass.name} {pass.dates ? `(${pass.dates})` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  What products do you plan to source? (Helps guide matchmaking)
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="E.g. Sourcing outdoor rattan furniture, sanitaries..."
+                  value={formData.productDetails}
+                  onChange={(e) => setFormData({ ...formData, productDetails: e.target.value })}
+                  className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
+                />
+              </div>
+
+              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <button
+                  type="submit"
+                  className="w-full sm:flex-1 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-xs sm:text-sm py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Reserve Sourcing Seat</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <a
+                  href={`https://wa.me/${event.supportWhatsapp.replace(/[^0-9]/g, '')}?text=Hello%2C%20I%20want%20to%20reserve%20a%20seat%20for%20Canton%20Fair%202026%20Delegation.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Consult Booking Desk on WhatsApp</span>
+                </a>
+              </div>
+            </form>
+          </div>
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 7. WHO SHOULD ATTEND */}
@@ -1142,7 +1275,9 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                       src={sp.image}
                       alt={sp.name}
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/members/pragati.jpeg';
+                        (e.target as HTMLImageElement).src = isMagazine
+                          ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
+                          : '/members/pragati.jpeg';
                       }}
                       className="w-16 h-16 rounded-full object-cover border-2 border-amber-500/60 shadow-md"
                     />
@@ -1159,14 +1294,14 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
 
                   {sp.topic && (
                     <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl text-xs text-orange-300 font-medium">
-                      <strong>Conclave Keynote:</strong> &ldquo;{sp.topic}&rdquo;
+                      <strong>{isMagazine ? 'Editorial Theme:' : 'Conclave Keynote:'}</strong> &ldquo;{sp.topic}&rdquo;
                     </div>
                   )}
                 </div>
 
                 <div className="p-4 bg-slate-950/60 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-semibold text-slate-300">VUSF Executive Directorate</span>
-                  <span className="text-amber-400 font-bold">Keynote Speaker</span>
+                  <span className="font-semibold text-slate-300">{isMagazine ? 'Editorial Board' : 'VUSF Executive Directorate'}</span>
+                  <span className="text-amber-400 font-bold">{isMagazine ? 'Chief Editor' : 'Keynote Speaker'}</span>
                 </div>
               </div>
             ))}
@@ -1263,33 +1398,35 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
       {/* ========================================================================= */}
       {/* 11. SOCIAL PROOF & TRUST BADGES */}
       {/* ========================================================================= */}
-      <section className="py-14 px-4 sm:px-6 bg-[#0a1526] border-b border-slate-800">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
-            <ShieldCheck className="w-8 h-8 text-cyan-400" />
-            <h3 className="text-base font-bold text-white">ISO 9001:2015 Certified Foundation</h3>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Incorporated under Section 8 of the Companies Act, 2013, Ministry of Corporate Affairs (Govt. of India). CIN: U88900MH2025NPL437820.
-            </p>
-          </div>
+      {!isMagazine && (
+        <section className="py-14 px-4 sm:px-6 bg-[#0a1526] border-b border-slate-800">
+          <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
+              <ShieldCheck className="w-8 h-8 text-cyan-400" />
+              <h3 className="text-base font-bold text-white">ISO 9001:2015 Certified Foundation</h3>
+              <p className="text-xs text-slate-300 font-light leading-relaxed">
+                Incorporated under Section 8 of the Companies Act, 2013, Ministry of Corporate Affairs (Govt. of India). CIN: U88900MH2025NPL437820.
+              </p>
+            </div>
 
-          <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
-            <Award className="w-8 h-8 text-amber-400" />
-            <h3 className="text-base font-bold text-white">State Achievement Award Winner</h3>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Honored by the Government of Maharashtra, presented by Hon. Shri Uday Samant, Minister of Industries, for driving district industrial investment.
-            </p>
-          </div>
+            <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
+              <Award className="w-8 h-8 text-amber-400" />
+              <h3 className="text-base font-bold text-white">State Achievement Award Winner</h3>
+              <p className="text-xs text-slate-300 font-light leading-relaxed">
+                Honored by the Government of Maharashtra, presented by Hon. Shri Uday Samant, Minister of Industries, for driving district industrial investment.
+              </p>
+            </div>
 
-          <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
-            <Users className="w-8 h-8 text-emerald-400" />
-            <h3 className="text-base font-bold text-white">33+ Landmark Conclaves Since 2021</h3>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Successfully organized high-impact delegations across China, Vietnam, Thailand, Nepal, Serbia, and pan-India industrial clusters.
-            </p>
+            <div className="p-6 rounded-2xl bg-[#0b1a30] border border-slate-800 space-y-2.5">
+              <Users className="w-8 h-8 text-emerald-400" />
+              <h3 className="text-base font-bold text-white">33+ Landmark Conclaves Since 2021</h3>
+              <p className="text-xs text-slate-300 font-light leading-relaxed">
+                Successfully organized high-impact delegations across China, Vietnam, Thailand, Nepal, Serbia, and pan-India industrial clusters.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 12. FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION) */}

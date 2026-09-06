@@ -126,6 +126,51 @@ export const ContactPage: React.FC = () => {
                   Section 8 Registered Non-Profit Organization &bull; CIN: {FOUNDATION_INFO.cin} &bull; Ministry of Corporate Affairs, Government of India.
                 </div>
               </div>
+
+              {/* Official Social Media Channels */}
+              <div className="pt-4 border-t border-slate-100">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2.5">
+                  Official Foundation Channels
+                </span>
+                <div className="flex items-center gap-2.5">
+                  <a
+                    href="https://www.facebook.com/namasteindiagroup/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Namaste India Group on Facebook"
+                    className="w-9 h-9 rounded-xl bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold flex items-center justify-center text-sm shadow-xs transition-transform hover:scale-105"
+                  >
+                    f
+                  </a>
+                  <a
+                    href="https://www.instagram.com/namasteindia.group/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Namaste India Group on Instagram"
+                    className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white flex items-center justify-center text-sm shadow-xs transition-transform hover:scale-105"
+                  >
+                    📷
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/vishwa-udyam-sahayta-foundation/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="VUSF on LinkedIn"
+                    className="w-9 h-9 rounded-xl bg-[#0077b5] hover:bg-[#006699] text-white font-bold flex items-center justify-center text-xs shadow-xs transition-transform hover:scale-105"
+                  >
+                    in
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@namaste_india_foundation"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Namaste India Foundation on YouTube"
+                    className="w-9 h-9 rounded-xl bg-[#ff0000] hover:bg-[#d90000] text-white flex items-center justify-center text-xs shadow-xs transition-transform hover:scale-105"
+                  >
+                    ▶
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Specialized Desks Quick List */}

@@ -64,7 +64,7 @@ const INITIAL_REGISTRATIONS: EventRegistration[] = [
     signature: '10d3948d24c20c9cb59a336bccceec009483adccfa04bd542029d88aa5421f16',
     update_at: '2026-09-05 11:09:00.58968+00',
     payment_id: 'pay_TYKk6zpeC0v7La',
-    event_name: 'Women Entrepreneurship Development Program',
+    event_name: 'Women Entrepreneurship Growth Program',
   },
   {
     id: '71c657ae-04f2-418c-8b4f-f3a897ae4bd6',
@@ -78,13 +78,13 @@ const INITIAL_REGISTRATIONS: EventRegistration[] = [
     pass_type: 'vip_pass',
     amount: 100.0,
     currency: 'INR',
-    timestamp: '2026-09-05 17:19:21.335193+00',
+    timestamp: '2026-09-05 16:38:25.082358+00',
     key: 'rzp_live_TNfc6pQ3kOm87o',
     status: 'paid',
     signature: '5d97e39c1b7f7f31e0a51cf407fe36c162987692cd3254c0be487311681c25b6',
     update_at: '2026-09-05 11:50:07.125158+00',
     payment_id: 'pay_TYLRRYAsOgxLdD',
-    event_name: 'Women Entrepreneurship Development Program',
+    event_name: 'Women Entrepreneurship Growth Program',
   },
 ];
 
@@ -256,7 +256,7 @@ export const AdminDashboardPage: React.FC = () => {
         signature: r.signature || '',
         update_at: r.update_at || r.updated_at || '',
         payment_id: r.payment_id || '',
-        event_name: r.event_name || 'Women Entrepreneurship Development Program',
+        event_name: r.event_name || 'Women Entrepreneurship Growth Program',
       }));
 
       setRegistrations(parsed);

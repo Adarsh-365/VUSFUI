@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { BLOGS_DATA, BlogPost } from '../data/blogData';
 import {
@@ -12,6 +12,9 @@ import {
   ExternalLink,
   BookOpen,
   CheckCircle2,
+  Users,
+  Image as ImageIcon,
+  Building2,
 } from 'lucide-react';
 
 export const BlogDetailPage: React.FC = () => {
@@ -118,6 +121,22 @@ export const BlogDetailPage: React.FC = () => {
             />
           </div>
 
+          {/* Key Partnership Metrics / Snapshot */}
+          {currentBlog.impactMetrics && currentBlog.impactMetrics.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
+              {currentBlog.impactMetrics.map((m, i) => (
+                <div key={i} className="border-l-2 border-[#c2410c] pl-3 space-y-0.5">
+                  <div className="text-[10px] sm:text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                    {m.label}
+                  </div>
+                  <div className="text-xs sm:text-sm font-bold text-slate-900">
+                    {m.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Strategic Highlights Box */}
           {currentBlog.highlights && currentBlog.highlights.length > 0 && (
             <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/80 rounded-2xl p-5 sm:p-6 space-y-3">
@@ -136,10 +155,139 @@ export const BlogDetailPage: React.FC = () => {
             </div>
           )}
 
+          {/* Key Dignitaries & Signatories */}
+          {currentBlog.keyPeople && currentBlog.keyPeople.length > 0 && (
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
+              <h4 className="text-xs font-extrabold uppercase text-slate-700 tracking-wider flex items-center gap-2">
+                <Users className="w-4 h-4 text-[#c2410c]" />
+                <span>Key Dignitaries &amp; Signatories</span>
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {currentBlog.keyPeople.map((person, i) => (
+                  <div
+                    key={i}
+                    className="bg-white border border-slate-200 rounded-lg p-3 text-xs sm:text-sm font-semibold text-slate-800 flex items-center gap-2 shadow-xs"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#c2410c] shrink-0" />
+                    <span>{person}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Article Body */}
-          <div className="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed whitespace-pre-line space-y-4">
-            {currentBlog.content}
+          <div className="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed space-y-4">
+            {Array.isArray(currentBlog.content) ? (
+              currentBlog.content.map((paragraph, idx) => (
+                <p key={idx} className="whitespace-pre-line leading-relaxed">
+                  {paragraph}
+                </p>
+              ))
+            ) : (
+              <p className="whitespace-pre-line leading-relaxed">
+                {currentBlog.content}
+              </p>
+            )}
           </div>
+
+          {/* Event Registration / Detail Link if applicable */}
+          {currentBlog.eventLink && (
+            <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-transparent border-2 border-[#c2410c]/40 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+              <div className="space-y-1 text-center sm:text-left">
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <span className="bg-[#c2410c] text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded tracking-wider">
+                    OFFICIAL EVENT PAGE
+                  </span>
+                  <span className="text-xs text-[#c2410c] font-bold">
+                    Free Digital Edition &amp; Pass Booking
+                  </span>
+                </div>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900">
+                  {currentBlog.title}
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Register for 100% Free Digital E-Magazine or book collector's physical hardbound copies.
+                </p>
+              </div>
+              <Link
+                to={currentBlog.eventLink}
+                className="bg-[#c2410c] hover:bg-[#9a3412] text-white text-xs font-bold px-6 py-3 rounded-xl shadow-md transition-all shrink-0 flex items-center gap-2"
+              >
+                <span>Go to Event &amp; Book Pass</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
+
+          {/* Milestone Archive Link if applicable */}
+          {currentBlog.milestoneSlug && (
+            <div className="bg-gradient-to-r from-[#0c1b33] to-[#1e293b] rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg border border-slate-700">
+              <div className="space-y-1 text-center sm:text-left">
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <span className="bg-[#c2410c] text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded tracking-wider">
+                    TIMELINE ARCHIVE
+                  </span>
+                  <span className="text-xs text-amber-300 font-semibold">
+                    {currentBlog.milestoneSlug === 'pillai-university-strategic-mou-incubation'
+                      ? 'Milestone 33'
+                      : currentBlog.milestoneSlug === 'navi-mumbai-business-hub-2026-summit'
+                      ? 'Milestone 32'
+                      : 'Milestone Archive'}
+                  </span>
+                </div>
+                <h4 className="text-sm sm:text-base font-bold text-white">
+                  {currentBlog.title} – Executive Timeline Archive
+                </h4>
+                <p className="text-xs text-slate-300">
+                  Explore full event documents, signing photos, and bilateral timeline highlights.
+                </p>
+              </div>
+              <Link
+                to={`/namaste-india-group/${currentBlog.milestoneSlug}`}
+                className="bg-[#c2410c] hover:bg-[#9a3412] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md transition-all shrink-0 flex items-center gap-2"
+              >
+                <span>View Timeline Milestone</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
+
+          {/* Photo Gallery Grid */}
+          {currentBlog.galleryImages && currentBlog.galleryImages.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <div className="flex items-center justify-between">
+                <h4 className="text-sm sm:text-base font-extrabold text-slate-900 flex items-center gap-2">
+                  <ImageIcon className="w-4 h-4 text-[#c2410c]" />
+                  <span>
+                    {currentBlog.milestoneSlug === 'navi-mumbai-business-hub-2026-summit'
+                      ? 'Navi Mumbai Business Summit Photo Gallery'
+                      : currentBlog.milestoneSlug === 'pillai-university-strategic-mou-incubation'
+                      ? 'MoU Signing Ceremony & Campus Gallery'
+                      : 'Event Ceremony & Photo Gallery'}
+                  </span>
+                </h4>
+                <span className="text-xs font-semibold text-slate-500">
+                  {currentBlog.galleryImages.length} Photographs
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {currentBlog.galleryImages.map((img, i) => (
+                  <div
+                    key={i}
+                    className="h-32 sm:h-40 rounded-xl overflow-hidden bg-slate-900 border border-slate-200 shadow-xs group cursor-pointer"
+                  >
+                    <img
+                      src={img}
+                      alt={`Photo ${i + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* External Action Button if applicable */}
           {currentBlog.externalLink && (

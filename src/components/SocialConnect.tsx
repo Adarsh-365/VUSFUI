@@ -39,27 +39,27 @@ export const SocialConnect: React.FC = () => {
             </a>
             {/* Facebook */}
             <a
-              href="https://facebook.com/namastevishwaudyam"
+              href="https://www.facebook.com/namasteindiagroup/"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on Facebook"
+              aria-label="Namaste India Group on Facebook"
               className="w-10 h-10 rounded-sm bg-[#1877f2] hover:bg-[#166fe5] text-white font-black flex items-center justify-center text-xl shadow-xs hover:scale-105 transition-transform"
             >
               f
             </a>
             {/* Instagram */}
             <a
-              href="https://instagram.com/namastevishwaudyam"
+              href="https://www.instagram.com/namasteindia.group/"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on Instagram"
+              aria-label="Namaste India Group on Instagram"
               className="w-10 h-10 rounded-sm bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white font-bold flex items-center justify-center text-lg shadow-xs hover:scale-105 transition-transform"
             >
               📷
             </a>
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/company/namaste-vishwa-udyam-sahayta-foundation"
+              href="https://www.linkedin.com/company/vishwa-udyam-sahayta-foundation/"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on LinkedIn"
@@ -69,10 +69,10 @@ export const SocialConnect: React.FC = () => {
             </a>
             {/* YouTube */}
             <a
-              href="https://youtube.com/@namastevishwaudyam"
+              href="https://www.youtube.com/@namaste_india_foundation"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on YouTube"
+              aria-label="Namaste India Foundation on YouTube"
               className="w-10 h-10 rounded-sm bg-[#ff0000] hover:bg-[#d90000] text-white font-bold flex items-center justify-center text-lg shadow-xs hover:scale-105 transition-transform"
             >
               ▶

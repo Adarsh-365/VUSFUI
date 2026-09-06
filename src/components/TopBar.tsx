@@ -114,27 +114,27 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             </a>
             {/* Facebook */}
             <a
-              href="https://facebook.com/namastevishwaudyam"
+              href="https://www.facebook.com/namasteindiagroup/"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on Facebook"
+              aria-label="Namaste India Group on Facebook"
               className="w-5 h-5 flex items-center justify-center hover:opacity-80 transition-opacity bg-[#1877f2] rounded-xs text-[11px] font-bold text-white"
             >
               f
             </a>
             {/* Instagram */}
             <a
-              href="https://instagram.com/namastevishwaudyam"
+              href="https://www.instagram.com/namasteindia.group/"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on Instagram"
+              aria-label="Namaste India Group on Instagram"
               className="w-5 h-5 flex items-center justify-center hover:opacity-80 transition-opacity bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-xs text-[10px] text-white"
             >
               📷
             </a>
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/company/namaste-vishwa-udyam-sahayta-foundation"
+              href="https://www.linkedin.com/company/vishwa-udyam-sahayta-foundation/"
               target="_blank"
               rel="noreferrer"
               aria-label="VUSF on LinkedIn"
@@ -144,10 +144,10 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
             </a>
             {/* YouTube */}
             <a
-              href="https://youtube.com/@namastevishwaudyam"
+              href="https://www.youtube.com/@namaste_india_foundation"
               target="_blank"
               rel="noreferrer"
-              aria-label="VUSF on YouTube"
+              aria-label="Namaste India Foundation on YouTube"
               className="w-5 h-5 flex items-center justify-center hover:opacity-80 transition-opacity bg-[#ff0000] rounded-xs text-[10px] text-white font-bold"
             >
               ▶

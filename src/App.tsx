@@ -78,7 +78,6 @@ import { PublicationModal } from './components/PublicationModal';
 import { PressReleaseModal } from './components/PressReleaseModal';
 import { EventModal } from './components/EventModal';
 import { LeaderModal } from './components/LeaderModal';
-import { MemberModal } from './components/MemberModal';
 // import { VoiceAssistantModal } from './components/VoiceAssistantModal';
 import { WhatsAppButton } from './components/WhatsAppButton';
 
@@ -112,7 +111,9 @@ function MainLayout() {
   const [selectedPressRelease, setSelectedPressRelease] = useState<PressReleaseItem | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<EventItem | { title: string; date: string; location: string; description?: string } | null>(null);
   const [selectedLeader, setSelectedLeader] = useState<OfficeBearer | null>(null);
-  const [memberModalType, setMemberModalType] = useState<'become' | 'members' | 'employee' | null>(null);
+  const handleMemberClick = () => {
+    navigate('/contact');
+  };
   const [voiceAssistantOpen, setVoiceAssistantOpen] = useState(false);
 
   const handleSearchOpen = (query?: string) => {
@@ -154,7 +155,7 @@ function MainLayout() {
       {!isAdmin && (
         <Navbar
           onSearchOpen={handleSearchOpen}
-          onMemberClick={(type) => setMemberModalType(type)}
+          onMemberClick={handleMemberClick}
         />
       )}
 
@@ -190,7 +191,7 @@ function MainLayout() {
             element={
               <AboutPage
                 onSelectBearer={(bearer) => setSelectedLeader(bearer)}
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -198,7 +199,7 @@ function MainLayout() {
             path="/about/overview"
             element={
               <AboutOverviewPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -206,7 +207,7 @@ function MainLayout() {
             path="/about/president"
             element={
               <PresidentDeskPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -215,7 +216,7 @@ function MainLayout() {
             element={
               <BoardOfDirectorsPage
                 onSelectBearer={(bearer) => setSelectedLeader(bearer)}
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -225,7 +226,7 @@ function MainLayout() {
             path="/service"
             element={
               <ServicePage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -233,7 +234,7 @@ function MainLayout() {
             path="/services"
             element={
               <ServicePage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -241,76 +242,76 @@ function MainLayout() {
           {/* 13 Dedicated Service Pages */}
           <Route
             path="/services/b2b-service"
-            element={<B2BServicePage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<B2BServicePage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/start-company"
-            element={<StartCompanyPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<StartCompanyPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/start-import-export"
-            element={<StartImportExportPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<StartImportExportPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/one-to-one-counselling"
-            element={<OneToOneCounsellingPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<OneToOneCounsellingPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/product-launch-other-country"
-            element={<ProductLaunchOtherCountryPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<ProductLaunchOtherCountryPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/start-business-other-country"
-            element={<StartBusinessOtherCountryPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<StartBusinessOtherCountryPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/infrastructure-development"
-            element={<InfrastructureDevelopmentPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<InfrastructureDevelopmentPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/exhibitions"
-            element={<ExhibitionPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<ExhibitionPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/seminars-webinars"
-            element={<SeminarWebinarPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<SeminarWebinarPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/exhibition-seminar-webinar"
-            element={<ExhibitionPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<ExhibitionPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/gem-portal"
-            element={<GeMPortalPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<GeMPortalPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/namaste-china"
-            element={<NamasteChinaPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<NamasteChinaPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/foreign-investment"
-            element={<ForeignInvestmentPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<ForeignInvestmentPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/finance-and-investment"
-            element={<FinanceAndInvestmentPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<FinanceAndInvestmentPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/government-msme-support"
-            element={<GovernmentMSMESupportPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<GovernmentMSMESupportPage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/market-linkage"
-            element={<MarketLinkagePage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<MarketLinkagePage onMemberClick={handleMemberClick} />}
           />
           <Route
             path="/services/startup"
-            element={<StartupPage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<StartupPage onMemberClick={handleMemberClick} />}
           />
 
           <Route
             path="/service/:slug"
-            element={<ServicePage onMemberClick={(type) => setMemberModalType(type)} />}
+            element={<ServicePage onMemberClick={handleMemberClick} />}
           />
 
           {/* 4. Sectors Hub and Dedicated Sector Pages */}
@@ -318,7 +319,7 @@ function MainLayout() {
             path="/sectors"
             element={
               <SectorsPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -326,7 +327,7 @@ function MainLayout() {
             path="/sectors/:sectorSlug"
             element={
               <SectorDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -334,7 +335,7 @@ function MainLayout() {
             path="/sector/:sectorSlug"
             element={
               <SectorDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -344,7 +345,7 @@ function MainLayout() {
             path="/chapter"
             element={
               <ChapterPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -352,7 +353,7 @@ function MainLayout() {
             path="/chapters"
             element={
               <ChapterPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -362,7 +363,7 @@ function MainLayout() {
             path="/international"
             element={
               <InternationalPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
                 onSearchOpen={handleSearchOpen}
               />
             }
@@ -371,7 +372,7 @@ function MainLayout() {
             path="/international/:countrySlug"
             element={
               <CountryCorridorPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -381,7 +382,7 @@ function MainLayout() {
             path="/namaste-india-group"
             element={
               <NamasteIndiaPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -389,7 +390,7 @@ function MainLayout() {
             path="/namaste-india-group/:eventId"
             element={
               <NamasteIndiaEventDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -397,7 +398,7 @@ function MainLayout() {
             path="/international/namaste-india"
             element={
               <NamasteIndiaPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -405,7 +406,7 @@ function MainLayout() {
             path="/international/namaste-india/:eventId"
             element={
               <NamasteIndiaEventDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -413,7 +414,7 @@ function MainLayout() {
             path="/timeline"
             element={
               <NamasteIndiaPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -421,7 +422,7 @@ function MainLayout() {
             path="/timeline/:eventId"
             element={
               <NamasteIndiaEventDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -429,7 +430,7 @@ function MainLayout() {
             path="/milestone/:eventId"
             element={
               <NamasteIndiaEventDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -437,7 +438,7 @@ function MainLayout() {
             path="/milestones/:eventId"
             element={
               <NamasteIndiaEventDetailPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -447,7 +448,7 @@ function MainLayout() {
             path="/international"
             element={
               <InternationalPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -455,7 +456,7 @@ function MainLayout() {
             path="/international/:countrySlug"
             element={
               <CountryCorridorPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -466,7 +467,7 @@ function MainLayout() {
             element={
               <EventsPage
                 onSelectEvent={(ev) => setSelectedEvent(ev)}
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -474,7 +475,7 @@ function MainLayout() {
             path="/events/women-entrepreneur-growth-program"
             element={
               <WomenEntrepreneur1DayPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -482,7 +483,23 @@ function MainLayout() {
             path="/event/women-entrepreneur-growth-program"
             element={
               <WomenEntrepreneur1DayPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
+              />
+            }
+          />
+          <Route
+            path="/events/women-enter-success-1day"
+            element={
+              <WomenEntrepreneur1DayPage
+                onMemberClick={handleMemberClick}
+              />
+            }
+          />
+          <Route
+            path="/event/women-enter-success-1day"
+            element={
+              <WomenEntrepreneur1DayPage
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -490,7 +507,7 @@ function MainLayout() {
             path="/events/sc-st-startup-program"
             element={
               <ScStEntrepreneurship1DayPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -498,7 +515,7 @@ function MainLayout() {
             path="/event/sc-st-startup-program"
             element={
               <ScStEntrepreneurship1DayPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -506,7 +523,7 @@ function MainLayout() {
             path="/events/:eventSlug"
             element={
               <EventLandingPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -514,7 +531,7 @@ function MainLayout() {
             path="/event/:eventSlug"
             element={
               <EventLandingPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -534,7 +551,7 @@ function MainLayout() {
             path="/csr-initiative"
             element={
               <CSRInitiativePage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -542,7 +559,7 @@ function MainLayout() {
             path="/csr"
             element={
               <CSRInitiativePage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -552,7 +569,7 @@ function MainLayout() {
             path="/career"
             element={
               <CareerPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -560,7 +577,7 @@ function MainLayout() {
             path="/careers"
             element={
               <CareerPage
-                onMemberClick={(type) => setMemberModalType(type)}
+                onMemberClick={handleMemberClick}
               />
             }
           />
@@ -644,10 +661,6 @@ function MainLayout() {
         onClose={() => setSelectedLeader(null)}
       />
 
-      <MemberModal
-        type={memberModalType}
-        onClose={() => setMemberModalType(null)}
-      />
 
       {/* Floating WhatsApp Support Button */}
       {!isAdmin && <WhatsAppButton />}

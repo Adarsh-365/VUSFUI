@@ -167,8 +167,8 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
         do_you_currently_have_a_business: formData.hasBusiness,
         what_do_you_expect: formData.expectations,
         pass_type: selectedPassTier === 'vip' ? 'vip_pass' : 'delegate_pass',
-        Event_name: 'Women Entrepreneurship Development Program',
-        event_name: 'Women Entrepreneurship Development Program',
+        Event_name: 'Women Entrepreneurship Growth Program',
+        event_name: 'Women Entrepreneurship Growth Program',
         amount: totalPayable,
       };
 
@@ -410,7 +410,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 bg-orange-500/20 border border-orange-500/40 text-amber-300 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider animate-pulse">
                 <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-                <span>1-DAY PILOT WORKSHOP • REGISTRATION OPEN</span>
+                <span>1-DAY WORKSHOP • REGISTRATION OPEN</span>
               </span>
               <span className="bg-slate-800/90 text-cyan-300 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-cyan-500/30">
                 PILLAI UNIVERSITY CAMPUS, NAVI MUMBAI
@@ -420,7 +420,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.15]">
               Women Entrepreneurship <br className="hidden sm:inline" />
               <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400 bg-clip-text text-transparent">
-                Development Program
+                Growth Program
               </span>
             </h1>
 
@@ -478,7 +478,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
                 </button>
 
                 <a
-                  href="https://wa.me/917499492860?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Women%20Entrepreneurship%201-Day%20Program%20at%20Pillai%20University."
+                  href="https://wa.me/919167845801?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Women%20Entrepreneurship%201-Day%20Program%20at%20Pillai%20University."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600 px-5 py-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
@@ -560,13 +560,13 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#0b1a30] border border-slate-800 text-center space-y-1">
-            <div className="text-2xl sm:text-3xl font-black text-cyan-400">1 Application</div>
+            <div className="text-2xl sm:text-3xl font-black text-cyan-400">Application</div>
             <div className="text-xs font-bold text-white uppercase tracking-wider">Started in Hand</div>
             <div className="text-[11px] text-slate-400">Guided hands-on application clinic</div>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#0b1a30] border border-slate-800 text-center space-y-1">
-            <div className="text-2xl sm:text-3xl font-black text-orange-400">Pillai Univ.</div>
+            <div className="text-2xl sm:text-3xl font-black text-orange-400">Pillai University</div>
             <div className="text-xs font-bold text-white uppercase tracking-wider">On-Campus Venue</div>
             <div className="text-[11px] text-slate-400">Dr. K. M. Vasudevan Pillai Campus, Panvel</div>
           </div>
@@ -708,7 +708,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
               <span>OFFICIAL PROGRAM SCHEDULE &amp; CURRICULUM</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Women Entrepreneurship Development Program
+              Women Entrepreneurship Growth Program
             </h2>
             <p className="text-sm sm:text-base text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
               A comprehensive, 1-day executive schedule structured from 09:30 AM to 05:00 PM at Pillai University campus, designed for immediate implementation.
@@ -1267,7 +1267,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
             </button>
 
             <a
-              href="https://wa.me/917499492860?text=Hello%2C%20I%20have%20questions%20about%20registering%20for%20the%20Women%20Entrepreneurship%201-Day%20Program."
+              href="https://wa.me/919167845801?text=Hello%2C%20I%20have%20questions%20about%20registering%20for%20the%20Women%20Entrepreneurship%201-Day%20Program."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 font-bold text-sm px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
@@ -1279,14 +1279,14 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
 
           {/* Contact Details Bar */}
           <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-xs text-slate-400 border-t border-slate-800/80 max-w-lg mx-auto">
-            <div className="flex items-center gap-1.5 text-slate-300">
+            <a href="tel:+919167845801" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
               <Phone className="w-4 h-4 text-orange-400" />
-              <span>+91 7499492860</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-slate-300">
+              <span>+91 9167845801</span>
+            </a>
+            <a href="mailto:info@namasteindiagroup.org" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
               <Mail className="w-4 h-4 text-amber-400" />
-              <span>info@namastevishwa.com</span>
-            </div>
+              <span>info@namasteindiagroup.org</span>
+            </a>
           </div>
         </div>
       </section>
