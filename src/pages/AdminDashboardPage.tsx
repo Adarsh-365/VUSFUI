@@ -101,38 +101,76 @@ export const AdminDashboardPage: React.FC = () => {
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Authenticate against .env credentials
-  const handleLogin = (e: React.FormEvent) => {
+  // Authenticate against backend /auth/login API
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setLoginError(null);
 
-    const expectedUser = (
-      import.meta.env.VITE_ADMIN_USERNAME ||
-      import.meta.env.VITE_ADMIN_USER ||
-      import.meta.env.VITE_ADMIN_LOGIN ||
-      'admin'
-    ).trim();
+    const backendBase = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+    const loginEndpoints = [
+      ...(backendBase ? [`${backendBase}/auth/login`, `${backendBase}/login`] : []),
+      '/auth/login',
+      '/login',
+      'http://127.0.0.1:8000/auth/login',
+      'http://127.0.0.1:8000/login',
+    ];
 
-    const expectedPass = (
-      import.meta.env.VITE_ADMIN_PASSWORD ||
-      import.meta.env.VITE_ADMIN_PASS ||
-      'admin@vusf2026'
-    ).trim();
+    const payload = {
+      user_id: loginUsername.trim(),
+      password: loginPassword.trim(),
+    };
 
-    if (loginUsername.trim() === expectedUser && loginPassword.trim() === expectedPass) {
+    let res: Response | null = null;
+    let lastErrorMsg = '';
+
+    for (const ep of loginEndpoints) {
+      try {
+        const attempt = await fetch(ep, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (attempt.ok) {
+          res = attempt;
+          break;
+        } else if (attempt.status === 401 || attempt.status === 403 || attempt.status === 400 || attempt.status === 422) {
+          const errJson = await attempt.json().catch(() => null);
+          lastErrorMsg =
+            errJson?.detail ||
+            errJson?.message ||
+            'Invalid administrator credentials. Access denied.';
+          res = attempt;
+          break;
+        }
+      } catch (err: any) {
+        lastErrorMsg = err?.message || 'Failed to connect to authentication server.';
+      }
+    }
+
+    if (res && res.ok) {
+      const data = await res.json().catch(() => null);
+      const token = data?.access_token || data?.token;
+      if (token) {
+        sessionStorage.setItem('vusf_admin_token', token);
+      }
       sessionStorage.setItem('vusf_admin_auth', 'true');
       setIsAuthenticated(true);
       setLoginError(null);
       setLoginPassword('');
     } else {
-      setLoginError('Invalid administrator credentials. Access denied.');
+      setLoginError(lastErrorMsg || 'Invalid administrator credentials. Access denied.');
     }
     setIsSubmitting(false);
   };
 
   const handleLogout = () => {
     sessionStorage.removeItem('vusf_admin_auth');
+    sessionStorage.removeItem('vusf_admin_token');
     setIsAuthenticated(false);
     setLoginPassword('');
     setLoginError(null);
@@ -184,17 +222,29 @@ export const AdminDashboardPage: React.FC = () => {
       'http://127.0.0.1:8000/get-all-users',
     ];
 
+    const token = sessionStorage.getItem('vusf_admin_token');
+    const headers: Record<string, string> = {
+      'Accept': 'application/json',
+    };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     let items: any[] | null = null;
     let successfulEndpoint = '';
+    let isUnauthorized = false;
 
     for (const ep of endpoints) {
       try {
         const res = await fetch(ep, {
           method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
+          headers,
         });
+
+        if (res.status === 401 || res.status === 403) {
+          isUnauthorized = true;
+          break;
+        }
 
         if (res.ok) {
           const data = await res.json();
@@ -235,6 +285,15 @@ export const AdminDashboardPage: React.FC = () => {
       } catch {
         // try next endpoint
       }
+    }
+
+    if (isUnauthorized) {
+      sessionStorage.removeItem('vusf_admin_auth');
+      sessionStorage.removeItem('vusf_admin_token');
+      setIsAuthenticated(false);
+      setLoginError('Authentication session expired or unauthorized. Please log in again.');
+      setIsRefreshing(false);
+      return;
     }
 
     if (items && items.length > 0) {
@@ -453,7 +512,7 @@ export const AdminDashboardPage: React.FC = () => {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-300 mb-1.5 uppercase tracking-wider">
-                Admin Username
+                Admin User ID
               </label>
               <input
                 type="text"
@@ -464,7 +523,7 @@ export const AdminDashboardPage: React.FC = () => {
                   setLoginUsername(e.target.value);
                   if (loginError) setLoginError(null);
                 }}
-                placeholder="Enter administrator ID"
+                placeholder="Enter administrator user_id"
                 className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors"
               />
             </div>
@@ -501,8 +560,17 @@ export const AdminDashboardPage: React.FC = () => {
               disabled={isSubmitting}
               className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              <KeyRound className="w-4 h-4" />
-              <span>Sign In to Admin Console</span>
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                  <span>Authenticating...</span>
+                </div>
+              ) : (
+                <>
+                  <KeyRound className="w-4 h-4" />
+                  <span>Sign In to Admin Console</span>
+                </>
+              )}
             </button>
           </form>
 

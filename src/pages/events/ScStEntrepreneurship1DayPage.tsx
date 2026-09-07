@@ -47,25 +47,21 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
   const [checkoutStep, setCheckoutStep] = useState<'details' | 'payment' | 'success'>('details');
 
-  // Form Fields
+  // Form Fields (matching Women Entrepreneurship form card UI)
   const [formData, setFormData] = useState({
     fullName: '',
     mobileNumber: '',
     emailAddress: '',
-    businessName: '',
-    category: 'SC Community Founder',
-    businessStage: 'Informal / Home-Based Operations',
-    sector: 'Manufacturing & Industrial Ancillary',
-    incomeBracket: '₹1 lakh – ₹5 lakh',
-    preferredLanguage: 'Mixed Hindi & Marathi',
-    city: 'Navi Mumbai',
-    state: 'Maharashtra',
+    age: '',
+    occupation: 'Student',
+    hasBusiness: 'Planning to start',
+    expectations: '',
     quantity: 1,
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | 'netbanking' | 'neft'>('upi');
   const [isProcessingPayment, setIsProcessingPayment] = useState<boolean>(false);
+  const [apiError, setApiError] = useState<string | null>(null);
   const [confirmedOrderId, setConfirmedOrderId] = useState<string>('');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -133,28 +129,231 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
       errors.mobileNumber = 'Valid 10-digit mobile number is required';
     if (!formData.emailAddress.trim() || !formData.emailAddress.includes('@'))
       errors.emailAddress = 'Valid email address is required';
-    if (!formData.businessName.trim()) errors.businessName = 'Business or venture name is required';
-    if (!formData.city.trim()) errors.city = 'City is required';
+    if (!formData.age.trim()) errors.age = 'Age is required';
+    if (!formData.expectations.trim())
+      errors.expectations = 'Please share what you expect from this program';
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  const handleProceedToPayment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setCheckoutStep('payment');
-    }
+  const loadRazorpay = (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      if ((window as any).Razorpay) {
+        resolve(true);
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
   };
 
-  const handleCompletePayment = () => {
+  const handleProceedToPayment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setApiError(null);
+    if (!validateForm()) return;
+
     setIsProcessingPayment(true);
-    setTimeout(() => {
-      const randomId = 'VUSF-SCST-' + Math.floor(100000 + Math.random() * 900000);
-      setConfirmedOrderId(randomId);
+
+    try {
+      // 1. Prepare registration payload for backend (SC/ST Event Data)
+      const payload = {
+        name: formData.fullName,
+        mob: formData.mobileNumber,
+        email: formData.emailAddress,
+        age: formData.age,
+        occupation: formData.occupation,
+        do_you_currently_have_a_business: formData.hasBusiness,
+        what_do_you_expect: formData.expectations,
+        pass_type: selectedPassTier === 'vip' ? 'vip_pass' : 'delegate_pass',
+        Event_name: 'SC/ST Entrepreneurship Development Program',
+        event_name: 'SC/ST Entrepreneurship Development Program',
+        amount: totalPayable,
+      };
+
+      // 2. Call backend POST /event/register-user
+      const backendBase = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+      const registerEndpoints = [
+        ...(backendBase ? [`${backendBase}/event/register-user`] : []),
+        '/event/register-user',
+        'http://127.0.0.1:8000/event/register-user',
+      ];
+
+      let res: Response | null = null;
+      let lastErr: any = null;
+
+      for (const ep of registerEndpoints) {
+        try {
+          const attempt = await fetch(ep, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+          if (attempt.ok) {
+            res = attempt;
+            break;
+          }
+          res = attempt;
+        } catch (fetchErr) {
+          lastErr = fetchErr;
+        }
+      }
+
+      if (!res) {
+        throw new Error(lastErr?.message || `Unable to reach registration server (${backendBase || 'http://127.0.0.1:8000'}). Please check backend connection.`);
+      }
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        throw new Error(errorData?.detail || errorData?.message || `Server returned error status ${res.status}`);
+      }
+
+      const resJson = await res.json();
+
+      if (resJson.success === false) {
+        throw new Error(resJson.message || 'Payment Creation Failed');
+      }
+
+      const orderData = resJson.data || resJson;
+
+      // 3. Load Razorpay Checkout SDK
+      const razorpayReady = await loadRazorpay();
+      if (!razorpayReady) {
+        throw new Error('Could not load Razorpay payment gateway. Please check your internet connection.');
+      }
+
+      const razorpayOrderId =
+        orderData.order_id ||
+        orderData.orderId ||
+        orderData.id ||
+        resJson.order_id ||
+        (orderData.order && orderData.order.id);
+
+      const razorpayKey =
+        orderData.key ||
+        orderData.key_id ||
+        orderData.razorpay_key ||
+        orderData.razorpayKey ||
+        resJson.key ||
+        resJson.key_id ||
+        (import.meta as any).env?.VITE_RAZORPAY_KEY_ID;
+
+      if (!razorpayKey) {
+        throw new Error(
+          'Razorpay Key ID missing. Please return "key": "rzp_test_..." in your backend /event/register-user response or set VITE_RAZORPAY_KEY_ID in .env.'
+        );
+      }
+
+      const rawAmount = orderData.amount || totalPayable;
+      const razorpayAmount = rawAmount < 10000 ? rawAmount * 100 : rawAmount;
+
+      // 4. Open Razorpay Checkout Dialog
+      const options: any = {
+        key: razorpayKey,
+        amount: razorpayAmount,
+        currency: orderData.currency || 'INR',
+        name: 'Vishwa Udyam Sahayta Foundation',
+        description: `Pass: ${currentPass.name} - SC/ST Entrepreneurship Program`,
+        image: '/banner/sc-ststartup1day.jpeg',
+        order_id: razorpayOrderId,
+        prefill: {
+          name: formData.fullName,
+          email: formData.emailAddress,
+          contact: formData.mobileNumber,
+        },
+        notes: {
+          age: formData.age,
+          occupation: formData.occupation,
+          has_business: formData.hasBusiness,
+          expectations: formData.expectations,
+          pass: currentPass.name,
+        },
+        theme: {
+          color: '#083344',
+        },
+        handler: async function (paymentResponse: any) {
+          setIsProcessingPayment(true);
+          try {
+            // 5. Call backend POST /payment/verify-payment
+            const verifyPayload = {
+              razorpay_payment_id: paymentResponse.razorpay_payment_id,
+              razorpay_order_id: paymentResponse.razorpay_order_id,
+              razorpay_signature: paymentResponse.razorpay_signature,
+            };
+
+            const verifyEndpoints = [
+              ...(backendBase ? [`${backendBase}/payment/verify-payment`] : []),
+              '/payment/verify-payment',
+              'http://127.0.0.1:8000/payment/verify-payment',
+            ];
+
+            let vres: Response | null = null;
+            for (const ep of verifyEndpoints) {
+              try {
+                const attempt = await fetch(ep, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                  },
+                  body: JSON.stringify(verifyPayload),
+                });
+                if (attempt.ok) {
+                  vres = attempt;
+                  break;
+                }
+                vres = attempt;
+              } catch (vErr) {
+                // Continue to next endpoint
+              }
+            }
+
+            if (vres) {
+              const vData = await vres.json().catch(() => null);
+              if (vData && vData.success === false) {
+                throw new Error(vData.message || 'Invalid payment signature.');
+              }
+            }
+
+            setConfirmedOrderId(
+              paymentResponse.razorpay_payment_id ||
+              paymentResponse.razorpay_order_id ||
+              ('VUSF-SCST-' + Math.floor(100000 + Math.random() * 900000))
+            );
+            setIsProcessingPayment(false);
+            setCheckoutStep('success');
+          } catch (verifyErr: any) {
+            console.error('Payment verification error:', verifyErr);
+            setApiError(verifyErr?.message || 'Payment signature verification failed.');
+            setIsProcessingPayment(false);
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            setIsProcessingPayment(false);
+          },
+        },
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on('payment.failed', function (failRes: any) {
+        setApiError(failRes.error?.description || 'Payment transaction failed or was declined.');
+        setIsProcessingPayment(false);
+      });
+      rzp.open();
+
+    } catch (err: any) {
+      console.error('Registration error:', err);
+      const backendHint = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '') || 'http://127.0.0.1:8000';
+      setApiError(err.message || `Failed to connect to backend at ${backendHint}. Please ensure the backend server is running.`);
       setIsProcessingPayment(false);
-      setCheckoutStep('success');
-    }, 1800);
+    }
   };
 
   const handleShare = () => {
@@ -1125,466 +1324,210 @@ export const ScStEntrepreneurship1DayPage: React.FC<ScStEntrepreneurship1DayPage
 
       {/* 11. CHECKOUT MODAL (Delegate ₹3,000 / VIP ₹5,000) */}
       {isCheckoutOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto animate-in fade-in">
-          <div className="bg-[#0b172a] text-slate-100 rounded-3xl border border-slate-700 shadow-2xl w-full max-w-2xl overflow-hidden my-8 relative flex flex-col max-h-[90vh]">
-            <div className="p-5 bg-gradient-to-r from-[#0c1c33] to-[#1e293b] border-b border-slate-800 flex items-center justify-between shrink-0">
-              <div className="space-y-0.5">
-                <div className="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">
-                  OFFICIAL PROGRAM REGISTRATION &bull; PILLAI UNIVERSITY CAMPUS
-                </div>
-                <h3 className="text-lg font-bold text-white">SC/ST Entrepreneurship - 1-Day Growth Program</h3>
-              </div>
-              <button
-                onClick={() => setIsCheckoutOpen(false)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="p-6 overflow-y-auto space-y-6 flex-1">
-              <div className="p-4 bg-[#081220] rounded-2xl border border-orange-500/30 flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-[10px] uppercase font-bold text-slate-400">Selected Pass Tier:</div>
-                  <div className="text-sm font-black text-amber-300">{currentPass.name}</div>
-                  <div className="text-xs text-slate-400">
-                    ₹{currentPass.price.toLocaleString('en-IN')} + 18% GST (Includes In-House Breakfast &amp; Lunch)
-                  </div>
-                </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-in fade-in">
+          <div className={`w-full max-w-2xl rounded-[14px] my-6 relative flex flex-col max-h-[92vh] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.18)] transition-all ${checkoutStep === 'details' ? 'bg-white text-slate-800 border border-gray-200' : 'bg-[#0b172a] text-slate-100 border border-slate-700'}`}>
+            
+            {checkoutStep === 'success' ? (
+              <div className="p-8 sm:p-12 text-center relative">
                 <button
-                  type="button"
-                  onClick={() => {
-                    setIsCheckoutOpen(false);
-                    scrollToSection('passes-section');
-                  }}
-                  className="text-xs text-amber-400 hover:underline font-bold"
+                  onClick={() => setIsCheckoutOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close"
                 >
-                  Change Pass
+                  <X className="w-5 h-5" />
                 </button>
+
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCheck className="w-8 h-8" />
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#083344] tracking-tight">
+                  Registration Successful
+                </h3>
+
+                <p className="text-sm text-slate-600 mt-2">
+                  Thank you, <span className="font-semibold text-slate-900">{formData.fullName}</span>. Your registration has been confirmed successfully.
+                </p>
+
+                <div className="pt-6">
+                  <button
+                    onClick={() => setIsCheckoutOpen(false)}
+                    className="py-3 px-8 rounded-lg bg-[#0f4c5c] hover:bg-[#0c3c49] text-white font-bold text-sm tracking-wider transition-all shadow-sm cursor-pointer"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
+            ) : (
+              <>
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsCheckoutOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors z-10 cursor-pointer"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
 
-              {checkoutStep === 'details' && (
-                <form onSubmit={handleProceedToPayment} className="space-y-4">
-                  <div className="text-xs font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">
-                    1. Participant &amp; Venture Profile (For Pre-Drafting GOV SCHEMES Snapshot)
-                  </div>
+                {/* Modal Header */}
+                <div className="pt-7 px-8 pb-3 text-center border-b border-gray-100">
+                  <h3 className="text-2xl font-bold text-[#083344] tracking-tight">
+                    Complete Your Registration
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-2 font-normal">
+                    You have selected:{' '}
+                    <span className="font-bold text-[#083344]">
+                      {currentPass.name} (INR {currentPass.price.toLocaleString('en-IN')})
+                    </span>
+                  </p>
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder="e.g. Rahul Gaikwad"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.fullName && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.fullName}</p>}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Mobile Number (+91) *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.mobileNumber}
-                        onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-                        placeholder="10-digit WhatsApp number"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.mobileNumber && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.mobileNumber}</p>}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Email Address (for Pass &amp; GST Invoice) *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.emailAddress}
-                        onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
-                        placeholder="name@gmail.com"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.emailAddress && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.emailAddress}</p>}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Business / Venture Name (or Idea) *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.businessName}
-                        onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                        placeholder="e.g. Apex Precision Engineering / Idea Stage"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.businessName && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.businessName}</p>}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Community / Category
-                      </label>
-                      <select
-                        value={formData.category}
-                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                      >
-                        <option value="SC Community Founder">Scheduled Caste (SC) Founder</option>
-                        <option value="ST Community Founder">Scheduled Tribe (ST) Founder</option>
-                        <option value="OBC / General Ally Founder">Allied MSME Founder</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Business Stage *
-                      </label>
-                      <select
-                        value={formData.businessStage}
-                        onChange={(e) => setFormData({ ...formData, businessStage: e.target.value })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                      >
-                        <option value="Pre-Launch Idea Stage">Pre-Launch Idea Stage</option>
-                        <option value="Informal / Unregistered Unit">Informal / Unregistered Unit</option>
-                        <option value="Registered MSME (0–2 Years)">Registered MSME (0–2 Years)</option>
-                        <option value="Operating Supplier / Contractor">Operating Supplier / Contractor</option>
-                        <option value="Scaling Up for Public Tenders">Scaling Up for Public Tenders</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        Business Sector *
-                      </label>
-                      <select
-                        value={formData.sector}
-                        onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none cursor-pointer"
-                      >
-                        <option value="Manufacturing & Industrial Ancillary">Manufacturing &amp; Industrial Ancillary</option>
-                        <option value="Job Work & Engineering Fabrication">Job Work &amp; Engineering Fabrication</option>
-                        <option value="Logistics, Transport & Fleet">Logistics, Transport &amp; Fleet</option>
-                        <option value="Facility Management & Services">Facility Management &amp; Services</option>
-                        <option value="Retail, Trade & Distribution">Retail, Trade &amp; Distribution</option>
-                        <option value="IT, Hardware & Skilled Trades">IT, Hardware &amp; Skilled Trades</option>
-                        <option value="Other / Exploring">Other / Exploring</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-300 mb-1">
-                        City &amp; State *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        placeholder="e.g. Panvel, Navi Mumbai"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-orange-500 outline-none"
-                      />
-                      {formErrors.city && <p className="text-[10px] text-red-400 mt-0.5">{formErrors.city}</p>}
-                    </div>
-                  </div>
-
-                  <div className="pt-3">
-                    <button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-sm py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <span>PROCEED TO PAYMENT (₹{totalPayable.toLocaleString('en-IN')}) →</span>
-                    </button>
-                  </div>
-                </form>
-              )}
-
-              {checkoutStep === 'payment' && (
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <div className="text-xs font-bold text-white uppercase tracking-wider">
-                      2. Payment Method &amp; Tax Breakdown
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setCheckoutStep('details')}
-                      className="text-xs text-amber-400 hover:underline flex items-center gap-1 font-bold"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      <span>Back to Details</span>
-                    </button>
-                  </div>
-
-                  <div className="p-4 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-2 text-xs">
-                    <div className="flex justify-between text-slate-300">
-                      <span>Pass: {currentPass.name} (x{formData.quantity})</span>
-                      <span className="font-semibold text-white">₹{basePrice.toLocaleString('en-IN')}</span>
-                    </div>
-                    <div className="flex justify-between text-slate-300">
-                      <span>GST @ 18% (Itemized Tax Invoice)</span>
-                      <span className="font-semibold text-amber-400">₹{gstAmount.toLocaleString('en-IN')}</span>
-                    </div>
-                    <div className="flex justify-between text-sm font-black text-white pt-2 border-t border-slate-800">
-                      <span>Total Amount Payable</span>
-                      <span className="text-amber-400">₹{totalPayable.toLocaleString('en-IN')}</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
-                      Select Payment Mode:
-                    </label>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setPaymentMethod('upi')}
-                        className={`p-3.5 rounded-xl border text-left flex items-center gap-3 transition-all cursor-pointer ${
-                          paymentMethod === 'upi'
-                            ? 'border-orange-500 bg-orange-500/10 text-white'
-                            : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
-                        }`}
-                      >
-                        <QrCode className="w-5 h-5 text-orange-400" />
-                        <div>
-                          <div className="text-xs font-bold">UPI / QR Code</div>
-                          <div className="text-[10px] text-slate-400">GPay, PhonePe, Paytm</div>
-                        </div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setPaymentMethod('card')}
-                        className={`p-3.5 rounded-xl border text-left flex items-center gap-3 transition-all cursor-pointer ${
-                          paymentMethod === 'card'
-                            ? 'border-orange-500 bg-orange-500/10 text-white'
-                            : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
-                        }`}
-                      >
-                        <CreditCard className="w-5 h-5 text-cyan-400" />
-                        <div>
-                          <div className="text-xs font-bold">Credit / Debit Card</div>
-                          <div className="text-[10px] text-slate-400">Visa, Mastercard, RuPay</div>
-                        </div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setPaymentMethod('netbanking')}
-                        className={`p-3.5 rounded-xl border text-left flex items-center gap-3 transition-all cursor-pointer ${
-                          paymentMethod === 'netbanking'
-                            ? 'border-orange-500 bg-orange-500/10 text-white'
-                            : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
-                        }`}
-                      >
-                        <Building2 className="w-5 h-5 text-emerald-400" />
-                        <div>
-                          <div className="text-xs font-bold">Net Banking</div>
-                          <div className="text-[10px] text-slate-400">50+ Indian Banks</div>
-                        </div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setPaymentMethod('neft')}
-                        className={`p-3.5 rounded-xl border text-left flex items-center gap-3 transition-all cursor-pointer ${
-                          paymentMethod === 'neft'
-                            ? 'border-orange-500 bg-orange-500/10 text-white'
-                            : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700'
-                        }`}
-                      >
-                        <FileText className="w-5 h-5 text-amber-400" />
-                        <div>
-                          <div className="text-xs font-bold">NEFT / RTGS</div>
-                          <div className="text-[10px] text-slate-400">Direct Foundation A/C</div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 space-y-3">
-                    {paymentMethod === 'upi' && (
-                      <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                        <div className="w-24 h-24 bg-white p-2 rounded-xl shrink-0 flex items-center justify-center">
-                          <QrCode className="w-20 h-20 text-slate-900" />
-                        </div>
-                        <div className="space-y-1">
-                          <div className="text-xs font-bold text-white">Scan &amp; Pay via Any UPI App</div>
-                          <div className="text-[11px] text-slate-400">
-                            VPA: <code className="bg-slate-900 px-1.5 py-0.5 rounded text-amber-300">vusf@icici</code>
-                          </div>
-                          <div className="text-[11px] text-emerald-400 font-semibold">
-                            Instant QR Confirmation &bull; Zero Surcharge
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {paymentMethod === 'card' && (
-                      <div className="space-y-2 text-xs">
+                {/* Form Body */}
+                <div className="p-7 pt-5 overflow-y-auto flex-1">
+                  <form onSubmit={handleProceedToPayment} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Row 1: Name & Mobile */}
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Full Name *
+                        </label>
                         <input
                           type="text"
-                          placeholder="Card Number (0000 0000 0000 0000)"
-                          className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none"
+                          required
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          placeholder="e.g. Rahul Gaikwad"
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
                         />
-                        <div className="grid grid-cols-2 gap-2">
-                          <input
-                            type="text"
-                            placeholder="MM / YY"
-                            className="px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none"
-                          />
-                          <input
-                            type="password"
-                            placeholder="CVV"
-                            className="px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none"
-                          />
-                        </div>
+                        {formErrors.fullName && <p className="text-[11px] text-red-500 mt-1">{formErrors.fullName}</p>}
                       </div>
-                    )}
 
-                    {paymentMethod === 'netbanking' && (
-                      <div className="text-xs space-y-2">
-                        <select className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none">
-                          <option>State Bank of India (SBI)</option>
-                          <option>HDFC Bank</option>
-                          <option>ICICI Bank</option>
-                          <option>Axis Bank</option>
-                          <option>Bank of Baroda</option>
-                          <option>Kotak Mahindra Bank</option>
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Mobile Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          value={formData.mobileNumber}
+                          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                          placeholder="10-digit mobile number"
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                        />
+                        {formErrors.mobileNumber && <p className="text-[11px] text-red-500 mt-1">{formErrors.mobileNumber}</p>}
+                      </div>
+
+                      {/* Row 2: Email & Age */}
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.emailAddress}
+                          onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
+                          placeholder="name@gmail.com"
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                        />
+                        {formErrors.emailAddress && <p className="text-[11px] text-red-500 mt-1">{formErrors.emailAddress}</p>}
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Age *
+                        </label>
+                        <input
+                          type="number"
+                          min="16"
+                          max="100"
+                          required
+                          value={formData.age}
+                          onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                          placeholder="e.g. 28"
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                        />
+                        {formErrors.age && <p className="text-[11px] text-red-500 mt-1">{formErrors.age}</p>}
+                      </div>
+
+                      {/* Row 3: Occupation & Do you currently have a business */}
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Occupation *
+                        </label>
+                        <select
+                          value={formData.occupation}
+                          onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                        >
+                          <option value="Student">Student</option>
+                          <option value="Working Professional">Working Professional</option>
+                          <option value="Entrepreneur">Entrepreneur</option>
+                          <option value="Homemaker">Homemaker</option>
+                          <option value="Farmer">Farmer</option>
+                          <option value="Other">Other</option>
                         </select>
                       </div>
-                    )}
 
-                    {paymentMethod === 'neft' && (
-                      <div className="text-xs text-slate-300 space-y-1 bg-slate-900/60 p-3 rounded-lg">
-                        <div><strong>Account:</strong> Vishwa Udyam Sahayta Foundation</div>
-                        <div><strong>Bank:</strong> ICICI Bank, Vashi Branch</div>
-                        <div><strong>IFSC:</strong> ICIC0000151</div>
-                        <div><strong>A/C No:</strong> 015105009874</div>
+                      <div>
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          Do you currently have a business? *
+                        </label>
+                        <select
+                          value={formData.hasBusiness}
+                          onChange={(e) => setFormData({ ...formData, hasBusiness: e.target.value })}
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                        >
+                          <option value="Planning to start">Planning to start</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+
+                      {/* Row 4: What do you expect from this program? (Textarea) */}
+                      <div className="sm:col-span-2">
+                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                          What do you expect from this program? *
+                        </label>
+                        <textarea
+                          rows={3}
+                          required
+                          value={formData.expectations}
+                          onChange={(e) => setFormData({ ...formData, expectations: e.target.value })}
+                          placeholder="Share what you hope to learn or achieve from this program..."
+                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all resize-none"
+                        />
+                        {formErrors.expectations && <p className="text-[11px] text-red-500 mt-1">{formErrors.expectations}</p>}
+                      </div>
+                    </div>
+
+                    {apiError && (
+                      <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs leading-relaxed flex items-start gap-2">
+                        <span className="font-bold text-red-800 shrink-0">Notice:</span>
+                        <span>{apiError}</span>
                       </div>
                     )}
-                  </div>
 
-                  <button
-                    type="button"
-                    onClick={handleCompletePayment}
-                    disabled={isProcessingPayment}
-                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-base py-4 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-                  >
-                    {isProcessingPayment ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Securing Transaction &amp; Issuing Pass...</span>
-                      </div>
-                    ) : (
-                      <>
-                        <Lock className="w-4 h-4" />
-                        <span>PAY ₹{totalPayable.toLocaleString('en-IN')} SECURELY NOW</span>
-                      </>
-                    )}
-                  </button>
-
-                  <div className="text-[10px] text-center text-slate-500 flex items-center justify-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>256-Bit SSL Encrypted &bull; Section 8 Non-Profit registered with the Ministry of Corporate Affairs &bull; ISO 9001:2015</span>
-                  </div>
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={isProcessingPayment}
+                        className="w-full py-3.5 px-6 rounded-lg bg-[#d4af37] hover:bg-[#c39e2b] text-[#083344] font-bold text-sm tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                      >
+                        {isProcessingPayment ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-[#083344] border-t-transparent rounded-full animate-spin" />
+                            <span>Connecting to Payment Gateway...</span>
+                          </div>
+                        ) : (
+                          <span>PROCEED TO PAYMENT →</span>
+                        )}
+                      </button>
+                    </div>
+                  </form>
                 </div>
-              )}
-
-              {checkoutStep === 'success' && (
-                <div className="space-y-6 text-center py-4">
-                  <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto animate-bounce">
-                    <CheckCheck className="w-8 h-8" />
-                  </div>
-
-                  <div className="space-y-1">
-                    <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                      REGISTRATION CONFIRMED &bull; PASS ISSUED
-                    </div>
-                    <h3 className="text-2xl font-black text-white">Welcome, {formData.fullName}!</h3>
-                    <p className="text-xs text-slate-300 font-light max-w-md mx-auto">
-                      Your delegate pass and official GST Tax Invoice have been confirmed and sent to{' '}
-                      <strong className="text-amber-300">{formData.emailAddress}</strong>.
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-[#0c1c33] to-[#16233b] border-2 border-orange-500/50 p-6 rounded-3xl text-left space-y-4 max-w-md mx-auto shadow-2xl relative">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <div className="text-[10px] uppercase font-bold text-amber-400">OFFICIAL WORKSHOP PASS</div>
-                        <h4 className="text-base font-extrabold text-white">SC/ST Entrepreneurship 1-Day Program</h4>
-                      </div>
-                      <div className="w-14 h-14 bg-white p-1 rounded-xl shrink-0 flex items-center justify-center shadow-md">
-                        <QrCode className="w-12 h-12 text-slate-950" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 text-xs border-t border-slate-700/80 pt-3">
-                      <div>
-                        <div className="text-[10px] text-slate-400">Participant Name:</div>
-                        <div className="font-bold text-white">{formData.fullName}</div>
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-400">Venture / Sector:</div>
-                        <div className="font-bold text-white">{formData.businessName}</div>
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-400">Pass Type:</div>
-                        <div className="font-bold text-amber-300">{currentPass.name}</div>
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-400">Pass ID:</div>
-                        <div className="font-bold text-cyan-300">{confirmedOrderId}</div>
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-400">Date &amp; Venue:</div>
-                        <div className="font-bold text-white">24 Oct 2026 • Pillai University</div>
-                      </div>
-                      <div>
-                        <div className="text-[10px] text-slate-400">Amount Paid:</div>
-                        <div className="font-bold text-emerald-400">₹{totalPayable.toLocaleString('en-IN')} (Incl. GST)</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                    <button
-                      onClick={() => window.print()}
-                      className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-5 py-3 rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <Printer className="w-4 h-4 text-slate-300" />
-                      <span>Print Official Pass</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        alert(`GST Tax Invoice ${confirmedOrderId}-INV generated. A copy has been dispatched to ${formData.emailAddress}`);
-                      }}
-                      className="w-full sm:w-auto bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Download Tax Invoice</span>
-                    </button>
-
-                    <button
-                      onClick={() => setIsCheckoutOpen(false)}
-                      className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-bold px-5 py-3 rounded-xl transition-colors cursor-pointer"
-                    >
-                      Close Window
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </div>
       )}
