@@ -173,11 +173,12 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
       };
 
       // 2. Call backend POST /event/register-user
-      const backendBase = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+      const backendBase = (
+        import.meta.env.VITE_BACKEND_URL || 'https://vusfback.vercel.app'
+      ).replace(/\/+$/, '');
       const registerEndpoints = [
-        ...(backendBase ? [`${backendBase}/event/register-user`] : []),
+        `${backendBase}/event/register-user`,
         '/event/register-user',
-        'http://127.0.0.1:8000/event/register-user',
       ];
 
       let res: Response | null = null;
@@ -205,7 +206,7 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
       }
 
       if (!res) {
-        throw new Error(lastErr?.message || `Unable to reach registration server (${backendBase || 'http://127.0.0.1:8000'}). Please check backend connection.`);
+        throw new Error(lastErr?.message || `Unable to reach registration server (${backendBase}). Please check backend connection.`);
       }
 
       if (!res.ok) {
@@ -290,9 +291,8 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
             };
 
             const verifyEndpoints = [
-              ...(backendBase ? [`${backendBase}/payment/verify-payment`] : []),
+              `${backendBase}/payment/verify-payment`,
               '/payment/verify-payment',
-              'http://127.0.0.1:8000/payment/verify-payment',
             ];
 
             let vres: Response | null = null;
@@ -352,7 +352,9 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
 
     } catch (err: any) {
       console.error('Registration error:', err);
-      const backendHint = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '') || 'http://127.0.0.1:8000';
+      const backendHint = (
+        import.meta.env.VITE_BACKEND_URL || 'https://vusfback.vercel.app'
+      ).replace(/\/+$/, '');
       setApiError(err.message || `Failed to connect to backend at ${backendHint}. Please ensure the backend server is running.`);
       setIsProcessingPayment(false);
     }

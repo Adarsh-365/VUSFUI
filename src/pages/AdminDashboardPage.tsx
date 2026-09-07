@@ -107,13 +107,14 @@ export const AdminDashboardPage: React.FC = () => {
     setIsSubmitting(true);
     setLoginError(null);
 
-    const backendBase = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+    const backendBase = (
+      import.meta.env.VITE_BACKEND_URL || 'https://vusfback.vercel.app'
+    ).replace(/\/+$/, '');
     const loginEndpoints = [
-      ...(backendBase ? [`${backendBase}/auth/login`, `${backendBase}/login`] : []),
+      `${backendBase}/auth/login`,
+      `${backendBase}/login`,
       '/auth/login',
       '/login',
-      'http://127.0.0.1:8000/auth/login',
-      'http://127.0.0.1:8000/login',
     ];
 
     const payload = {
@@ -213,13 +214,14 @@ export const AdminDashboardPage: React.FC = () => {
   // Fetch all users from API: /event/get-all-users
   const fetchAllUsers = async () => {
     setIsRefreshing(true);
-    const backendBase = (import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+    const backendBase = (
+      import.meta.env.VITE_BACKEND_URL || 'https://vusfback.vercel.app'
+    ).replace(/\/+$/, '');
     const endpoints = [
-      ...(backendBase ? [`${backendBase}/event/get-all-users`, `${backendBase}/get-all-users`] : []),
+      `${backendBase}/event/get-all-users`,
+      `${backendBase}/get-all-users`,
       '/event/get-all-users',
       '/get-all-users',
-      'http://127.0.0.1:8000/event/get-all-users',
-      'http://127.0.0.1:8000/get-all-users',
     ];
 
     const token = sessionStorage.getItem('vusf_admin_token');
