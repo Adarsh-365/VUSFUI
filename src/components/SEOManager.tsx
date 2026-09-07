@@ -8,7 +8,7 @@ interface MetaData {
   canonical?: string;
 }
 
-const BASE_URL = 'https://namastevishwaudyam.org';
+const BASE_URL = 'https://www.namasteindiagroup.org';
 
 const ALIAS_CANONICAL_MAP: Record<string, string> = {
   '/service': '/services',

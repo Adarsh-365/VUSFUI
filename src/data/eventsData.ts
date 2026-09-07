@@ -1476,7 +1476,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       {
         number: '06',
         title: 'Permanent Hall of Fame Listing',
-        description: 'Enjoy permanent induction into the VUSF National MSME Hall of Fame with a dedicated winner profile page on namastevishwaudyam.org.',
+        description: 'Enjoy permanent induction into the VUSF National MSME Hall of Fame with a dedicated winner profile page on www.namasteindiagroup.org.',
         category: 'Perpetual Showcase',
       },
     ],

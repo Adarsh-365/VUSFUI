@@ -79,10 +79,10 @@ export const SocialConnect: React.FC = () => {
             </a>
             {/* Website / Portal */}
             <a
-              href="https://namastevishwaudyam.org"
+              href="https://www.namasteindiagroup.org"
               target="_blank"
               rel="noreferrer"
-              aria-label="Namaste Vishwa Udyam Portal"
+              aria-label="Namaste India Group Portal"
               className="w-10 h-10 rounded-sm bg-[#c2410c] hover:bg-[#9a3412] text-white font-black flex items-center justify-center text-xs shadow-xs hover:scale-105 transition-transform"
             >
               VUSF

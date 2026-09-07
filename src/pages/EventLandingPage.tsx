@@ -1049,8 +1049,8 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                     </a>
                   </div>
                   <div>
-                    <a href="https://www.namastevishwaudyam.org" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white hover:underline">
-                      Www.namastevishwaudyam.org
+                    <a href="https://www.namasteindiagroup.org" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white hover:underline">
+                      www.namasteindiagroup.org
                     </a>
                   </div>
                   <div>

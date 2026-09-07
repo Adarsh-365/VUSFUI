@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://namastevishwaudyam.org/sitemap.xml
+Sitemap: https://www.namasteindiagroup.org/sitemap.xml

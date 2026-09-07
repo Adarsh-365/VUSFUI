@@ -16,7 +16,7 @@ export const FOUNDATION_INFO = {
   cin: 'U88900MH2025NPL437820',
   registeredYear: '2021',
   incorporationDate: 'January 9, 2025',
-  website: 'https://namastevishwaudyam.org',
+  website: 'https://www.namasteindiagroup.org',
   email: 'info@namastevishwaudyam.org',
   phone: '+91-8169080686',
   address: 'Office No. 123, 1st Floor, Mahaveer Market, Plot No. 1, Sector 18, Vashi, Navi Mumbai - 400703, Maharashtra, India',

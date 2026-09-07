@@ -94,10 +94,10 @@ export const TopBar: React.FC<TopBarProps> = ({ onContactClick }) => {
           <div className="flex items-center gap-1.5 pl-1 border-l border-amber-500/50">
             {/* Website Icon */}
             <a
-              href="https://namastevishwaudyam.org"
+              href="https://www.namasteindiagroup.org"
               target="_blank"
               rel="noreferrer"
-              aria-label="Namaste Vishwa Udyam Website"
+              aria-label="Namaste India Group Website"
               className="w-5 h-5 flex items-center justify-center hover:opacity-80 transition-opacity bg-blue-600 rounded-xs text-[10px] font-bold text-white"
             >
               🌐
