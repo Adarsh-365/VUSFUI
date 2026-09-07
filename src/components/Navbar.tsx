@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Home, Search, ChevronDown, Menu, X, Globe, Globe2, Sparkles, LayoutGrid } from 'lucide-react';
 import logoImg from '../images/logo.png';
@@ -22,8 +22,52 @@ export const Navbar: React.FC<NavbarProps> = ({
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const mobileMenuOpenRef = useRef(mobileMenuOpen);
+  useEffect(() => {
+    mobileMenuOpenRef.current = mobileMenuOpen;
+  }, [mobileMenuOpen]);
+
+  // Handle auto-hide on scroll down and auto-show on scroll up
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      // If mobile menu is open, keep navbar visible
+      if (mobileMenuOpenRef.current) {
+        setIsVisible(true);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+
+      // Always show near top of the page
+      if (currentScrollY <= 60) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY + 6) {
+        // Scrolling DOWN -> hide navbar
+        setIsVisible(false);
+        setActiveDropdown(null);
+      } else if (currentScrollY < lastScrollY - 6) {
+        // Scrolling UP -> show navbar
+        setIsVisible(true);
+      }
+
+      lastScrollY = Math.max(0, currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Ensure navbar is visible when route changes
+  useEffect(() => {
+    setIsVisible(true);
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const toggleMobileSubmenu = (id: string) => {
     setMobileExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -169,7 +213,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="w-full bg-white shadow-xs sticky top-0 z-40">
+    <header
+      className={`w-full bg-white shadow-xs sticky top-0 z-40 transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       {/* Top Header Row with Official Branding & Logo */}
       <div className="max-w-[1440px] mx-auto px-3 sm:px-6 py-2 flex items-center justify-between gap-2 sm:gap-4">
         {/* Main Logo & Title */}
