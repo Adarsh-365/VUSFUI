@@ -45,49 +45,6 @@ export interface EventRegistration {
   event_name?: string;
 }
 
-const INITIAL_REGISTRATIONS: EventRegistration[] = [
-  {
-    id: '3ce1ad7b-b178-4f12-a13f-2f17fb325b83',
-    name: 'gajanan',
-    mob: '7777777777',
-    email: 'tadarsh2701@gmail.com',
-    age: 78,
-    occupation: 'Entrepreneur',
-    what_do_you_expect: 'dfhhy',
-    order_id: 'order_TYKjnxzSbWdk2F',
-    pass_type: 'Delegate Pass',
-    amount: 3540.0,
-    currency: 'INR',
-    timestamp: '2026-09-05 16:38:25.082358+00',
-    key: 'rzp_live_TNfc6pQ3kOm87o',
-    status: 'paid',
-    signature: '10d3948d24c20c9cb59a336bccceec009483adccfa04bd542029d88aa5421f16',
-    update_at: '2026-09-05 11:09:00.58968+00',
-    payment_id: 'pay_TYKk6zpeC0v7La',
-    event_name: 'Women Entrepreneurship Growth Program',
-  },
-  {
-    id: '71c657ae-04f2-418c-8b4f-f3a897ae4bd6',
-    name: 'gajanan',
-    mob: '7777777777',
-    email: 'tadarsh2701@gmail.com',
-    age: 78,
-    occupation: 'Entrepreneur',
-    what_do_you_expect: 'dfhhy',
-    order_id: 'order_TYLR380uG4B0j0',
-    pass_type: 'vip_pass',
-    amount: 100.0,
-    currency: 'INR',
-    timestamp: '2026-09-05 16:38:25.082358+00',
-    key: 'rzp_live_TNfc6pQ3kOm87o',
-    status: 'paid',
-    signature: '5d97e39c1b7f7f31e0a51cf407fe36c162987692cd3254c0be487311681c25b6',
-    update_at: '2026-09-05 11:50:07.125158+00',
-    payment_id: 'pay_TYLRRYAsOgxLdD',
-    event_name: 'Women Entrepreneurship Growth Program',
-  },
-];
-
 export const AdminDashboardPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -172,7 +129,9 @@ export const AdminDashboardPage: React.FC = () => {
   const handleLogout = () => {
     sessionStorage.removeItem('vusf_admin_auth');
     sessionStorage.removeItem('vusf_admin_token');
+    localStorage.removeItem('vusf_event_registrations');
     setIsAuthenticated(false);
+    setRegistrations([]);
     setLoginPassword('');
     setLoginError(null);
   };
@@ -182,12 +141,12 @@ export const AdminDashboardPage: React.FC = () => {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed)) return parsed;
       } catch (e) {
         console.error('Failed to parse saved registrations:', e);
       }
     }
-    return INITIAL_REGISTRATIONS;
+    return [];
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -279,12 +238,12 @@ export const AdminDashboardPage: React.FC = () => {
             items = data.result;
           }
 
-          if (items) {
+          if (items !== null) {
             successfulEndpoint = ep;
             break;
           }
         }
-      } catch {
+      } catch (e) {
         // try next endpoint
       }
     }
@@ -298,7 +257,7 @@ export const AdminDashboardPage: React.FC = () => {
       return;
     }
 
-    if (items && items.length > 0) {
+    if (items !== null) {
       const parsed: EventRegistration[] = items.map((r: any, idx: number) => ({
         id: r.id || `rec-${idx}`,
         name: r.name || 'Anonymous',
@@ -326,12 +285,12 @@ export const AdminDashboardPage: React.FC = () => {
         localStorage.setItem('vusf_event_registrations', JSON.stringify(parsed));
       } catch (e) {}
     } else {
-      // If API returned nothing or was unreachable, fallback to localStorage or initial
+      // Only fallback to localStorage if network completely failed to reach any endpoint
       const saved = localStorage.getItem('vusf_event_registrations');
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) {
+          if (Array.isArray(parsed)) {
             setRegistrations(parsed);
           }
         } catch (e) {}
