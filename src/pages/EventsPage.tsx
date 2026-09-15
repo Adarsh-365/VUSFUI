@@ -128,7 +128,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Unlocking overseas trade corridors for Pune’s engineering, automotive ancillary, electronics, and agro-processing clusters with cross-border trade facilitation and buyer linkages.',
       highlight: 'Engineering & Auto-Ancillary B2B Meet',
       priceSnippet: 'Passes from ₹2,499 + 18% GST',
-      hasDetailPage: false,
+      hasDetailPage: true,
     },
     {
       id: 'nashik-export-summit',
@@ -142,7 +142,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
       desc: 'Catalyzing export opportunities for Nashik’s grape, horticulture, agro-commodities, precision engineering, and defense manufacturing clusters with global buyers and cold-chain logistics.',
       highlight: 'Agro-Horticulture & Engineering Corridors',
       priceSnippet: 'Passes from ₹1,999 + 18% GST',
-      hasDetailPage: false,
+      hasDetailPage: true,
     },
     {
       id: 'sc-st-entrepreneur-program',

@@ -50,8 +50,6 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
   useEffect(() => {
     const noPageSlugs = [
       'msme-excellence-awards',
-      'pune-export-summit',
-      'nashik-export-summit',
       'sc-st-entrepreneur-program',
       'women-business-success-program',
       'sambhaji-nagar-export-summit',

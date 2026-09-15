@@ -174,7 +174,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     {
       id: 'pune-export-summit',
       slug: 'pune-export-summit',
-      eventUrl: '/events',
+      eventUrl: '/events/pune-export-summit',
       badge: 'WESTERN TRADE CORRIDOR',
       title: 'Pune Export Summit (28 Nov 2026)',
       subtitle:
@@ -188,7 +188,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     {
       id: 'nashik-export-summit',
       slug: 'nashik-export-summit',
-      eventUrl: '/events',
+      eventUrl: '/events/nashik-export-summit',
       badge: 'AGRO & INDUSTRIAL CORRIDOR',
       title: 'Nashik Export Summit (12 Dec 2026)',
       subtitle:
