@@ -1269,16 +1269,26 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
               >
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-4">
-                    <img
-                      src={sp.image}
-                      alt={sp.name}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = isMagazine
-                          ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
-                          : '/members/pragati.jpeg';
-                      }}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-amber-500/60 shadow-md"
-                    />
+                    {sp.image ? (
+                      <img
+                        src={sp.image}
+                        alt={sp.name}
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                        }}
+                        className="w-16 h-16 rounded-full object-cover border-2 border-amber-500/60 shadow-md shrink-0"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-500/40 flex items-center justify-center text-amber-300 font-black text-lg shrink-0 shadow-md">
+                        {sp.name
+                          .replace(/^Shri\s+/i, '')
+                          .split(' ')
+                          .map((n) => n[0])
+                          .filter(Boolean)
+                          .slice(0, 2)
+                          .join('')}
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-lg font-bold text-white">{sp.name}</h3>
                       <div className="text-xs text-amber-400 font-semibold">{sp.designation}</div>
@@ -1298,8 +1308,8 @@ export const EventLandingPage: React.FC<EventLandingPageProps> = ({ onMemberClic
                 </div>
 
                 <div className="p-4 bg-slate-950/60 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-semibold text-slate-300">{isMagazine ? 'Editorial Board' : 'VUSF Executive Directorate'}</span>
-                  <span className="text-amber-400 font-bold">{isMagazine ? 'Chief Editor' : 'Keynote Speaker'}</span>
+                  <span className="font-semibold text-slate-300 truncate max-w-[200px]" title={sp.organization}>{isMagazine ? 'Editorial Board' : sp.organization || 'Expert Speaker'}</span>
+                  <span className="text-amber-400 font-bold shrink-0">{isMagazine ? 'Chief Editor' : 'Keynote Speaker'}</span>
                 </div>
               </div>
             ))}

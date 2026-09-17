@@ -51,6 +51,7 @@ const EventsPage = lazy(() => import('./pages/EventsPage').then(m => ({ default:
 const EventLandingPage = lazy(() => import('./pages/EventLandingPage').then(m => ({ default: m.EventLandingPage })));
 const WomenEntrepreneur1DayPage = lazy(() => import('./pages/events/WomenEntrepreneur1DayPage').then(m => ({ default: m.WomenEntrepreneur1DayPage })));
 const ScStEntrepreneurship1DayPage = lazy(() => import('./pages/events/ScStEntrepreneurship1DayPage').then(m => ({ default: m.ScStEntrepreneurship1DayPage })));
+const NaviMumbaiExportSummitPage = lazy(() => import('./pages/events/NaviMumbaiExportSummitPage').then(m => ({ default: m.NaviMumbaiExportSummitPage })));
 const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage').then(m => ({ default: m.BlogDetailPage })));
 
 // CSR Initiative & Career Pages
@@ -515,6 +516,22 @@ function MainLayout() {
             path="/event/sc-st-startup-program"
             element={
               <ScStEntrepreneurship1DayPage
+                onMemberClick={handleMemberClick}
+              />
+            }
+          />
+          <Route
+            path="/events/navi-mumbai-export-summit"
+            element={
+              <NaviMumbaiExportSummitPage
+                onMemberClick={handleMemberClick}
+              />
+            }
+          />
+          <Route
+            path="/event/navi-mumbai-export-summit"
+            element={
+              <NaviMumbaiExportSummitPage
                 onMemberClick={handleMemberClick}
               />
             }

@@ -165,8 +165,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       title: 'Navi Mumbai Export Summit 2026',
       subtitle:
         'Connecting MMR and Konkan manufacturers, agro-producers, and industrial exporters with direct international buyers, shipping liners, customs clearance specialists, and trade facilitation councils.',
-      stat: 'Navi Mumbai • International B2B Buyer-Seller Conclave 2026',
-      location: 'Vashi, Navi Mumbai',
+      stat: 'Official Schedule • 31 Oct 2026 • Organizer: Namaste India Group',
+      location: 'Fortune Select Exotica, Navi Mumbai (ITC Hotel)',
       image: '/banner/navi-mumbai-export-summit.jpeg',
       category: 'Export Summit',
       actionText: 'Register for Navi Mumbai Summit',
