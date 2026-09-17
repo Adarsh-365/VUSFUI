@@ -153,6 +153,13 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
         resolve(true);
         return;
       }
+      const existingScript = document.querySelector('script[src*="checkout.razorpay.com"]');
+      if (existingScript) {
+        existingScript.addEventListener('load', () => resolve(true));
+        existingScript.addEventListener('error', () => resolve(false));
+        if ((window as any).Razorpay) resolve(true);
+        return;
+      }
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.onload = () => resolve(true);
@@ -163,6 +170,7 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
 
   const handleProceedToPayment = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isProcessingPayment) return;
     setApiError(null);
     if (!validateForm()) return;
 
@@ -254,13 +262,23 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
         throw new Error('Razorpay Key missing. Please check payment gateway configuration.');
       }
 
+      // Razorpay expects amount in paise matching the backend order exactly
+      const rawAmount = orderData.amount || totalPayable;
+      const razorpayAmount = rawAmount < 10000 ? rawAmount * 100 : rawAmount;
+
+      // Ensure logo image is a valid HTTPS URL to avoid iframe Mixed Content reloads
+      const logoUrl =
+        window.location.protocol === 'https:'
+          ? `${window.location.origin}/banner/navi-mumbai-export-summit.jpeg`
+          : 'https://www.namasteindiagroup.org/img/vlogo.png';
+
       const options = {
         key: razorpayKey,
-        amount: totalPayable * 100,
-        currency: 'INR',
+        amount: razorpayAmount,
+        currency: orderData.currency || 'INR',
         name: 'Navi Mumbai Export Summit 2026',
         description: `${currentPass.name} - Fortune Select Exotica, Navi Mumbai / ITC Hotel`,
-        image: '/banner/navi-mumbai-export-summit.jpeg',
+        image: logoUrl,
         order_id: razorpayOrderId,
         prefill: {
           name: formData.fullName,
