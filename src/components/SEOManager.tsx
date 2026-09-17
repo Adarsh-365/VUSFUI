@@ -232,7 +232,7 @@ export const SEOManager: React.FC = () => {
         meta = {
           title: `${formatted} | Vishwa Udyam Industry Insights`,
           description: `In-depth analysis and policy updates on Indian MSME competitiveness, export strategies, and trade corridor developments from Vishwa Udyam Foundation.`,
-          image: '/banner/MAGZINE.jpeg',
+          image: '/banner/magazine.jpeg',
         };
       } else {
         meta = {

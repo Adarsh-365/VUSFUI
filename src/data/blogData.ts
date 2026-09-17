@@ -218,7 +218,7 @@ export const BLOGS_DATA: BlogPost[] = [
     readTime: '6 min read',
     author: 'Namaste China Bilateral Trade Directorate',
     authorRole: 'International Sourcing & OEM Relations',
-    image: '/banner/Namast china.jpeg',
+    image: '/banner/namaste-china.jpeg',
     externalUrl: 'https://namastechina.org',
     summary:
       'Introducing Namaste China (visit namastechina.org), an exclusive international sourcing desk and delegation platform connecting Indian manufacturers, importers, and MSMEs directly with verified Chinese factories, OEM suppliers, and the Canton Fair.',
