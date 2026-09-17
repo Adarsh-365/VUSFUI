@@ -45,12 +45,10 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
     fullName: '',
     mobileNumber: '',
     emailAddress: '',
-    companyName: '',
-    city: 'Navi Mumbai',
-    state: 'Maharashtra',
-    turnover: '₹50 lakh – ₹2 crore',
-    businessSector: 'Manufacturing & Engineering',
-    expectations: 'Connect with overseas buyers and customs specialists',
+    age: '',
+    occupation: 'Entrepreneur',
+    hasBusiness: 'Planning to start',
+    expectations: '',
     quantity: 1,
   });
 
@@ -141,7 +139,9 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
       errors.mobileNumber = 'Valid 10-digit mobile number is required';
     if (!formData.emailAddress.trim() || !formData.emailAddress.includes('@'))
       errors.emailAddress = 'Valid email address is required';
-    if (!formData.companyName.trim()) errors.companyName = 'Company / Enterprise name is required';
+    if (!formData.age.trim()) errors.age = 'Age is required';
+    if (!formData.expectations.trim())
+      errors.expectations = 'Please share what you expect from this program';
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -173,12 +173,10 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
         name: formData.fullName,
         mob: formData.mobileNumber,
         email: formData.emailAddress,
-        company: formData.companyName,
-        city: formData.city,
-        state: formData.state,
-        turnover: formData.turnover,
-        sector: formData.businessSector,
-        expectations: formData.expectations,
+        age: formData.age,
+        occupation: formData.occupation,
+        do_you_currently_have_a_business: formData.hasBusiness,
+        what_do_you_expect: formData.expectations,
         pass_type: selectedPassTier,
         Event_name: 'Navi Mumbai Export Summit 2026',
         event_name: 'Navi Mumbai Export Summit 2026',
@@ -268,6 +266,13 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
           name: formData.fullName,
           email: formData.emailAddress,
           contact: formData.mobileNumber,
+        },
+        notes: {
+          age: formData.age,
+          occupation: formData.occupation,
+          has_business: formData.hasBusiness,
+          expectations: formData.expectations,
+          pass: currentPass.name,
         },
         theme: {
           color: '#ea580c',
@@ -1311,153 +1316,199 @@ export const NaviMumbaiExportSummitPage: React.FC<NaviMumbaiExportSummitPageProp
 
       {/* 9. CHECKOUT MODAL (RAZORPAY INTEGRATION) */}
       {isCheckoutOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
-          <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl max-w-lg w-full p-4 sm:p-6 shadow-2xl relative my-auto max-h-[92vh] flex flex-col overflow-hidden">
             <button
               onClick={() => setIsCheckoutOpen(false)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1 rounded-lg bg-slate-100 cursor-pointer"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors z-10 cursor-pointer"
+              aria-label="Close"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             {checkoutStep === 'details' && (
-              <div className="space-y-5">
-                <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-orange-700 bg-orange-100 px-2.5 py-0.5 rounded">
-                    Delegate Registration
-                  </span>
-                  <h3 className="text-xl font-bold text-slate-900 mt-1">
-                    Book {currentPass.name}
+              <div className="flex flex-col flex-1 overflow-hidden">
+                {/* Modal Header */}
+                <div className="pt-1 pb-2.5 sm:pb-3 text-center border-b border-gray-100 shrink-0">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#083344] tracking-tight">
+                    Complete Your Registration
                   </h3>
-                  <p className="text-xs text-slate-500">
-                    Navi Mumbai Export Summit • 31 Oct 2026 • Fortune Select Exotica
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
+                    You have selected:{' '}
+                    <span className="font-bold text-[#083344]">
+                      {currentPass.name} (INR {currentPass.price.toLocaleString('en-IN')})
+                    </span>
                   </p>
                 </div>
 
                 {apiError && (
-                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
-                    {apiError}
+                  <div className="mt-2.5 p-2.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs leading-relaxed flex items-start gap-2 shrink-0">
+                    <span className="font-bold text-red-800 shrink-0">Notice:</span>
+                    <span>{apiError}</span>
                   </div>
                 )}
 
-                <form onSubmit={handleProceedToPayment} className="space-y-3.5">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Ramesh Kulkarni"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full text-xs px-3.5 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-                    />
-                    {formErrors.fullName && (
-                      <span className="text-[11px] text-red-600">{formErrors.fullName}</span>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <form onSubmit={handleProceedToPayment} className="space-y-3 sm:space-y-3.5 pt-2.5 flex-1 overflow-y-auto pr-1">
+                  <div className="space-y-2.5 sm:space-y-3">
+                    {/* Row 1: Full Name */}
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        Mobile Number *
+                      <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                        Full Name *
                       </label>
                       <input
-                        type="tel"
+                        type="text"
                         required
-                        placeholder="e.g. 9820012345"
-                        value={formData.mobileNumber}
-                        onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
+                        placeholder="e.g. Ananya Deshmukh"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
                       />
-                      {formErrors.mobileNumber && (
-                        <span className="text-[11px] text-red-600">{formErrors.mobileNumber}</span>
+                      {formErrors.fullName && (
+                        <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.fullName}</p>
                       )}
                     </div>
 
+                    {/* Row 2: Mobile Number & Age side-by-side on mobile */}
+                    <div className="grid grid-cols-12 gap-2 sm:gap-3">
+                      <div className="col-span-8 sm:col-span-8">
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                          Mobile Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="10-digit mobile number"
+                          value={formData.mobileNumber}
+                          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                        />
+                        {formErrors.mobileNumber && (
+                          <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.mobileNumber}</p>
+                        )}
+                      </div>
+
+                      <div className="col-span-4 sm:col-span-4">
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                          Age *
+                        </label>
+                        <input
+                          type="number"
+                          min="16"
+                          max="100"
+                          required
+                          placeholder="e.g. 28"
+                          value={formData.age}
+                          onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                        />
+                        {formErrors.age && (
+                          <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.age}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Row 3: Email Address */}
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
                         Email Address *
                       </label>
                       <input
                         type="email"
                         required
-                        placeholder="e.g. ramesh@eximcorp.com"
+                        placeholder="name@gmail.com"
                         value={formData.emailAddress}
                         onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
-                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
+                        className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
                       />
                       {formErrors.emailAddress && (
-                        <span className="text-[11px] text-red-600">{formErrors.emailAddress}</span>
+                        <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.emailAddress}</p>
+                      )}
+                    </div>
+
+                    {/* Row 4: Occupation & Business Status side-by-side */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                          Occupation *
+                        </label>
+                        <select
+                          value={formData.occupation}
+                          onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                        >
+                          <option value="Entrepreneur">Entrepreneur</option>
+                          <option value="Working Professional">Working Professional</option>
+                          <option value="Student">Student</option>
+                          <option value="Homemaker">Homemaker</option>
+                          <option value="Farmer">Farmer</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                          Do you currently have a business? *
+                        </label>
+                        <select
+                          value={formData.hasBusiness}
+                          onChange={(e) => setFormData({ ...formData, hasBusiness: e.target.value })}
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                        >
+                          <option value="Planning to start">Planning to start</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Row 5: What do you expect from this program? */}
+                    <div>
+                      <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                        What do you expect from this program? *
+                      </label>
+                      <textarea
+                        rows={2}
+                        required
+                        placeholder="Share what you hope to learn or achieve from this program..."
+                        value={formData.expectations}
+                        onChange={(e) => setFormData({ ...formData, expectations: e.target.value })}
+                        className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all resize-none"
+                      />
+                      {formErrors.expectations && (
+                        <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.expectations}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        Company / Enterprise Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Precision Tools Pvt Ltd"
-                        value={formData.companyName}
-                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-                      />
+                  {/* Compact Pricing Summary */}
+                  <div className="p-2.5 sm:p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] sm:text-xs space-y-1">
+                    <div className="flex justify-between items-center text-slate-600">
+                      <span>Pass: ₹{basePrice.toLocaleString('en-IN')}</span>
+                      <span>GST (18%): ₹{gstAmount.toLocaleString('en-IN')}</span>
                     </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        Industry / Sector
-                      </label>
-                      <select
-                        value={formData.businessSector}
-                        onChange={(e) => setFormData({ ...formData, businessSector: e.target.value })}
-                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none"
-                      >
-                        <option value="Manufacturing & Engineering">Manufacturing &amp; Engineering</option>
-                        <option value="Agro & Food Processing">Agro &amp; Food Processing</option>
-                        <option value="Chemicals & Pharmaceuticals">Chemicals &amp; Pharmaceuticals</option>
-                        <option value="Textiles & Garments">Textiles &amp; Garments</option>
-                        <option value="Logistics & Freight Forwarding">Logistics &amp; Freight Forwarding</option>
-                        <option value="General Trading & Services">General Trading &amp; Services</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Pricing Summary */}
-                  <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1 text-xs">
-                    <div className="flex justify-between text-slate-600">
-                      <span>Pass Fee:</span>
-                      <span className="font-semibold text-slate-800">₹{basePrice.toLocaleString('en-IN')}</span>
-                    </div>
-                    <div className="flex justify-between text-slate-600">
-                      <span>GST (18%):</span>
-                      <span className="font-semibold text-slate-800">₹{gstAmount.toLocaleString('en-IN')}</span>
-                    </div>
-                    <div className="flex justify-between text-slate-900 font-bold text-sm pt-1 border-t border-slate-200">
+                    <div className="flex justify-between items-center text-slate-900 font-bold pt-1 border-t border-slate-200">
                       <span>Total Amount Payable:</span>
-                      <span className="text-orange-600">₹{totalPayable.toLocaleString('en-IN')}</span>
+                      <span className="text-orange-600 font-black text-xs sm:text-sm">₹{totalPayable.toLocaleString('en-IN')}</span>
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isProcessingPayment}
-                    className="w-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black text-sm py-4 rounded-xl shadow-md shadow-orange-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
-                  >
-                    {isProcessingPayment ? (
-                      <span>Connecting Payment Gateway...</span>
-                    ) : (
-                      <>
-                        <span>PROCEED TO PAYMENT (₹{totalPayable.toLocaleString('en-IN')})</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
+                  {/* Submit Button */}
+                  <div className="pt-0.5 pb-1">
+                    <button
+                      type="submit"
+                      disabled={isProcessingPayment}
+                      className="w-full py-2.5 sm:py-3 px-6 rounded-lg bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-xs sm:text-sm tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                    >
+                      {isProcessingPayment ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Connecting to Payment Gateway...</span>
+                        </div>
+                      ) : (
+                        <span>PROCEED TO PAYMENT →</span>
+                      )}
+                    </button>
+                  </div>
                 </form>
               </div>
             )}

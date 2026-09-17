@@ -288,6 +288,8 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
               razorpay_payment_id: paymentResponse.razorpay_payment_id,
               razorpay_order_id: paymentResponse.razorpay_order_id,
               razorpay_signature: paymentResponse.razorpay_signature,
+              email: formData.emailAddress,
+              name: formData.fullName,
             };
 
             const verifyEndpoints = [
@@ -1295,14 +1297,14 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
 
       {/* 11. CHECKOUT MODAL (Delegate ₹3,000 / VIP ₹5,000) */}
       {isCheckoutOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-in fade-in">
-          <div className={`w-full max-w-2xl rounded-[14px] my-6 relative flex flex-col max-h-[92vh] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.18)] transition-all ${checkoutStep === 'details' ? 'bg-white text-slate-800 border border-gray-200' : 'bg-[#0b172a] text-slate-100 border border-slate-700'}`}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-in fade-in">
+          <div className={`w-full max-w-lg rounded-2xl sm:rounded-3xl my-auto relative flex flex-col max-h-[92vh] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.18)] transition-all ${checkoutStep === 'details' ? 'bg-white text-slate-800 border border-gray-200' : 'bg-[#0b172a] text-slate-100 border border-slate-700'}`}>
             
             {checkoutStep === 'success' ? (
-              <div className="p-8 sm:p-12 text-center relative">
+              <div className="p-6 sm:p-10 text-center relative">
                 <button
                   onClick={() => setIsCheckoutOpen(false)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors cursor-pointer"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors cursor-pointer"
                   aria-label="Close"
                 >
                   <X className="w-5 h-5" />
@@ -1334,18 +1336,18 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
                 {/* Close Button */}
                 <button
                   onClick={() => setIsCheckoutOpen(false)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors z-10 cursor-pointer"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors z-10 cursor-pointer"
                   aria-label="Close"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
                 {/* Modal Header */}
-                <div className="pt-7 px-8 pb-3 text-center border-b border-gray-100">
-                  <h3 className="text-2xl font-bold text-[#083344] tracking-tight">
+                <div className="pt-4 sm:pt-6 px-4 sm:px-6 pb-2.5 sm:pb-3 text-center border-b border-gray-100 shrink-0">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#083344] tracking-tight">
                     Complete Your Registration
                   </h3>
-                  <p className="text-sm text-slate-600 mt-2 font-normal">
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
                     You have selected:{' '}
                     <span className="font-bold text-[#083344]">
                       {currentPass.name} (INR {currentPass.price.toLocaleString('en-IN')})
@@ -1354,12 +1356,12 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
                 </div>
 
                 {/* Form Body */}
-                <div className="p-7 pt-5 overflow-y-auto flex-1">
-                  <form onSubmit={handleProceedToPayment} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Row 1: Name & Mobile */}
+                <div className="p-4 sm:p-6 pt-3 overflow-y-auto flex-1">
+                  <form onSubmit={handleProceedToPayment} className="space-y-3 sm:space-y-3.5">
+                    <div className="space-y-2.5 sm:space-y-3">
+                      {/* Row 1: Name */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
                           Full Name *
                         </label>
                         <input
@@ -1368,29 +1370,49 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
                           value={formData.fullName}
                           onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                           placeholder="e.g. Ananya Deshmukh"
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
                         />
-                        {formErrors.fullName && <p className="text-[11px] text-red-500 mt-1">{formErrors.fullName}</p>}
+                        {formErrors.fullName && <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.fullName}</p>}
                       </div>
 
-                      <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
-                          Mobile Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={formData.mobileNumber}
-                          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
-                          placeholder="10-digit mobile number"
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
-                        />
-                        {formErrors.mobileNumber && <p className="text-[11px] text-red-500 mt-1">{formErrors.mobileNumber}</p>}
+                      {/* Row 2: Mobile Number & Age side-by-side on mobile */}
+                      <div className="grid grid-cols-12 gap-2 sm:gap-3">
+                        <div className="col-span-8 sm:col-span-8">
+                          <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                            Mobile Number *
+                          </label>
+                          <input
+                            type="tel"
+                            required
+                            value={formData.mobileNumber}
+                            onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                            placeholder="10-digit mobile number"
+                            className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                          />
+                          {formErrors.mobileNumber && <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.mobileNumber}</p>}
+                        </div>
+
+                        <div className="col-span-4 sm:col-span-4">
+                          <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                            Age *
+                          </label>
+                          <input
+                            type="number"
+                            min="16"
+                            max="100"
+                            required
+                            value={formData.age}
+                            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                            placeholder="e.g. 28"
+                            className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                          />
+                          {formErrors.age && <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.age}</p>}
+                        </div>
                       </div>
 
-                      {/* Row 2: Email & Age */}
+                      {/* Row 3: Email Address */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
                           Email Address *
                         </label>
                         <input
@@ -1399,91 +1421,76 @@ export const WomenEntrepreneur1DayPage: React.FC<WomenEntrepreneur1DayPageProps>
                           value={formData.emailAddress}
                           onChange={(e) => setFormData({ ...formData, emailAddress: e.target.value })}
                           placeholder="name@gmail.com"
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
                         />
-                        {formErrors.emailAddress && <p className="text-[11px] text-red-500 mt-1">{formErrors.emailAddress}</p>}
+                        {formErrors.emailAddress && <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.emailAddress}</p>}
                       </div>
 
+                      {/* Row 4: Occupation & Business Status */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                        <div>
+                          <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                            Occupation *
+                          </label>
+                          <select
+                            value={formData.occupation}
+                            onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
+                            className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                          >
+                            <option value="Entrepreneur">Entrepreneur</option>
+                            <option value="Working Professional">Working Professional</option>
+                            <option value="Student">Student</option>
+                            <option value="Homemaker">Homemaker</option>
+                            <option value="Farmer">Farmer</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
+                            Do you currently have a business? *
+                          </label>
+                          <select
+                            value={formData.hasBusiness}
+                            onChange={(e) => setFormData({ ...formData, hasBusiness: e.target.value })}
+                            className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
+                          >
+                            <option value="Planning to start">Planning to start</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Row 5: What do you expect from this program? */}
                       <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
-                          Age *
-                        </label>
-                        <input
-                          type="number"
-                          min="16"
-                          max="100"
-                          required
-                          value={formData.age}
-                          onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                          placeholder="e.g. 28"
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all"
-                        />
-                        {formErrors.age && <p className="text-[11px] text-red-500 mt-1">{formErrors.age}</p>}
-                      </div>
-
-                      {/* Row 3: Occupation & Do you currently have a business */}
-                      <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
-                          Occupation *
-                        </label>
-                        <select
-                          value={formData.occupation}
-                          onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
-                        >
-                          <option value="Student">Student</option>
-                          <option value="Working Professional">Working Professional</option>
-                          <option value="Entrepreneur">Entrepreneur</option>
-                          <option value="Homemaker">Homemaker</option>
-                          <option value="Farmer">Farmer</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
-                          Do you currently have a business? *
-                        </label>
-                        <select
-                          value={formData.hasBusiness}
-                          onChange={(e) => setFormData({ ...formData, hasBusiness: e.target.value })}
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all cursor-pointer"
-                        >
-                          <option value="Planning to start">Planning to start</option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
-                        </select>
-                      </div>
-
-                      {/* Row 4: What do you expect from this program? (Textarea) */}
-                      <div className="sm:col-span-2">
-                        <label className="block text-xs font-semibold text-[#083344] mb-1">
+                        <label className="block text-[11px] sm:text-xs font-semibold text-[#083344] mb-1">
                           What do you expect from this program? *
                         </label>
                         <textarea
-                          rows={3}
+                          rows={2}
                           required
                           value={formData.expectations}
                           onChange={(e) => setFormData({ ...formData, expectations: e.target.value })}
                           placeholder="Share what you hope to learn or achieve from this program..."
-                          className="w-full text-sm px-3.5 py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all resize-none"
+                          className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5 rounded-lg bg-white border border-gray-200 text-slate-800 placeholder-slate-400 focus:border-[#0f4c5c] focus:ring-1 focus:ring-[#0f4c5c] outline-none transition-all resize-none"
                         />
-                        {formErrors.expectations && <p className="text-[11px] text-red-500 mt-1">{formErrors.expectations}</p>}
+                        {formErrors.expectations && <p className="text-[10px] sm:text-[11px] text-red-500 mt-0.5">{formErrors.expectations}</p>}
                       </div>
                     </div>
 
                     {apiError && (
-                      <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs leading-relaxed flex items-start gap-2">
+                      <div className="p-2.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs leading-relaxed flex items-start gap-2">
                         <span className="font-bold text-red-800 shrink-0">Notice:</span>
                         <span>{apiError}</span>
                       </div>
                     )}
 
-                    <div className="pt-2">
+                    <div className="pt-1 pb-1">
                       <button
                         type="submit"
                         disabled={isProcessingPayment}
-                        className="w-full py-3.5 px-6 rounded-lg bg-[#d4af37] hover:bg-[#c39e2b] text-[#083344] font-bold text-sm tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                        className="w-full py-2.5 sm:py-3 px-6 rounded-lg bg-[#d4af37] hover:bg-[#c39e2b] text-[#083344] font-bold text-xs sm:text-sm tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                       >
                         {isProcessingPayment ? (
                           <div className="flex items-center gap-2">
