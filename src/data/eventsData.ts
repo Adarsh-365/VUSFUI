@@ -1607,7 +1607,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     tagline: 'Connecting MMR and Konkan manufacturers, agro-producers, and industrial exporters with direct international buyers, shipping liners, and customs specialists.',
     date: 'October 31, 2026',
     day: 'Saturday (Official Event Schedule • 31 October 2026)',
-    time: '10:30 AM – 03:30 PM Onwards',
+    time: '10:30 AM – 04:30 PM',
     venue: 'Fortune Select Exotica, Navi Mumbai (ITC Hotel)',
     location: 'Fortune Select Exotica, Sector 19D, Vashi, Navi Mumbai, Maharashtra, India',
     city: 'Navi Mumbai',
@@ -1621,21 +1621,21 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     longDescription: [
       'The Navi Mumbai Export Summit 2026 is the premier cross-border commerce conclave for the Mumbai Metropolitan Region (MMR), Thane, Raigad, and Konkan industrial belts, hosted at Fortune Select Exotica, Navi Mumbai (ITC Hotel) and organized by Namaste India Group.',
       'Featuring prominent exhibitors and leading trade experts, the summit convenes manufacturers, agro-commodity processors, chemical exporters, shipping lines, and international trade desks.',
-      'Delegates will explore practical export expansion strategies, India Post postal export channels, customs duty deferment schemes, and bilateral trade opportunities across Japan, UAE (RAKEZ), and Nepal.'
+      'Delegates will explore practical export expansion strategies, India Post postal export channels, customs duty deferment schemes, multimodal logistics via JNPA Nhava Sheva & Airport, and bilateral trade opportunities across Japan and Nepal.'
     ],
     stats: [
       { value: '60+', label: 'Exhibitors & Brand Pavilions', subtext: 'Displaying products & export solutions' },
       { value: '300+', label: 'Exporting MSMEs & Founders', subtext: 'Engineering, pharma, agro & chemicals' },
-      { value: '8 Sessions', label: 'Key Sessions & Global Corridors', subtext: 'Strategy, India Post, Customs, Japan, UAE & Nepal' },
-      { value: 'Full Day', label: 'Conclave & Networking', subtext: '10:30 AM – 03:30 PM Onwards at Fortune Select Exotica' },
+      { value: '8 Sessions', label: 'Key Sessions & Global Corridors', subtext: 'Strategy, India Post, Customs, Japan, JNPA & Nepal' },
+      { value: 'Full Day', label: 'Conclave & Networking', subtext: '10:30 AM – 04:30 PM at Fortune Select Exotica' },
     ],
     highlights: [
-      'Export Strategy Session by Ajeet Sha on Overseas Expansion & Global Challenges',
-      'Organizer Keynote by Pragati Tayde (Namaste India Group: Connecting Indian Business to the World Global)',
+      'Export Strategy Session by Import - Export Industrial Expert on Overseas Expansion & Global Challenges',
+      'Organizer Keynote by President & Founder Pragati Tayde (Namaste India Group: Connecting Indian Business to the world global)',
       'India Post Session by Shri Vipul Mandlesha on Exports Through Postal Channels',
       'Export Incentives, Duty Deferment Schemes & Speedy Customs Clearance by Suresh Kayakkool',
-      'Bilateral & Regional Trade Sessions: Japan (Pravin Kurab), UAE (Rakez), and Nepal (Pushkar Malla)',
-      'High-Impact B2B Networking & Business Connections (03:30 PM Onwards)',
+      'Bilateral & Multimodal Sessions: Japan (Pravin Purab - AAAVI), JNPA Nhava Sheva & Airport (Reetabrata Bhattacharya), and Nepal (Pushkar Malla - India - Nepal Industrial Expert)',
+      'High-Impact B2B Networking & Business Connections (03:30 PM – 04:30 PM)',
     ],
     galleryImages: [
       '/timeline_photos/navi mumbai business summit/IMG-20260721-WA0010.jpeg',
@@ -1649,13 +1649,13 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       {
         number: '01',
         title: 'Export Strategy & Overseas Expansion',
-        description: 'Gain practical strategies from Ajeet Sha on overcoming international challenges, seizing global opportunities, and smoothly expanding business overseas.',
+        description: 'Gain practical strategies from Import - Export Industrial Expert on overcoming international challenges, seizing global opportunities, and smoothly expanding business overseas.',
         category: 'Export Strategy',
       },
       {
         number: '02',
         title: 'Connecting Indian Business Globally',
-        description: 'Explore Namaste India Group’s vision and initiatives presented by Pragati Tayde to empower Indian MSMEs in entering world markets.',
+        description: 'Explore Namaste India Group’s vision and initiatives presented by President & Founder Pragati Tayde (Namaste India Group: Connecting Indian Business to the world global) to empower Indian MSMEs in entering world markets.',
         category: 'Organizer Keynote',
       },
       {
@@ -1673,14 +1673,14 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       {
         number: '05',
         title: 'Japan-India Business Connect',
-        description: 'Discover new-age manufacturing, bilateral trade, and strategic investment opportunities with Japan presented by Pravin Kurab.',
+        description: 'Discover new-age manufacturing, bilateral trade, and strategic investment opportunities with Japan presented by Pravin Purab (AAAVI).',
         category: 'Japan Corridor',
       },
       {
         number: '06',
-        title: 'Middle East & Regional Trade (UAE & Nepal)',
-        description: 'Explore India-UAE global trade connections with Rakez and Nepal-India cross-border trade & investment partnerships with Pushkar Malla.',
-        category: 'UAE & Nepal Corridors',
+        title: 'Strategic Maritime Gateway & Regional Trade',
+        description: 'Explore Strategic Maritime Gateway (JNPA Nhava Sheva & Airport) with Reetabrata Bhattacharya and Nepal-India cross-border trade & investment partnerships with Pushkar Malla (India - Nepal Industrial Expert).',
+        category: 'Maritime & Regional Corridors',
       },
     ],
     agendaTitle: 'OFFICIAL EVENT SCHEDULE • 31 OCTOBER 2026',
@@ -1695,13 +1695,13 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       {
         time: '11:10 AM – 11:50 AM',
         title: 'Export Strategy Session',
-        description: 'Speaker: Ajeet Sha | Topic: Upcoming Global Challenges and Opportunities: How Business Can Overcome International Issues and Smoothly Expand Overseas',
+        description: 'Speaker: Import - Export Industrial Expert | Topic: Upcoming Global Challenges and Opportunities: How Business Can Overcome International Issues and Smoothly Expand Overseas',
         type: 'keynote',
       },
       {
         time: '11:50 AM – 12:10 PM',
         title: 'Organizer Keynote',
-        description: 'Speaker: Pragati Tayde | Namaste India Group: Connecting Indian Business to the World Global',
+        description: 'Speaker: Pragati Tayde (President & Founder) | Namaste India Group: Connecting Indian Business to the world global',
         type: 'keynote',
       },
       {
@@ -1719,23 +1719,23 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       {
         time: '01:30 PM – 02:10 PM',
         title: 'Bilateral Trade Session',
-        description: 'Speaker: Pravin Kurab | Topic: Japan-India Business Connect – New-Age Manufacturing, Trade & Investment Opportunities',
+        description: 'Speaker: Pravin Purab (AAAVI) | Topic: Japan-India Business Connect – New-Age Manufacturing, Trade & Investment Opportunities',
         type: 'panel',
       },
       {
         time: '02:10 PM – 02:50 PM',
-        title: 'Middle East Trade Session',
-        description: 'Speaker: Rakez | Topic: India-UAE: Turning Trade Connection into Global Opportunities',
+        title: 'Maritime & Air Cargo Gateway',
+        description: 'Speaker: Reetabrata Bhattacharya | Topic: Strategic Maritime Gateway (JNPA Nhava Sheva & Airport)',
         type: 'panel',
       },
       {
         time: '02:50 PM – 03:30 PM',
         title: 'Regional Trade Session',
-        description: 'Speaker: Pushkar Malla | Topic: India & Nepal: Partners in Trade, Investment & Growth',
+        description: 'Speaker: Pushkar Malla (India - Nepal Industrial Expert) | Topic: India & Nepal: Partners in Trade, Investment & Growth',
         type: 'panel',
       },
       {
-        time: '03:30 PM Onwards',
+        time: '03:30 PM – 04:30 PM',
         title: 'Networking & Conclusion',
         description: 'Networking & Business Connections',
         type: 'networking',
@@ -1769,7 +1769,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
         seatsLeft: 18,
         benefits: [
           'All Trade Delegate Pass Privileges',
-          'VIP Front-Row Seating & Direct Access to Speakers (Ajeet Sha, RAKEZ, etc.)',
+          'VIP Front-Row Seating & Direct Access to Keynote Speakers & Trade Industrial Experts',
           'Pre-Scheduled One-on-One Meetings with International Buyers & Trade Desks',
           'Full Inclusion in the Summit Buyer-Seller Dossier',
           '3-Month Complimentary Access to VUSF Export Advisory Desk',
@@ -1795,22 +1795,22 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       { title: 'Manufacturers & Industrialists', description: 'Engineering, auto ancillaries, electricals, packaging, and plastics looking to export.' },
       { title: 'Agro & Food Commodity Processors', description: 'Grains, spices, processed foods, dry fruits, and organic consumables.' },
       { title: 'Exporters & Cross-Border Startups', description: 'Enterprises wanting to leverage India Post DNK, global e-commerce, and customs ease.' },
-      { title: 'Global Investors & Trade Representatives', description: 'Seeking bilateral expansion in Japan, UAE (RAKEZ), Nepal, and the Indian sub-continent.' },
+      { title: 'Global Investors & Trade Representatives', description: 'Seeking bilateral expansion in Japan (AAAVI), multimodal gateway logistics (JNPA Nhava Sheva & Airport), and Nepal trade corridors.' },
     ],
     speakers: [
       {
-        name: 'Pragati Tayde',
-        designation: 'Founder & President',
-        organization: 'Namaste India Group',
-        expertise: 'Connecting Indian Business Globally, Cross-Border Corridors & Policy',
-        topic: 'Namaste India Group: Connecting Indian Business to the World Global',
-      },
-      {
-        name: 'Ajeet Sha',
-        designation: 'International Trade Strategist & EXIM Mentor',
-        organization: 'Global Export-Import Council',
+        name: 'Import - Export Industrial Expert',
+        designation: 'Industrial Trade & EXIM Advisory',
+        organization: 'Import - Export Industrial Expert',
         expertise: 'Global Challenges, Cross-Border Trade & Overseas Expansion',
         topic: 'Upcoming Global Challenges and Opportunities: How Business Can Overcome International Issues and Smoothly Expand Overseas',
+      },
+      {
+        name: 'Pragati Tayde',
+        designation: 'President & Founder',
+        organization: 'Namaste India Group',
+        expertise: 'Connecting Indian Business Globally, Cross-Border Corridors & Policy',
+        topic: 'Namaste India Group: Connecting Indian Business to the world global',
       },
       {
         name: 'Shri Vipul Mandlesha',
@@ -1827,23 +1827,23 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
         topic: 'Various Incentives for Exporters, Duty Deferment Schemes of Govt. & Registrations for Speedy Clearances',
       },
       {
-        name: 'Pravin Kurab',
+        name: 'Pravin Purab',
         designation: 'Bilateral Trade Advisor - Japan Corridor',
-        organization: 'Indo-Japan Trade & Economic Forum',
+        organization: 'AAAVI',
         expertise: 'Japan-India Trade, New-Age Manufacturing & Bilateral Investment',
         topic: 'Japan-India Business Connect – New-Age Manufacturing, Trade & Investment Opportunities',
       },
       {
-        name: 'Rakez',
-        designation: 'Representative, Ras Al Khaimah Economic Zone',
-        organization: 'RAKEZ, UAE',
-        expertise: 'India-UAE Trade, Free Zone Setup & Global Expansion',
-        topic: 'India-UAE: Turning Trade Connection into Global Opportunities',
+        name: 'Reetabrata Bhattacharya',
+        designation: 'Maritime & Multimodal Logistics Specialist',
+        organization: 'Strategic Maritime Gateway (JNPA Nhava Sheva & Airport)',
+        expertise: 'JNPA Nhava Sheva Port, Air Cargo Hubs & Multimodal Logistics',
+        topic: 'Strategic Maritime Gateway (JNPA Nhava Sheva & Airport)',
       },
       {
         name: 'Pushkar Malla',
-        designation: 'Cross-Border Investment & Trade Director',
-        organization: 'Nepal-India Commerce & Industrial Forum',
+        designation: 'Cross-Border Investment & Industrial Expert',
+        organization: 'India - Nepal Industrial Expert',
         expertise: 'Nepal-India Bilateral Trade, Joint Ventures & Regional Growth',
         topic: 'India & Nepal: Partners in Trade, Investment & Growth',
       },
@@ -1851,7 +1851,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
     faqs: [
       {
         question: 'Where and when is the Navi Mumbai Export Summit 2026 being held?',
-        answer: 'The summit is held on Saturday, 31 October 2026 at the prestigious Fortune Select Exotica, Navi Mumbai (ITC Hotel) in Sector 19D, Vashi, Navi Mumbai. Sessions run from 10:30 AM to 03:30 PM Onwards.',
+        answer: 'The summit is held on Saturday, 31 October 2026 at the prestigious Fortune Select Exotica, Navi Mumbai (ITC Hotel) in Sector 19D, Vashi, Navi Mumbai. Sessions run from 10:30 AM to 04:30 PM.',
       },
       {
         question: 'Who is the official organizer of the summit?',
@@ -1859,7 +1859,7 @@ export const DETAILED_EVENTS: DetailedEvent[] = [
       },
       {
         question: 'What are the main topics and sessions in the schedule?',
-        answer: 'The summit features: Export Strategy Session by Ajeet Sha, Organizer Keynote by Pragati Tayde (Namaste India Group), India Post Session by Shri Vipul Mandlesha, Export Incentives & Customs by Suresh Kayakkool, Bilateral Trade Session (Japan) by Pravin Kurab, Middle East Trade Session (UAE) by Rakez, Regional Trade Session (Nepal) by Pushkar Malla, followed by B2B Networking & Conclusion.',
+        answer: 'The summit features: Export Strategy Session by Import - Export Industrial Expert, Organizer Keynote by President & Founder Pragati Tayde (Namaste India Group: Connecting Indian Business to the world global), India Post Session by Shri Vipul Mandlesha, Export Incentives & Customs by Suresh Kayakkool, Bilateral Trade Session (Japan) by Pravin Purab (AAAVI), Strategic Maritime Gateway (JNPA Nhava Sheva & Airport) by Reetabrata Bhattacharya, Regional Trade Session (Nepal) by Pushkar Malla (India - Nepal Industrial Expert), followed by B2B Networking & Conclusion until 04:30 PM.',
       },
       {
         question: 'Can I bring product samples to show to buyers and speakers?',

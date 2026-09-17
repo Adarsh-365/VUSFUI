@@ -91,7 +91,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onMemberC
     {
       id: 'navi-mumbai-export-summit',
       title: 'Navi Mumbai Export Summit 2026',
-      date: 'October 31, 2026 (10:30 AM – 03:30 PM Onwards)',
+      date: 'October 31, 2026 (10:30 AM – 04:30 PM)',
       dateBadge: '31 OCT 2026',
       location: 'Fortune Select Exotica, Navi Mumbai (ITC Hotel)',
       category: 'REGIONAL EXPORT CONCLAVE',
